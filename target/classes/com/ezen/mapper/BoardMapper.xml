@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="coinweb.dao.BoardDAO">  
+	<select id="getBoardList" resultType="coinweb.vo.BoardVO">
+		   SELECT RNO
+		   		, NO
+		   		, TITLE
+		   		, NAME
+		   		, BDATE
+		   		, HITS
+		   		, LIKEIT FROM (SELECT ROWNUM AS RNO
+		   							, NO
+		   							, TITLE
+		   							, NAME
+		   							, TO_CHAR(BDATE,'YY-MM-DD')AS BDATE
+		   							, HITS
+		   							, LIKEIT FROM (SELECT * FROM COINWEB_BOARD ORDER BY BDATE DESC)) 
+		   							  WHERE RNO BETWEEN #{param1} AND #{param2}
+	</select>
+	<select id="getBoardListContent" resultType="coinweb.vo.BoardVO">
+		   SELECT RNO
+		   		, NO
+		   		, TITLE
+		   		, NAME
+		   		, BDATE
+		   		, HITS
+		   		, LIKEIT FROM (SELECT ROWNUM AS RNO
+		   							, NO
+		   							, TITLE
+		   							, NAME
+		   							, TO_CHAR(BDATE,'YY-MM-DD')AS BDATE
+		   							, HITS
+		   							, LIKEIT FROM (SELECT * FROM COINWEB_BOARD ORDER BY BDATE DESC) 
+		   							  WHERE UPPER(CONTENT) LIKE ('%' || UPPER(#{param1}) ||'%'))
+		   							  WHERE RNO BETWEEN #{param2} AND #{param3}
+	</select>
+	<select id="getBoardListTitle" resultType="coinweb.vo.BoardVO">
+		   SELECT RNO
+		   		, NO
+		   		, TITLE
+		   		, NAME
+		   		, BDATE
+		   		, HITS
+		   		, LIKEIT FROM (SELECT ROWNUM AS RNO
+		   							, NO
+		   							, TITLE
+		   							, NAME
+		   							, TO_CHAR(BDATE,'YY-MM-DD')AS BDATE
+		   							, HITS
+		   							, LIKEIT FROM (SELECT * FROM COINWEB_BOARD ORDER BY BDATE DESC) 
+		   							  WHERE UPPER(TITLE) LIKE ('%' || UPPER(#{param1}) ||'%')) 
+		   							  WHERE RNO BETWEEN #{param2} AND #{param3}
+	</select>
+	
+	<select id="execTotalCount" resultType="Integer">
+ 			SELECT COUNT(*) FROM COINWEB_BOARD
+ 	</select>
+ 	<select id="execTotalCountContent" resultType="Integer">
+ 			SELECT COUNT(*) FROM COINWEB_BOARD   WHERE UPPER(CONTENT) LIKE '%' || UPPER(#{param1}) || '%' 
+ 	</select> 
+ 	<select id="execTotalCountTitle" resultType="Integer">
+ 			SELECT COUNT(*) FROM COINWEB_BOARD   WHERE UPPER(TITLE) LIKE '%' || UPPER(#{param1}) || '%' 
+ 	</select> 
+ 	 
+ 		
+	<select id="getBoardContent" resultType="coinweb.vo.BoardVO">
+			SELECT  NO
+				  , TITLE
+				  , BDATE
+				  , HITS
+				  , LIKEIT
+				  , CONTENT FROM COINWEB_BOARD 
+				  	WHERE NO = #{no}
+	</select>
+	
+ 	<insert id="insertBoardContent" parameterType="coinweb.vo.BoardVO">
+ 			INSERT INTO COINWEB_BOARD VALUES(SEQU_COINWEB_BOARD_NO.NEXTVAL
+ 										   , #{title}
+ 										   , 'NAME'
+ 										   , #{content, jdbcType=CLOB}
+ 										   , SYSDATE
+ 										   , 0
+ 										   , 0)
+
+ 	</insert>
+ 	<delete id="deleteBoardContent">
+ 			DELETE FROM COINWEB_BOARD WHERE NO=#{no}
+ 	</delete>	
+ 	
+ 	<update id="updateBoardContent">
+		 	UPDATE COINWEB_BOARD SET TITLE = #{title}
+		 						   , CONTENT = #{content} 
+		 						   	 WHERE NO = #{no}				
+ 	</update>
+ 	
+ 	<select id="searchBoardList" resultType="coinweb.vo.BoardVO">
+ 			SELECT ROWNUM AS RNO
+ 				 , TITLE
+ 				 , NAME
+ 				 , TO_CHAR(BDATE,'YY-MM-DD')AS BDATE
+				 , HITS
+				 , LIKEIT FROM COINWEB_BOARD 
+				   WHERE TITLE LIKE '%' || #{search} || '%' 
+ 	</select>
+ 	<update id="getUpdateHits">
+ 			UPDATE COINWEB_BOARD SET HITS = HITS+1 WHERE NO =#{no}
+ 	</update>
+ 	
+ 	<update id="likeitUp">
+ 	  UPDATE COINWEB_BOARD SET LIKEIT = LIKEIT+1 WHERE NO =#{no}
+ 	</update>
+ 	<update id="likeitDown">
+ 	  UPDATE COINWEB_BOARD SET LIKEIT = LIKEIT-1 WHERE NO =#{no}
+ 	</update>
+ 	<select id="getLikeit" resultType="coinweb.vo.BoardVO">
+ 	SELECT LIKEIT FROM COINWEB_BOARD WHERE NO=#{no}
+ 	</select>
+ 	
+ 	<select id="getReplyList" resultType="coinweb.vo.BoardReplyVO">
+		SELECT RID
+			 , CONTENT
+			 , RDATE
+			 , BID 
+			 , LIKEIT
+			 , DISLIKEIT FROM COINWEB_BOARD_REPLY
+			   WHERE BID=#{no} ORDER BY RDATE DESC		 	 
+	</select>
+	
+	<select id="getReplyCount" resultType="Integer">
+		SELECT COUNT(*) FROM COINWEB_BOARD_REPLY WHERE BID=#{no}	 	 
+	</select>
+	
+	
+	<insert id="getReplyInsertResult">
+		INSERT INTO COINWEB_BOARD_REPLY VALUES(SEQU_COINWEB_BOARD_REPLY_NO.NEXTVAL
+			 							     , #{content}
+			 								 , SYSDATE
+			 								 , #{bid}
+			 								 , 0
+			 								 , 0)			 					
+	</insert>
+	
+	<update id="replyLikeitUp">
+ 	  UPDATE COINWEB_BOARD_REPLY SET LIKEIT = LIKEIT+1 WHERE BID =#{param1} AND RID =#{param2}
+ 	</update>
+
+ 	<update id="replyDislikeitUp">
+ 	  UPDATE COINWEB_BOARD_REPLY SET DISLIKEIT = DISLIKEIT+1 WHERE BID =#{param1} AND RID =#{param2}
+ 	</update>
+ 	
+	<select id="getReplyLikeit" resultType="coinweb.vo.BoardReplyVO">
+ 	SELECT LIKEIT,DISLIKEIT FROM COINWEB_BOARD_REPLY WHERE BID=#{param1} AND RID =#{param2}
+ 	</select>
+ 	
+ 	
+	
+	
+  
+   
+</mapper>

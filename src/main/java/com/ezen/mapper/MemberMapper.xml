@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="coinweb.dao.MemberDAO">
+
+	<insert id="getInsertResult">
+		insert into coinweb_member values(sequ_coinweb_member_id.nextval,#{email},#{name},#{pass},#{agree},sysdate)
+	</insert>
+	
+	<select id="getLoginResult" resultType="int">
+		select count(*) from coinweb_member where email=#{email} and pass=#{pass}
+	</select>
+	
+	<select id="getResultList" resultType="coinweb.vo.MemberVO">
+		select rownum as rno,id,name,to_char(jdate,'yyyy-mm-dd') as jdate 
+			from (select * from coinweb_member ORDER BY jdate desc)
+	</select>
+	
+	<select id="getResultVO" resultType="coinweb.vo.MemberVO">
+		select email, id,name from coinweb_member where email=#{email}
+	</select>
+	
+	<select id="getIdCheckResult" resultType="int">
+		select count(*) from coinweb_member where email=#{email}
+	</select>
+	
+	<select id="getJoinIdResult" resultType="coinweb.vo.MemberVO">
+		select rownum, id from (select * from coinweb_member order by jdate desc) where rownum=1
+	</select>
+	
+	<select id="getNameCheckResult" resultType="int">
+	select count(*) from coinweb_member where name=#{name}
+	</select>
+	
+	<select id="getLoginCheckResult" resultType="int">
+	select count(*) from coinweb_member where pass=#{param2} and id=#{param3}
+	</select>
+	
+	<update id="getPassWordChangeResult">
+	update coinweb_member set pass=#{pass} where email=#{email}
+	</update>
+	
+</mapper>	

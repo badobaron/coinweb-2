@@ -1,0 +1,719 @@
+	@CHARSET "EUC-KR";
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+@import url('http://fonts.googleapis.com/earlyaccess/jejugothic.css');
+/*나눔스퀘어*/
+/*베너*/
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+body {
+  margin: 0;
+  font-family:'jeju gothic';
+} 
+
+h1, h2, h3, h4, h5, h6{
+	  font-family:'jeju gothic', lighter;
+}
+
+footer {
+
+   bottom: 0;
+   width: 100%;
+   
+}
+
+
+/*상단 네비*/
+header div.nav{
+width: 1100px;
+
+margin: auto;}
+
+header .activea {
+	font-family: 'Montserrat', sans-serif;
+	font-weight:bold;
+	color: silver;
+
+}
+
+header .topnav {
+  overflow: hidden;
+  background-color: rgb(2, 113, 179);
+ 	position:relative;
+ 	z-index: 1;
+ 
+}
+
+
+.shadow{
+ box-shadow: -60px -20px 180px -25px #000000,
+        0px 20px 30px -25px #000000;}
+        
+
+
+header .topnav a{
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+ margin-bottom: -5px;
+ margin-top: -5px;
+}
+	
+
+header .topnav a span{
+
+  font-size: 22px; 
+ 
+}
+
+
+
+
+header .topnav-right {
+margin-top:12px;
+  float: right;
+  font-size: 13px;
+
+
+
+}
+header .dropdown {
+    float: left;
+    overflow: hidden;
+ 	margin-top:-4px;
+}
+
+header .dropdown .dropbtn {
+    font-size: 13px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: rgb(2, 113, 179);
+    
+    font-family: inherit;
+    margin: 0;
+}
+
+
+
+header .dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: rgb(249,249,249);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 8;
+  
+}
+
+header .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+header .dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+header .dropdown:hover .dropdown-content {
+    display: block;
+}
+header .sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+header .sticky + .content {
+  padding-top: 60px;
+}
+
+
+
+
+/*상단 네비끝*/
+
+/*로그인 및 회원가입*/
+
+@media only screen and (min-width: 768px) {
+  .cd-main-header {
+    height: 80px;
+  }
+
+
+.cd-main-nav {
+  float: right;
+  margin-right: 5%;
+  width: 44px;
+  height: 100%;
+  background: url("http://localhost:8080/coinweb/images/cd-icon-menu.svg") no-repeat center center;
+  cursor: pointer;
+}
+
+
+
+
+
+
+  
+  /*헤더부분 로그인 회원가입*/
+  .cd-main-nav__item {
+    display: inline-block;
+    height: auto;
+    line-height: normal;
+    background-color:red ;
+
+  }
+   /*헤더부분 로그인 회원가입*/
+  .cd-main-nav__item.cd-main-nav__item--signin, .cd-main-nav__item.cd-main-nav__item--signup {
+    padding: .6em 1em;
+    margin-top:3px;
+    background-color: rgb(2, 113, 179);
+    
+    
+  }
+  <!-- 헤더로그인 -->
+  .cd-main-nav__item.cd-main-nav__item--signin {
+    border: 1px solid rgba(255, 255, 255, 0.6);
+     border:5px solid blue;
+  }
+  <!-- 헤더회원가입 -->
+  .cd-main-nav__item.cd-main-nav__item--signup {
+    background-color: black;
+     border:5px solid green;
+     
+  }
+}
+
+/* -------------------------------- 
+x sigin/signup popup 
+-------------------------------- */
+/*이벤트처리후 로그인 회원가입창*/
+.cd-signin-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /*클릭이후 백그라운드 화면*/
+  background: rgba(52, 54, 66, 0.9);
+  z-index: 3;
+  overflow-y: auto;
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s, visibility 0.3s;
+  transition: opacity 0.3s, visibility 0.3s;
+  
+}
+/*로그인 회원가입창 배경*/
+.cd-signin-modal.cd-signin-modal--is-visible {
+  visibility: visible;
+  opacity: 1;
+ 
+}
+
+/*얼너트 로그인 회원가입창*/
+.cd-signin-modal__container {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  background: #FFF;
+  margin: 3em auto 4em;
+  cursor: auto;
+  border-radius: 0.25em;
+  -webkit-transform: translateY(-30px);
+      -ms-transform: translateY(-30px);
+          transform: translateY(-30px);
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.cd-signin-modal--is-visible .cd-signin-modal__container {
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.cd-signin-modal__switcher:after {
+  /* clearfix */
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.cd-signin-modal__switcher li {
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+
+.cd-signin-modal__switcher li:first-child a {
+  border-radius: .25em 0 0 0;
+}
+
+.cd-signin-modal__switcher li:last-child a {
+  border-radius: 0 .25em 0 0;
+}
+
+.cd-signin-modal__switcher a {
+  display: block;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #d2d8d8;
+  color: #809191;
+}
+
+.cd-signin-modal__switcher a.cd-selected {
+  background: #FFF;
+  color: #505260;
+}
+
+@media only screen and (min-width: 600px) {
+  .cd-signin-modal__container {
+    margin: 4em auto;
+  }
+  .cd-signin-modal__switcher a {
+    height: 70px;
+    line-height: 70px;
+  }
+}
+
+.cd-signin-modal__form {
+  padding: 1.4em;
+}
+
+.cd-signin-modal__fieldset {
+  position: relative;
+  margin: 1.4em 0;
+}
+
+.cd-signin-modal__fieldset:first-child {
+  margin-top: 0;
+}
+
+.cd-signin-modal__fieldset:last-child {
+  margin-bottom: 0;
+}
+
+.cd-signin-modal__label {
+  font-size: 1.4rem;
+}
+
+.cd-signin-modal__label.cd-signin-modal__label--image-replace {
+  /* replace text with an icon */
+  display: inline-block;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  bottom: auto;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  height: 20px;
+  width: 20px;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  color: red;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+}
+
+.cd-signin-modal__label.cd-signin-modal__label--username {
+  background-image: url("http://localhost:8080/coinweb/images/cd-icon-username.svg");
+}
+
+.cd-signin-modal__label.cd-signin-modal__label--email {
+  background-image: url("http://localhost:8080/coinweb/images/cd-icon-email.svg");
+}
+
+.cd-signin-modal__label.cd-signin-modal__label--password {
+  background-image: url("http://localhost:8080/coinweb/images/cd-icon-password.svg");
+}
+
+.cd-signin-modal__input {
+  margin: 0;
+  padding: 0;
+  border-radius: 0.25em;
+}
+
+.cd-signin-modal__input.cd-signin-modal__input--full-width {
+  width: 100%;
+}
+
+.cd-signin-modal__input.cd-signin-modal__input--has-padding {
+  padding: 12px 20px 12px 50px;
+}
+
+.cd-signin-modal__input.cd-signin-modal__input--has-border {
+  border: 1px solid #d2d8d8;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.cd-signin-modal__input.cd-signin-modal__input--has-border:focus {
+  border-color: #343642;
+  -webkit-box-shadow: 0 0 5px rgba(52, 54, 66, 0.1);
+          box-shadow: 0 0 5px rgba(52, 54, 66, 0.1);
+  outline: none;
+}
+
+.cd-signin-modal__input.cd-signin-modal__input--has-error {
+  border: 1px solid #d76666;
+}
+
+/*로그인 회원가입 버튼*/
+.cd-signin-modal__input[type=submit] {
+  padding: 16px 0;
+  cursor: pointer;
+  background: red;
+  color: #FFF;
+  font-weight: bold;
+  border: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: scale;
+}
+
+/*버튼호버*/
+.cd-signin-modal__input[type=submit]:hover, .cd-signin-modal__input[type=submit]:focus {
+  background: gray;
+  outline: none;
+}
+
+.cd-signin-modal__hide-password {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 6px 15px;
+  border-left: 1px solid #d2d8d8;
+  top: 50%;
+  bottom: auto;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: #343642;
+
+}
+
+
+  .cd-signin-modal__error {
+  display: inline-block;
+  position: absolute;
+  left: -5px;
+  bottom: -35px;
+  background: rgba(215, 102, 102, 0.9);
+  padding: .8em;
+  z-index: 2;
+  color: #FFF;
+  font-size: 1.3rem;
+  border-radius: 0.25em;
+  /* prevent click and touch events */
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s 0s, visibility 0s 0.2s;
+  transition: opacity 0.2s 0s, visibility 0s 0.2s;
+}
+
+
+
+
+
+@media only screen and (min-width: 600px) {
+  .cd-signin-modal__form {
+    padding: 2em;
+  }
+  .cd-signin-modal__fieldset {
+    margin: 2em 0;
+  }
+  .cd-signin-modal__fieldset:first-child {
+    margin-top: 0;
+  }
+  .cd-signin-modal__fieldset:last-child {
+    margin-bottom: 0;
+  }
+  .cd-signin-modal__input.cd-signin-modal__input--has-padding {
+    padding: 16px 20px 16px 50px;
+  }
+  
+  /*로그인 회원가입 버튼*/
+  .cd-signin-modal__input[type=submit] {
+    padding: 16px 0;
+  
+  }
+}
+
+
+
+@media only screen and (min-width: 600px) {
+  .cd-signin-modal__message {
+    padding: 2em 2em 0;
+  }
+}
+              
+
+
+
+@media only screen and (min-width: 1170px) {
+  .cd-signin-modal__close {
+    display: none;
+  }
+}
+
+.cd-signin-modal__block {
+  display: none;
+}
+
+.cd-signin-modal__block.cd-signin-modal__block--is-selected {
+  display: block;
+}
+
+ol, ul {
+	list-style: none;
+	
+}
+
+/*로그인 회원가입창 폰트변경*/
+#signup-email,#signup-username,#pass,#cpass,#signin-email,#signin-password,#uid,#upass,#npass,#ncpass{
+	border:1px solid red;
+	font-family: "Gill Sans", sans-serif;
+	 font-weight:bold
+}
+
+#ll{
+	
+
+	
+}
+#jj{
+	
+	
+}
+
+
+/*비밀번호 변경*/
+
+.ps {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 480px;
+  
+  margin: 0 auto 100px;
+  margin-top:180px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+   
+}
+.ps input {
+ 
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 22px;
+   text-decoration:none;
+   border-radius:10px;
+  
+}
+.ps button {
+
+
+  background: red;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 20px;
+  transition: all 0.3 ease;
+  cursor: pointer;
+    border-radius:10px;
+}
+.ps button:hover,.psbutton:active,.ps button:focus {
+  background: pink;
+}
+
+#psh1{
+
+	margin-bottom:50px;
+}
+#p1{
+	font-size:13px;
+}
+
+#upid,#upps,#upps1,#upps2{
+
+	font-family: "Gill Sans", sans-serif;
+	 font-weight:bold
+}
+
+
+
+/*비밀번호 변경 모달 */
+
+/* Full-width input fields */
+#uid,#upass,#npass,#ncpass {
+    width: 32%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    margin-bottom:10px;
+    display: block;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid pink;
+}
+
+/* Set a style for all buttons */
+#pcbtn {
+    background-color: red;
+    color: white;
+    padding: 14px 20px;
+ 
+    border: none;
+    cursor: pointer;
+    width: 32%;
+     border-radius: 10px;
+  
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: red;
+     
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+   
+  	color:black;
+  	font-size:20px;
+  
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+   
+}
+
+.container {
+    padding: 16px;
+   
+   margin-bottom:40px;
+   
+    
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+    
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+   
+   margin:auto;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+
+    width:400px;; /* Could be more or less, depending on screen size */
+    height:500px;
+    margin:auto;
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+    margin:auto;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+    
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+    
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+       
+    }
+    .cancelbtn {
+       width: 100%;
+       border:1px solid black;
+      
+    }
+    
+
+
+}

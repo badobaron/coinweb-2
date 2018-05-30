@@ -1,0 +1,1133 @@
+@CHARSET "EUC-KR";
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+@import url('http://fonts.googleapis.com/earlyaccess/jejugothic.css');
+/*나눔스퀘어*/
+/*베너*/
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+body {
+  margin: 0;
+  font-family:'jeju gothic';
+} 
+
+h1, h2, h3, h4, h5, h6{
+	  font-family:'jeju gothic', lighter;
+}
+
+footer {
+
+   bottom: 0;
+   width: 100%;
+   
+}
+
+
+/*박스*/
+.coinBox h3{
+	margin-left: 10px;
+}
+
+
+
+.coinBox{
+  margin: auto;
+  width: 1024px;
+  height: 70%;
+  margin-bottom: 200px;
+  margin-top: 200px;
+  display: block;
+
+
+
+
+}
+
+
+.coinBox img {
+	width: 50px;
+	height: 50px;
+	margin-top: 25px;
+	margin-bottom:5px;
+	margin-left: 100px;
+	
+}
+
+.coinBox span.coin{
+	display:block; width:50%; margin:auto;
+	color:black;
+	border-radius: 5px;
+	text-align:center;
+	
+}
+
+
+
+.content33{
+    margin-top:-35px;
+    background: rgba(192, 192, 192,0.2 ); /* Black background with transparency */
+    color: black;
+    width: 100%;
+    line-height: 100%;
+    padding: 5px 40px 15px 20px;
+    font-size: 12px;
+}
+
+
+
+
+.boxbtn{
+	width:1022px;
+	background-color: #00CED1;
+	color: white;
+	border: none;
+	font-size: 20px;
+    font-weight: bold;
+    margin-right:3px;
+    margin-top:5px;
+    padding: 10px;
+}
+ .shadow1{
+box-shadow:3px 3px 3px #d4d4d4;
+
+}
+
+.shadow1:hover{
+box-shadow:3px 3px 15px #d4d4d4;
+
+}
+
+ .shadow2{
+box-shadow:3px 3px 3px  #d4d4d4;
+;
+
+}
+
+
+
+.box {
+	display: inline-block;
+    height: 180px;
+    margin-bottom: 10px;
+    margin-right:2.8px;
+	width:250px;
+    border: 1px solid #f5f5f5;
+
+}
+
+
+
+
+        
+
+
+/*테이블*/
+ 
+/*앱관련*/
+
+
+
+.content-style form.mycgv {
+		text-align: center;
+		background: linear-gradient(to right ,#00CED1 , rgba(0, 146, 208, 0.5));
+}
+.content-style form.mycgv span {
+	display:inline-block;
+	width: 350px; height: 280px;
+	
+	box-shadow:3px 3px 15px #0082a2;
+	color:rgb(63,63,66); font-weight: bold;
+	background-color: rgba(2, 101, 159, 0.0);
+	margin-bottom: 150px;
+	margin-top: 150px;
+	color: white;
+	padding-top: 60px;
+	
+
+}
+
+.content-style form.mycgv span img{
+	height: 50px; width: 50px;
+}
+
+.content-style form.mycgv span.span1{
+	margin-left: 80px;
+	margin-right: 150px;
+	
+}
+
+.content-style form.mycgv span:hover {
+ box-shadow:2px 2px 4px  #0082a2;
+}
+
+
+
+/* 소개 */
+* {box-sizing: border-box}
+.section_button_tab{
+	padding: 150px 80px 300px 550px;
+}
+.section_tab {
+    float: left;
+	background-color: white;
+    width: 30%;
+    height: 300px;
+    display: 
+}
+
+/*버튼*/
+.business_btn{
+    border: none;
+    color:white;
+    background-color: rgba(2, 101, 159, 0.7);
+    padding: 10px 100px;
+    font-size: 25px;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 50px;
+    border-radius: 4px;
+    box-shadow:2px 2px 4px  #012845;
+}
+
+/*버튼*/
+.sec_button{
+text-align: center;
+}
+
+/* Style the buttons inside the tab */
+.section_tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.section_tab button:hover {
+    background-color: #f1f1f1;
+}
+
+/* Create an active/current "tab button" class */
+.section_tab button.active {
+    background-color: #f1f1f1;
+}
+
+/* Style the tab content */
+
+
+
+
+
+/*이용가이드*/
+.acc_1{
+	background-color:#eee;
+	margin-top:50px;
+	padding-bottom: 50px;
+}
+.coina{
+
+	text-align: center;
+	padding-bottom: 20px;
+	padding-top: 50px;}
+
+.acco{
+	text-align:center;
+	 padding: 20px 500px;
+	
+}
+
+.accordion {
+    background-color: #eee;
+    display:block;
+    color: #444;
+   	 padding: 20px 20px;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+ 
+     font-weight: bold;
+     border-left: 5px solid #ccc;
+}
+
+ .accordion:hover {
+    background-color: #ccc; 
+}
+
+.panel {
+	
+	text-align: center;
+    display: none;
+    background-color: #eee;
+    overflow: hidden;
+}
+	
+.polyBackground{
+	 
+}
+
+.img{
+		
+	position: relative;
+    background-image: url(../images/bitcoin-2007769_1920.jpg);                                                               
+    height: 800px;
+    background-size: cover;
+    z-index:0;
+		
+ 
+}
+
+
+.img:before {
+  content: '';
+  background: linear-gradient(to right , rgba(51, 153, 255, 0.9),#00CED1);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+
+}
+
+
+
+
+.PolyBackground_text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  
+}
+
+
+.CoinMain__coin-main__1AHqh{
+	    width: 25%;
+    padding: .5rem;
+}
+
+
+
+
+/*랭킹*/
+
+.rangk_header{
+	width: 100%;
+	height: 300px;
+	text-align: center;
+	color: white;
+	margin-top:-10px;
+	background: linear-gradient(to right , rgba(51, 153, 255, 0.9),#00CED1);
+}
+
+.rangking_header_h1{
+	/*랭킹 폰트설정*/
+	padding-top: 50px;
+	
+
+}
+
+
+
+.rangking_main{
+	margin: auto;
+
+	width: 60%;
+	margin-top:50px;
+	margin-bottom: 150px;
+	text-align: center;
+	
+}
+/*1위*/
+.rangking_1{
+
+	border-bottom: 1px solid #d9d9d9;
+}
+/*23위*/
+.rangk_top2{
+	
+	display: inline-block;
+
+	text-align: center;
+	margin-bottom: 50px;
+	
+}
+
+.rangking_2{
+	margin-right: 300px;
+}
+
+/*나머지 랭킹*/
+.rangk_bottom{
+	
+} 
+
+.rangking_4_20 {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.rangking_4_20 th, .rangking_4_20 td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    
+}
+
+.rangking_4_20 tr:hover {background-color:#f9f9f9;}
+
+.rangking_4_20 td:nth-child(1){
+	  width:15%;
+	  text-align: center;		  
+}
+.rangking_4_20  th:nth-child(1){
+	  text-align: center;	  
+}
+.rangking_4_20 td:nth-child(2){
+	  width:50%;
+	  
+}
+.rangking_4_20 td:nth-child(3){
+	  width:15%;
+	  
+}
+.rangking_4_20 td:nth-child(4){
+	  width:10%;
+	  
+}
+
+/*랭킹끝*/
+
+
+/*wallet 내지갑 */
+/*wallet 내지갑 */
+/*wallet 내지갑 */
+
+#wallet{
+	display: table;
+	width: 60%;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+ 	
+    
+	
+  
+}
+/*버튼*/
+.wallet_tablink {
+	background-color: #ffffff;
+	border: none;
+    color: black;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 15px 1px;
+    margin-right:20px;
+    font-size: 17px;
+	width: 100%;
+	    
+	   
+   
+}
+.wallet_tablink_btn_box{
+	 float: left;
+     background-color: #ffffff;
+     width: 150px;
+     margin-right: 20px;
+     box-shadow:2px 2px 2px #d4d4d4;
+ 
+
+}
+
+.wallet_tabcontent{
+
+    float: left;
+ 
+ 
+	width:85%;
+	height:inherit;
+	display:flex;
+
+
+}
+/*안에 내용ㅋ*/
+.mywallet_box {
+	width: 100%;
+	background-color: white;
+ 	padding: 30px;
+ 	box-shadow:2px 2px 2px #d4d4d4;
+	border: 1px solid #d4d4d4;
+
+}
+
+.wallet_tabcontent div.mywalletcoin{
+	color:#2e2e2e;
+	margin: 20px 20px 20px 20px;
+	text-align: center;
+	background-color:  #f3f3f3;
+	border: 1px solid #e6e6e6;
+	padding: 20px;
+
+}
+
+
+.wallet_tabcontent h1{
+	color:#2e2e2e;
+	border-bottom: 3px solid #e6e6e6;
+	margin-top: 20px;
+}
+
+
+.wallet_tabcontent h4{
+	color:#2e2e2e;
+	margin-top: 40px;
+	
+}
+
+
+
+.coinWallet{
+	border-collapse: collapse;
+	margin:auto;
+	margin-top:20px;
+	margin-bottom:20px;
+	width: 100%;
+	padding-left:20px;
+
+	
+
+}
+
+.coinWallet tr:hover {background-color: #fafafa;}
+table.coinWallet th{
+	color:#2e2e2e;
+	padding:10px;
+	text-align: left;
+	border-bottom: 1px solid #e3e3e3;
+	
+}
+
+table.coinWallet td{
+	color:#787878;
+	padding:10px;
+	text-align: left;
+	color: 
+	
+	
+}
+
+.coin_mybusiness{
+	margin:auto;
+	margin-top:20px;
+	margin-bottom:40px;
+	width:100%;
+	border: 3px solid ;
+}
+
+.profit{
+	width: 250px;
+	height: 80px;
+	border-left: 1px solid #e6e6e6;
+	display:inline-block;
+	margin-right: 30px;
+	margin-bottom: 20px;
+	padding: 10px;
+	color: #787878;
+}
+
+.profit div.profit1{
+	color: #848484;
+}
+
+.profit div.profit2{
+	color: #181818;
+	font-size: 12px;
+}
+
+.profit div.profit3{
+	color: #ff004d;
+	font-size: 28px;
+}
+
+
+
+/*wallet 내지갑끝 */
+/*wallet 내지갑끝*/
+/*wallet 내지갑끝*/
+
+
+
+/*거래하기*/
+/*거래하기*/
+/*거래하기*/
+.business{
+	background-color: #eaeaec;
+}
+
+.business_tabcontent{
+	margin: auto;
+	width: 70%;
+	margin-top: 80px;
+	
+}
+.business_tab{ 
+
+	text-align:center;
+	width: 100%;
+
+	margin-top: 20px;
+	padding: 30px;
+}
+	
+.business_tablinks{
+	border: none ;
+	width: 129.5px;
+	padding-top:9px;
+	padding-bottom:6px;
+	font-size: 12px;
+	background-color: white;
+	box-shadow:2px 2px 2px #d4d4d4;
+
+}
+.business_tablinks img{
+	width: 16px;
+	height: 16px;
+	margin-right: 5px; 
+}
+.business_cash_header{
+	margin-top:-90px;
+	background-color:white;
+	padding: 20px 20px 20px 20px;
+	box-shadow:2px 2px 2px #d4d4d4;
+	
+}
+.business_cash_header h4{
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+.business_table1{
+   border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    text-align: left;
+   
+}
+
+.business_table1 .td{
+	font-size:12px;
+	color: #b6b6b6;
+}
+
+/*메인세션*/
+.business_cash_section{
+	width:100%; 
+	height:760px;
+	margin-top:20px; 
+	padding: 0px;
+	display:inline-block;
+	margin-bottom: 20px; 
+	box-shadow:2px 2px 2px #d4d4d4;
+	background-color: white;
+}
+
+
+
+.coin_graph{
+	width:49.5%;
+	float:left;
+	display: inline-block;
+	
+
+
+}
+
+
+.chart_table {
+	width:49.4%;
+	float:left;
+	height:740px;
+	display: inline-block;
+	
+
+
+}
+.chart_table table.table1{
+
+	border-collapse: collapse;
+	width: 95%;
+	height: 95%;
+	border:1px solid #f2f2f2;
+	background-color: white;
+	font-size: 12px;
+	text-align: center;
+	margin:auto;
+	margin-top: 15px;
+}
+
+.chart_table table.table1 tr:nth-child(1),.chart_table table tr:nth-child(11) {
+  font-size: 13px;
+}
+
+
+
+
+
+.business_cash_section2 div.chart_table2{
+	margin-left:10px;
+	height: 300px;
+	background-color: white;
+	box-shadow:2px 2px 2px #d4d4d4;
+	
+}
+
+
+
+.chart_table table.sub{
+	margin:auto;
+	width:80%;
+	border-collapse: collapse;
+	background-color: white;
+	margin: 0px -20px 90px 25px;
+	
+	 
+}
+.chart_table table.sub2{
+	margin:auto;
+	width:80%;
+	border-collapse: collapse;
+	background-color: white;
+	margin: 0px 30px 0px 25px;
+	
+	 
+}
+.chart_table table.table2 td{
+	padding: 5px 0px 5px 0px;
+	border-bottom: 1px solid #eaeaec;
+	font-size: 12px;
+}
+.chart_table table.table2 td:nth-child(1){
+	text-align: left;
+}
+.chart_table table.table2 td:nth-child(2){
+	text-align: right;
+}
+
+
+
+/*매도매수*/
+.tab_wrapper {
+ 	width: 100%;
+ 	padding: 20px;   
+}
+
+
+.sell_tab.active>a {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: #fff !important;
+    background-color: #FF6384 !important;
+    border: none !important;
+}
+
+.buy_tab.active>a {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: #fff !important;
+    background-color: #0090FF !important;
+    border: none !important;
+}
+
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+
+.tab-content {
+    width: 100%;
+
+    position: relative;
+    display: inline-block;
+}
+.tab-content>.active {
+    display: block;
+    visibility: visible;}
+    
+ .fade.in {
+    opacity: 1;
+}
+.sell_tab_form {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+}
+
+
+.amount_btns button {
+    font-size: 10px;
+    padding: 5px 5px;
+    margin-right: -5px;
+    margin-left: 5px;
+}
+
+.total_cahs_price {
+    float: right;
+ 
+    font-size: 13px;
+    font-weight: 800;
+    color: #FF6384;
+}
+
+.total_cahs_title {
+    float: left;
+ 
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+}
+
+.total_cash {
+	margin-top: 20px;
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.form-group.form_sell_price {
+	
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    padding: 7px 2px 10px 2px;
+    margin-bottom: 0px;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.form-group.form_sell_amount {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    padding: 7px 2px 10px 2px;
+    margin-bottom: 0px;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+
+.order_cash {
+	
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    /* margin-top: 20px; */
+    padding: 10px 2px;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.order_total_amount {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    padding: 10px 2px;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.order_sell_btn_box {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    padding: 8px 2px;
+    margin-top: -50px;
+}
+.order_sell_btn_box button {
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+	color: white;
+
+}
+
+.order_buy_btn_box button {
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 0px;
+}
+
+.order_buy_btn_box {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    padding: 8px 2px;
+     margin-top: -50px;
+}
+
+.sell_price_label {
+	top: 10px;
+    padding: 0;
+	margin-left:2px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+}
+
+.sell_price_text ,.buy_price_text {
+	top: 10px;
+    padding: 0;
+    font-size: 11px;
+    color: #333;
+    text-align: left;
+    position:absolute ; right:0;
+}
+   
+  
+}
+
+.order_price, .order_amount {
+    border-radius: 0px;
+    width: 100%;
+}
+
+.btn-default{
+	margin-top: 0px;
+}
+.sell_amount_label {
+    top: 10px;
+    padding: 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+}
+
+
+.order_cahs_title {
+	top:15px;
+    float: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+}
+
+.order_cahs_price {
+	top:10px;
+    float: right;
+    font-size: 13px;
+    font-weight: 800;
+    color: #FF6384;
+}
+
+.order_total_amount_title {
+    float: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+}
+
+.order_total_amount_price {
+    float: right;
+    font-size: 13px;
+    font-weight: 500;
+    color: #FF6384;
+}
+
+.buy_cahs_price {
+    float: right;
+    font-size: 14px;
+    font-weight: 800;
+    color: #0090FF;
+}
+
+.buy_total_amount_price {
+    float: right;
+    font-size: 14px;
+    font-weight: 500;
+    color: #0090FF;
+}
+
+/*대기주문내역*/
+
+#trade_section_3 .container {
+ 	width:100%;
+	background-color:white;
+	padding: 20px 20px 20px 20px;
+	box-shadow:2px 2px 2px #d4d4d4;
+	display: inline-block;
+}
+.standby_order_title, .my_account_title, .order_history_title{
+	margin-bottom: 20px;
+}
+.order_history_title span{
+    padding-left: 10px;
+	font-size: 10px;
+	color: gray;
+}
+.standby_order_box{
+	position: relative;
+	width: 49%;
+	float: left;
+	margin-right: 20px;
+}
+.standby_order_table{
+	
+	width: 100%;
+	font-size: 12px;
+	
+}
+.my_account_box{
+	width: 49%;
+	float: left;
+}
+.my_account_table{
+	width: 100%;
+	font-size: 13px;
+	
+}
+
+
+#trade_section_4 .container {
+	margin-top:20px;
+ 	width:100%;
+	background-color:white;
+	padding: 20px 20px 20px 20px;
+	box-shadow:2px 2px 2px #d4d4d4;
+	display: inline-block;
+	margin-bottom: 20px;
+}
+
+.order_history_table{
+	width: 100%;
+	font-size: 13px;
+}
+
+/*취소*/
+.standby_order_table tbody tr td {
+	padding-top: 5px;
+
+}
+.standby_order_table tbody tr:HOVER{
+	background-color: #f8f8f8;
+}
+/*팝업*/
+
+.layer {
+	display:none; 
+	position:fixed; _
+	position:absolute; 
+	top:0; left:0; 
+	width:100%; 
+	height:100%; 
+	z-index:100;}
+.layer .bg {
+	position:absolute; 
+	top:0; left:0; 
+	width:100%; height:100%; 
+	background:#000; opacity:.1; 
+	filter:alpha(opacity=50);}
+.layer .pop-layer {
+	display:block;}
+.pop-layer {
+	display:none; 
+	position: absolute; 
+	top: 50%; left: 50%; 
+	width: 410px; height:auto;  
+	background-color:#fff; 
+	border: 5px solid #3571B5; z-index: 10;}  
+.pop-layer .pop-container {
+	padding: 20px 25px;}
+.pop-layer p.ctxt {
+	color: #666; 
+	line-height: 25px;}
+.pop-layer .btn-r {
+	width: 100%; 
+	margin:10px 0 20px; 
+	padding-top: 10px; 
+	border-top: 1px solid #DDD; text-align:right;}
+a.cbtn {
+	display:inline-block; 
+	height:25px; 
+	padding:0 14px 0;
+	 border:1px solid #304a8a; 
+	 background-color:#3f5a9d; 
+	 font-size:13px; color:#fff; line-height:25px;} 
+a.ybtn {
+	display:inline-block; 
+	height:25px; 
+	padding:0 14px 0;
+	border:1px solid #304a8a; 
+	background-color:red; 
+	font-size:13px; color:#fff; line-height:25px;} 	 
+a.cbtn:hover {
+	border: 1px solid #091940; 
+	background-color:#1f326a; 
+	color:#fff;}
+	
+	
+	
+/*모달*/
+
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+ 
+}
+
+.modal-backdrop.in {
+    filter: alpha(opacity=50);
+    opacity: .5;
+}
+
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    
+}
+
+.fade.in {
+
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}
+
+.btn-primary1 {
+    color: #fff;
+    background-color: #337ab7;
+    border:none;
+ 
+}
+.btn-danger1 {
+    color: #fff;
+    background-color: Tomato;
+    border:none;
+}
+
+.btn-primary, .btn-danger{
+	margin-top: 50px; 
+}
+	
+/*거래하기끝*/
+/*거래하기끝*/
+/*거래하기끝*/

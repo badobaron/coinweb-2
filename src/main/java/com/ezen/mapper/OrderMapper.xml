@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="coinweb.dao.OrderDAO">
+
+	<insert id="getOrderResult">
+		insert into coin_order values(sequ_coinweb_order_idx.nextval,#{param1},#{param2},#{param3},0,#{param4},0,sysdate,#{param5})
+	</insert>
+	
+	<select id="getOrderCancelResult" resultType="coinweb.vo.OrderVO">
+		select idx, id, coin, price, price_completed, amount, amount_completed, type from coin_order where idx=#{param3} and id=#{param1} and coin=#{param2}
+	</select>
+	
+	<delete id="getOrderCancel">
+		delete from coin_order where idx=#{idx}
+	</delete>
+	
+	<select id="getOrderListResult" resultType="coinweb.vo.OrderVO">
+		select idx,coin,id,price,price_completed,amount,amount_completed,odate,type
+					from coin_order where id=#{param1} and coin=#{param2} order by idx desc
+	</select>
+	
+	<select id="getOrderAllListResult" resultType="coinweb.vo.OrderVO">
+		select idx,coin,id,price,price_completed,amount,amount_completed,odate,type
+					from coin_order where coin=#{param1} order by idx desc
+	</select>
+	
+	<update id="getOrdering">
+		update coin_order set price_completed=price_completed+#{param2}, amount_completed=amount_completed+#{parma3} where idx=#{parma1}
+	</update>
+	
+</mapper>
