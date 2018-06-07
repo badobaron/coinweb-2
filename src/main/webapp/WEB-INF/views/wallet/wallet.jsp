@@ -5,7 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://172.16.146.123:8080/coinweb/css/coin.css">
+<link rel="stylesheet" href="http://localhost:8080/coinweb/css/coin.css">
 
 <title>Insert title here</title>
 </head>

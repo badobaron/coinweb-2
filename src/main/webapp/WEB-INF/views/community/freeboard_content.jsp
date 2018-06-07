@@ -96,13 +96,13 @@ height: 20px;
 width: 20px;
 }
 </style>
-<script src="http://172.16.146.123:8080/coinweb/js/jquery-3.3.1.min.js"></script>
+<script src="http://localhost:8080/coinweb/js/jquery-3.3.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- summernote -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 
-<script src="http://172.16.146.123:8080/coinweb/js/MyAjax.js"></script>
+<script src="http://localhost:8080/coinweb/js/MyAjax.js"></script>
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include> 

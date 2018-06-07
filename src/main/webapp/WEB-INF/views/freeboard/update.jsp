@@ -47,8 +47,8 @@
 		});
 	});
 </script>
-<link rel="stylesheet" href=http://172.16.146.123:8080/wh/css/bootstrap.css>
-<script type="http://172.16.146.123:8080/wh/js/bootstrap.js"></script>
+<link rel="stylesheet" href=http://localhost:8080/wh/css/bootstrap.css>
+<script type="http://localhost:8080/wh/js/bootstrap.js"></script>
 
 <style>
 .container {

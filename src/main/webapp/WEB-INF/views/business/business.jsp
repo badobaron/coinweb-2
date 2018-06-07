@@ -6,10 +6,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel="stylesheet" href="http://172.16.146.123:8080/coinweb/css/coin.css">
+<link rel="stylesheet" href="http://localhost:8080/coinweb/css/coin.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <title>Insert title here</title>
-<script src="http://172.16.146.123:8080/coinweb/js/jquery-3.3.1.min.js"></script>
+<script src="http://localhost:8080/coinweb/js/jquery-3.3.1.min.js"></script>
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
@@ -50,7 +50,7 @@ $(function() {
 
 });
 
-function GetChart(){
+/* function GetChart(){
 $.getJSON('https://www.bithumb.com/resources/chart/'+coin+'_xcoinTrade_10M.json', function (data) {
 
     // split the data set into ohlc and volume
@@ -169,9 +169,9 @@ $.getJSON('https://www.bithumb.com/resources/chart/'+coin+'_xcoinTrade_10M.json'
         }
     });
 });
-}
+} */
 
-/* function GetChart(){
+ function GetChart(){
 	$.ajax({
         type: 'GET',
 		url: 'https://www.bithumb.com/resources/chart/'+coin+'_xcoinTrade_10M.json?callback=?',
@@ -187,7 +187,7 @@ $.getJSON('https://www.bithumb.com/resources/chart/'+coin+'_xcoinTrade_10M.json'
 		}
 	});
 	
-} */
+}
 
 function numberWithCommas(x) {
     return Math.round(x).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -245,10 +245,9 @@ function GetHoga(){
 	});
 }
 function GetTransactions(){
-	$.get('https://api.bithumb.com/public/recent_transactions/'+coin, function(data) {
-		var i = 0;
-		for(i=0;i<10;i++){$('#trans_price'+i).html(numberWithCommas(data['data'][i]['price']));}
-		for(i=0;i<10;i++){$('#trans_total'+i).html(data['data'][i]['units_traded']);}
+	$.get('https://api.bithumb.com/public/transaction_history/'+coin, function(data) {
+		for(var i=0;i<10;i++){$('#trans_price'+i).html(numberWithCommas(data['data'][i]['price']));}
+		for(var i=0;i<10;i++){$('#trans_total'+i).html(data['data'][i]['units_traded']);}
 	});
 }
 
@@ -336,27 +335,29 @@ function fCalcData() {
 }
 
 function GetMyData(){
-	$.ajax({
-		url : 'http://172.16.146.123:8080/coinweb/wallet_result.do',
-		type :'GET',	
-		data : 'id='+sid+'&coin_name='+coin,
-		//dataType : json,
-		success : function(data){
-				$("#avail_using_won").html(numberWithCommas(data.available-data.using)+"원");
-				$("#avail_coin").html(Floor((data.coin_avail-data.coin_using),4)+coin);
-				$("#avail_won").html(numberWithCommas(data.available)+"원");
-				$("#coin_tot").html(Floor(data.coin_tot,4)+coin);
-				$("#avile_using").html(Floor((data.coin_avail-data.coin_using),4)+coin+" / "+Floor(data.coin_using,4)+coin);
-				$("#won_tot").html(numberWithCommas(data.tot)+"원");
-				avail_won = data.available-data.using;
-				avail_coin = data.coin_avail-data.coin_using;
-			}	
-		});
+	if(sid!=0){
+		$.ajax({
+			url : 'http://localhost:8080/coinweb/wallet_result.do',
+			type :'GET',	
+			data : 'id='+sid+'&coin_name='+coin,
+			//dataType : json,
+			success : function(data){
+					$("#avail_using_won").html(numberWithCommas(data.available-data.using)+"원");
+					$("#avail_coin").html(Floor((data.coin_avail-data.coin_using),4)+coin);
+					$("#avail_won").html(numberWithCommas(data.available)+"원");
+					$("#coin_tot").html(Floor(data.coin_tot,4)+coin);
+					$("#avile_using").html(Floor((data.coin_avail-data.coin_using),4)+coin+" / "+Floor(data.coin_using,4)+coin);
+					$("#won_tot").html(numberWithCommas(data.tot)+"원");
+					avail_won = data.available-data.using;
+					avail_coin = data.coin_avail-data.coin_using;
+				}	
+			});
+	}
 }		
 
 function GetOrderList(){
 	$.ajax({
-		url : 'http://172.16.146.123:8080/coinweb/order_list.do',
+		url : 'http://localhost:8080/coinweb/order_list.do',
 		type :'GET',	
 		data : 'id='+sid+'&coin='+coin,
 		dataType : 'json',
@@ -377,7 +378,7 @@ function GetOrderList(){
 
 function GetOrderResult(price, amount, idx){
 	$.ajax({
-		url : 'http://172.16.146.123:8080/coinweb/order_result.do',
+		url : 'http://localhost:8080/coinweb/order_result.do',
 		type :'GET',	
 		data : 'id='+sid+'&coin='+coin+'&price'+price+'&amount'+amount+'&idx',
 		dataType : 'json',
@@ -425,7 +426,7 @@ $(function(){
 			var buy_price = $('#buy_price').val();
 			var buy_unit = $('#buy_unit').val();
 			$.ajax({
-				url : 'http://172.16.146.123:8080/coinweb/order.do',
+				url : 'http://localhost:8080/coinweb/order.do',
 				type : 'GET',
 				data : 'id='+sid+'&coin='+coin+'&price='+buy_price+'&amount='+buy_unit+'&type=B',
 				dataType: 'json',
@@ -451,7 +452,7 @@ $(function(){
 		$('#order_sell_Modal').modal('hide');
 			$.ajax({
 				type:"GET",
-				url:"http://172.16.146.123:8080/coinweb/order.do",
+				url:"http://localhost:8080/coinweb/order.do",
 				data:"id="+sid+"&coin="+coin+"&price="+$('#sell_price').val()+"&amount="+$('#sell_unit').val()+"&type=S",
 				dataType: 'json',
 				success:function(data){
@@ -475,7 +476,7 @@ $(function(){
 		$('#order_cancel_Modal').modal('hide');
 		$.ajax({
 			type:'POST',
-			url:'http://172.16.146.123:8080/coinweb/order_cancel.do',
+			url:'http://localhost:8080/coinweb/order_cancel.do',
 			data:'id='+sid+'&coin='+coin+'&idx='+cancel_idx+'&type='+type,
 			success:function(data){
 					GetOrderList();

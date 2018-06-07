@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel="stylesheet" href="http://172.16.146.123:8080/coinweb/css/coin.css">
+<link rel="stylesheet" href="http://localhost:8080/coinweb/css/coin.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
 	<section class="rangking">
 		<div class="rangk_header">
 			<h1 class="rangking_header_h1">
-			<img src="http://172.16.146.123:8080/coinweb/images/iconmonstr-award-24-120.png" style="width: 50px; height: 50px;">
+			<img src="http://localhost:8080/coinweb/images/iconmonstr-award-24-120.png" style="width: 50px; height: 50px;">
 			<br>수익률 랭킹</h1>
 			<p>수익률은 USD를 기준으로 계산됩니다.<br>
 				랭킹은 1시간마다 매겨집니다.<br>
@@ -25,13 +25,13 @@
 		<div class="rangking_main">
 		<!-- 123위 -->
 			<div class="rangking_1">
-				<img src="http://172.16.146.123:8080/coinweb/images/rank1.png" style="width: 150px; height: 150px;">
+				<img src="http://localhost:8080/coinweb/images/rank1.png" style="width: 150px; height: 150px;">
 					<h3>1위</h3><p>닉네임</p><p>총자산: 500원</p><p>수익률 : 500%</p></div>
 			<div class="rangk_top2 rangking_2">
-				<img src="http://172.16.146.123:8080/coinweb/images/rank2.png" style="width: 150px; height: 150px;">
+				<img src="http://localhost:8080/coinweb/images/rank2.png" style="width: 150px; height: 150px;">
 					<h3>2위</h3><p>닉네임</p><p>총자산: 500원</p><p>수익률 : 500%</p></div>
 			<div class="rangk_top2 rangking_3">
-				<img src="http://172.16.146.123:8080/coinweb/images/rank3.png" style="width: 150px; height: 150px;">
+				<img src="http://localhost:8080/coinweb/images/rank3.png" style="width: 150px; height: 150px;">
 					<h3>3위</h3><p>닉네임</p><p>총자산: 500원</p><p>수익률 : 500%</p></div>
 			
 			

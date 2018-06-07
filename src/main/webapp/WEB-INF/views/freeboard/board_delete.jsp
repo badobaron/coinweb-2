@@ -19,7 +19,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://172.16.146.123:8080/mycgv/css/mycgv.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/mycgv/css/mycgv.css">
 </head>
 <body>
 	
@@ -40,7 +40,7 @@
 						<button type="submit" >삭제완료</button>						
 						<a href="view.do?BbsID=<%=BbsID%>"><button type="button">이전페이지</button></a>
 						<a href="bbs.do"><button type="button">전체리스트</button></a>
-						<a href="http://172.16.146.123:8080/coinweb/bbs.do">
+						<a href="http://localhost:8080/coinweb/bbs.do">
 							<button type="button">홈으로</button></a>
 					</li>
 				</ul>

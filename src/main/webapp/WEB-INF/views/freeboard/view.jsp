@@ -21,8 +21,8 @@
 <title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href=http://172.16.146.123:8080/wh/css/bootstrap.css>
-<script type="http://172.16.146.123:8080/wh/js/bootstrap.js"></script>
+<link rel="stylesheet" href=http://localhost:8080/wh/css/bootstrap.css>
+<script type="http://localhost:8080/wh/js/bootstrap.js"></script>
 <style type="text/css"></style>
 <style>
 
@@ -136,9 +136,9 @@ color: white; width: 200px; margin-top: 15px;margin-bottom: 15px;}
 					</tbody>
 					
 				</table>
-				<a href="http://172.16.146.123:8080/coinweb/update.do?BbsID=<%=BbsID%>&rno=<%=rno%>"><button type="button" class="btn5" >수정하기</button></a>
-                <a href="http://172.16.146.123:8080/coinweb/bbs.do"><button type="button" class="btn5" >목록으로</button></a>
-                <a href="http://172.16.146.123:8080/coinweb/deleteAction.do?BbsID=<%= BbsID %>"><button type="button" class="btn5" >삭제하게</button></a>
+				<a href="http://localhost:8080/coinweb/update.do?BbsID=<%=BbsID%>&rno=<%=rno%>"><button type="button" class="btn5" >수정하기</button></a>
+                <a href="http://localhost:8080/coinweb/bbs.do"><button type="button" class="btn5" >목록으로</button></a>
+                <a href="http://localhost:8080/coinweb/deleteAction.do?BbsID=<%= BbsID %>"><button type="button" class="btn5" >삭제하게</button></a>
 			</form>
 			
 		</div>

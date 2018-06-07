@@ -23,7 +23,7 @@ margin-bottom: -2000px;
 
 }
 </style>
-<script src="http://172.16.146.123:8080/mycgv/js/jquery-3.3.1.min.js"></script>
+<script src="http://localhost:8080/mycgv/js/jquery-3.3.1.min.js"></script>
 <script>
 	$(document).ready(function(){
 		

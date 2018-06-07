@@ -8,14 +8,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="http://172.16.146.123:8080/coinweb/css/header.css">
-<link rel="stylesheet" href="http://172.16.146.123:8080/coinweb/css/am-pagination.css">
+<link rel="stylesheet" href="http://localhost:8080/coinweb/css/header.css">
+<link rel="stylesheet" href="http://localhost:8080/coinweb/css/am-pagination.css">
 
-<script src="http://172.16.146.123:8080/coinweb/js/jquery-3.3.1.min.js"></script>
+<script src="http://localhost:8080/coinweb/js/jquery-3.3.1.min.js"></script>
 
 <!-- pagination -->
-<script src="http://172.16.146.123:8080/coinweb/js/am-pagination.js"></script>
-<script src="http://172.16.146.123:8080/coinweb/js/paging.js"></script>
+<script src="http://localhost:8080/coinweb/js/am-pagination.js"></script>
+<script src="http://localhost:8080/coinweb/js/paging.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -159,7 +159,7 @@ jQuery(document).ready(function(){
 		//alert(id);
 		
 		jQuery.ajax({
-			url : 'http://172.16.146.123:8080/coinweb/id_check.do',
+			url : 'http://localhost:8080/coinweb/id_check.do',
 			type :'POST',
 			data : 'email='+email, 
 			dataType : "json",
@@ -200,7 +200,7 @@ jQuery(document).ready(function(){
 		//alert(name);
 		
 		$.ajax({
-			url : 'http://172.16.146.123:8080/coinweb/name_check.do',
+			url : 'http://localhost:8080/coinweb/name_check.do',
 			type :'GET',
 			data : 'name='+name,
 			dataType : "json",
@@ -286,7 +286,7 @@ jQuery(document).ready(function(){
 		 var pass = jQuery("#upass").val();
 		 
 		 jQuery.ajax({
-			 url : 'http://172.16.146.123:8080/coinweb/password_check.do',
+			 url : 'http://localhost:8080/coinweb/password_check.do',
 			 type :'GET',
 			 data : 'email='+email+'&pass='+pass,
 			 dateType : "json",
@@ -366,27 +366,27 @@ jQuery(document).ready(function(){
 <c:when test="${sid == null}">
 <div class="topnav shadow" id="navbar">
 	<div class="nav">
-	  <a class="activea" href="http://172.16.146.123:8080/coinweb/index.do"><span>Coinweb</span></a>
+	  <a class="activea" href="http://localhost:8080/coinweb/index.do"><span>Coinweb</span></a>
 	    <div class="topnav-right">
 	         <div class="cd-main-nav__list js-signin-modal-trigger">
-	             <a class="cd" href="http://172.16.146.123:8080/coinweb/business.do">거래하기</a>
+	             <a class="cd" href="http://localhost:8080/coinweb/business.do">거래하기</a>
 	             <!-- inser more links here -->
 	             <a class="cd-main-nav__item cd-main-nav__item--signin" href="#0" data-signin="login">로그인</a>
 	             <a class="cd-main-nav__item cd-main-nav__item--signup" href="#0" data-signin="signup">회원가입</a>
 				 <div class="dropdown">
 				  	<button  class="dropbtn" href="#contact">커뮤니티<i class="fa fa-caret-down"></i></button>
 				  	<div class="dropdown-content">
-				 <a href="http://172.16.146.123:8080/coinweb/rangking.do">랭킹</a>
-      			 <a href="http://172.16.146.123:8080/coinweb/freeboard.do">자유게시판</a>
+				 <a href="http://localhost:8080/coinweb/rangking.do">랭킹</a>
+      			 <a href="http://localhost:8080/coinweb/freeboard.do">자유게시판</a>
      <!--   <a href="#">코인소식</a>-->
     </div>
    </div>
  	<div class="dropdown">
  	<button  class="dropbtn" href="#contact">고객센터<i class="fa fa-caret-down"></i></button>
  	 <div class="dropdown-content">
-      <a href="http://172.16.146.123:8080/coinweb/guide.do">이용가이드</a>
-      <a href="http://172.16.146.123:8080/coinweb/FAQ.do">FAQ</a>
-      <a href="http://172.16.146.123:8080/coinweb/bbs.do">문의하기</a>
+      <a href="http://localhost:8080/coinweb/guide.do">이용가이드</a>
+      <a href="http://localhost:8080/coinweb/FAQ.do">FAQ</a>
+      <a href="http://localhost:8080/coinweb/bbs.do">문의하기</a>
       
   
   	  </div>
@@ -400,37 +400,37 @@ jQuery(document).ready(function(){
 	    <div class="topnav shadow" id="navbar">
 	<div class="nav">
 	
-  <a class="activea" href="http://172.16.146.123:8080/coinweb/index.do"><span>Coinweb</span></a>
+  <a class="activea" href="http://localhost:8080/coinweb/index.do"><span>Coinweb</span></a>
   
   <div class="topnav-right">
      <div class="cd-main-nav__list js-signin-modal-trigger">
     
-    <a class="cd" href="http://172.16.146.123:8080/coinweb/business.do">거래하기</a>
+    <a class="cd" href="http://localhost:8080/coinweb/business.do">거래하기</a>
 		
 				<!-- inser more links here -->
 				<div class="dropdown">
 				<button  class="dropbtn" href="#contact" id="nname">${name}<i class="fa fa-caret-down"></i></button>
 	
 				 <div class="dropdown-content">
-      <a href="http://172.16.146.123:8080/coinweb/wallet.do">내 지갑</a>
+      <a href="http://localhost:8080/coinweb/wallet.do">내 지갑</a>
       <a onclick="document.getElementById('id02').style.display='block'" style="width:auto; cursor: pointer;">비밀번호변경</a>
     </div>
     </div>
-    <a class="cd-main-nav__item cd-main-nav__item--signin" href="http://172.16.146.123:8080/coinweb/logout.do" >로그아웃</a>
+    <a class="cd-main-nav__item cd-main-nav__item--signin" href="http://localhost:8080/coinweb/logout.do" >로그아웃</a>
 			<div class="dropdown">
  	<button  class="dropbtn" href="#contact">커뮤니티<i class="fa fa-caret-down"></i></button>
  	 <div class="dropdown-content">
-      <a href="http://172.16.146.123:8080/coinweb/rangking.do">랭킹</a>
-      <a href="http://172.16.146.123:8080/coinweb/freeboard.do">자유게시판</a>
+      <a href="http://localhost:8080/coinweb/rangking.do">랭킹</a>
+      <a href="http://localhost:8080/coinweb/freeboard.do">자유게시판</a>
      <!--   <a href="#">코인소식</a>-->
     </div>
    </div>
  	<div class="dropdown">
  	<button  class="dropbtn" href="#contact">고객센터<i class="fa fa-caret-down"></i></button>
  	 <div class="dropdown-content">
-      <a href="http://172.16.146.123:8080/coinweb/guide.do">이용가이드</a>
-      <a href="http://172.16.146.123:8080/coinweb/FAQ.do">FAQ</a>
-      <a href="http://172.16.146.123:8080/coinweb/bbs.do">문의하기</a>
+      <a href="http://localhost:8080/coinweb/guide.do">이용가이드</a>
+      <a href="http://localhost:8080/coinweb/FAQ.do">FAQ</a>
+      <a href="http://localhost:8080/coinweb/bbs.do">문의하기</a>
       
   
     </div>
@@ -457,7 +457,7 @@ jQuery(document).ready(function(){
 				data-type="login">
 				<!-- log in form -->
 				<form name="loginForm"
-					action="http://172.16.146.123:8080/coinweb/login.do" method="post"
+					action="http://localhost:8080/coinweb/login.do" method="post"
 					class="cd-signin-modal__form">
 					<p class="cd-signin-modal__fieldset">
 
@@ -501,7 +501,7 @@ jQuery(document).ready(function(){
 			<div class="cd-signin-modal__block js-signin-modal-block"
 				data-type="signup">
 				<!-- sign up form -->
-				<form name="joinForm" action="http://172.16.146.123:8080/coinweb/join.do"
+				<form name="joinForm" action="http://localhost:8080/coinweb/join.do"
 					method="post" class="cd-signin-modal__form">
 
 					<p class="cd-signin-modal__fieldset">
@@ -567,7 +567,7 @@ jQuery(document).ready(function(){
 
 	<div id="id02" class="modal">
 		<form class="modal-content animate" name="passUpdate"
-			action="http://172.16.146.123:8080/coinweb/password_update_c.do"
+			action="http://localhost:8080/coinweb/password_update_c.do"
 			method="post">
 			<div class="imgcontainer">
 				<span onclick="document.getElementById('id02').style.display='none'"
@@ -597,7 +597,7 @@ jQuery(document).ready(function(){
 
 </header>
 </body>
-<script src="http://172.16.146.123:8080/coinweb/js/main.js"></script>
-<script src="http://172.16.146.123:8080/coinweb/js/test2.js"></script>
+<script src="http://localhost:8080/coinweb/js/main.js"></script>
+<script src="http://localhost:8080/coinweb/js/test2.js"></script>
 
 </html>

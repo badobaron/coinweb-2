@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="http://172.16.146.123:8080/coinweb/css/coin.css">
+<link rel="stylesheet" href="http://localhost:8080/coinweb/css/coin.css">
 <title>Insert title here</title>
 </head>
 <body>

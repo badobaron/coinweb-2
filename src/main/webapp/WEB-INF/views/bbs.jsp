@@ -57,13 +57,13 @@
 <meta name="viewport" content="width=device-width" , initial-scale="1">
 <title>Insert title here</title>
 <!-- 페이징 처리 코드 시작 -->
-<link rel="stylesheet" type="text/css" href="http://172.16.146.123:8080/coinweb/css/am-pagination.css">
-<script src="http://172.16.146.123:8080/coinweb/js/jquery-3.3.1.min.js"></script>
-<script src="http://172.16.146.123:8080/coinweb/js/paging.js"></script>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/am-pagination.css">
+<script src="http://localhost:8080/coinweb/js/jquery-3.3.1.min.js"></script>
+<script src="http://localhost:8080/coinweb/js/paging.js"></script>
 
 <!-- 페이징 처리 코드 종료 -->
 
-<!-- <link rel="stylesheet" type="text/css" href="http://172.16.146.123:8080/wh/js/am-pagination.css">
+<!-- <link rel="stylesheet" type="text/css" href="http://localhost:8080/wh/js/am-pagination.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="../js/paging.js"></script>
@@ -150,7 +150,7 @@ td {
 		
 		$('#ampaginationsm').on('am.pagination.change',function(e){
 			  		
-	            $(location).attr('href', "http://172.16.146.123:8080/coinweb/bbs.do?rpage="+e.page);       
+	            $(location).attr('href', "http://localhost:8080/coinweb/bbs.do?rpage="+e.page);       
 	    });
 		
  	});
@@ -176,7 +176,7 @@ td {
 
 
 	<center>
-		<a href="http://172.16.146.123:8080/coinweb/write.do"><button type="button" class="bt2">1대1문의하기</button></a>
+		<a href="http://localhost:8080/coinweb/write.do"><button type="button" class="bt2">1대1문의하기</button></a>
 		<div class="container">
 
 			<table class="table table-striped"
