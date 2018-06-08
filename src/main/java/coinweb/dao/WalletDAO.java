@@ -8,5 +8,6 @@ public interface WalletDAO {
 		public WalletVO getWalletResult(int id, String coin_name);		
 		public int getWalletUpdate(int id, String coin, int price, float amount, String type);
 		public int getWalletCancel(OrderVO vo);
-		public int getOrderingUpdate(String price, String amount, String type);
+		public int getOrderingUpdate(String id, String coin, String price, String amount, String type);
+		public int getOrderingUpdate2(String id, String coin, String price, String amount, String type);
 }

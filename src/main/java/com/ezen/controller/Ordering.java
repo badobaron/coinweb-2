@@ -70,40 +70,58 @@ public class Ordering extends Thread {
 				JSONObject COIN = (JSONObject) data.get(coin);
 				JSONArray bids = (JSONArray) COIN.get("bids");
 				JSONArray asks = (JSONArray) COIN.get("asks");
-				System.out.println(coin);
 	
 				for (int j = 0; j < orders.size(); j++) {
 					JSONObject obj = (JSONObject) orders.get(j);
-					float dif_amount = Float.parseFloat(obj.get("amount").toString())-Float.parseFloat(obj.get("amount_c").toString());
-					float dif_price = Float.parseFloat(obj.get("price").toString())-Float.parseFloat(obj.get("price_c").toString());
-					if (obj.get("type").equals("B")) {
+					System.out.println(obj.get("idx"));
+					float dif_amount = 0;
+					if (obj.get("type").equals("S")) {
 						for (int i = 0; i < bids.size(); i++) {
-							JSONObject bid = (JSONObject) bids.get(i);		
-							if(dif_amount<Float.parseFloat(bid.get("quantity").toString())){
-								dao.getOrdering(obj.get("idx").toString(), String.valueOf(dif_price),String.valueOf(dif_amount));
+							JSONObject bid = (JSONObject) bids.get(i);
+							obj = (JSONObject) orders.get(j);
+							dif_amount = parseFloat(obj.get("amount"))-parseFloat(obj.get("amount_c"));
+							if(parseInt(bid.get("price")) >= parseInt(obj.get("price")) && dif_amount<parseFloat(bid.get("quantity")) && dif_amount>0){
+								String axp = String.valueOf(axp(bid.get("price"),dif_amount));
+								dao.getOrdering(obj.get("idx").toString(), axp,String.valueOf(dif_amount));
+								w_dao.getOrderingUpdate(obj.get("id").toString(), obj.get("coin").toString(), axp, String.valueOf(dif_amount), obj.get("type").toString());
+								w_dao.getOrderingUpdate2(obj.get("id").toString(), obj.get("coin").toString(), axp, String.valueOf(dif_amount), obj.get("type").toString());
 								dao.getOrderCancel(obj.get("idx").toString());
-							}else if (parseInt(bid.get("price")) <= parseInt(obj.get("price"))) {	
-								dao.getOrdering(obj.get("idx").toString(), bid.get("price").toString(), bid.get("quantity").toString());
+								System.out.println("bid_end");
+								break;
+							}else if (parseInt(bid.get("price")) >= parseInt(obj.get("price")) && dif_amount>0) {
+								String axp = String.valueOf(axp(bid.get("price"),bid.get("quantity")));
+								dao.getOrdering(obj.get("idx").toString(), axp, bid.get("quantity").toString());
+								w_dao.getOrderingUpdate(obj.get("id").toString(), obj.get("coin").toString(), axp, bid.get("quantity").toString(), obj.get("type").toString());
+								w_dao.getOrderingUpdate2(obj.get("id").toString(), obj.get("coin").toString(), axp, bid.get("quantity").toString(), obj.get("type").toString());
+								if(dif_amount <= 0) dao.getOrderCancel(obj.get("idx").toString());
+								System.out.println("bid_ing "+bid.get("price")+", "+axp+", "+bid.get("quantity"));
 							}
-							System.out.println("bid_q : " + bid.get("quantity"));
-							System.out.println("bid_p : " + parseInt(bid.get("price")));
+							
 						}
-					} else if (obj.get("type").equals("S")) {
+					} else if (obj.get("type").equals("B")) {
 						for (int i = 0; i < asks.size(); i++) {
 							JSONObject ask = (JSONObject) asks.get(i);
-							if(dif_amount<Float.parseFloat(ask.get("quantity").toString())){
-								dao.getOrdering(obj.get("idx").toString(), String.valueOf(dif_price),String.valueOf(dif_amount));
+							obj = (JSONObject) orders.get(j);
+							dif_amount = parseFloat(obj.get("amount"))-parseFloat(obj.get("amount_c"));
+							if(parseInt(ask.get("price")) <= parseInt(obj.get("price")) && dif_amount<=parseFloat(ask.get("quantity")) && dif_amount>0){
+								String axp = String.valueOf(axp(ask.get("price"),dif_amount));
+								dao.getOrdering(obj.get("idx").toString(), axp,String.valueOf(dif_amount));
+								w_dao.getOrderingUpdate(obj.get("id").toString(), obj.get("coin").toString(), axp, String.valueOf(dif_amount), obj.get("type").toString());
+								w_dao.getOrderingUpdate2(obj.get("id").toString(), obj.get("coin").toString(), axp, String.valueOf(dif_amount), obj.get("type").toString());
 								dao.getOrderCancel(obj.get("idx").toString());
-							}else if (parseInt(ask.get("price")) >= parseInt(obj.get("price"))) {
-								dao.getOrdering(obj.get("idx").toString(), ask.get("price").toString(), ask.get("quantity").toString());
+								System.out.println("ask_end");
+								break;
+							}else if (parseInt(ask.get("price")) <= parseInt(obj.get("price")) && dif_amount>0) {
+								String axp = String.valueOf(axp(ask.get("price"),ask.get("quantity")));
+								dao.getOrdering(obj.get("idx").toString(), axp, ask.get("quantity").toString());
+								w_dao.getOrderingUpdate(obj.get("id").toString(), obj.get("coin").toString(), axp, ask.get("quantity").toString(), obj.get("type").toString());
+								w_dao.getOrderingUpdate2(obj.get("id").toString(), obj.get("coin").toString(), axp, ask.get("quantity").toString(), obj.get("type").toString());
+								if(dif_amount <= 0) dao.getOrderCancel(obj.get("idx").toString());
+								System.out.println("ask_ing "+ask.get("price")+", "+axp+", "+ask.get("quantity"));
 							}
-							System.out.println("ask_q : " + ask.get("quantity"));
-							System.out.println("ask_p : " + ask.get("price"));
 						}
 					}
 				}
-	
-				System.out.println();
 			}
 	
 			try {
@@ -116,9 +134,22 @@ public class Ordering extends Thread {
 
 	public static int parseInt(Object obj) {
 		int result = 0;
+		result = Integer.parseInt(obj.toString());
 
-		result = (int) Integer.parseInt(obj.toString());
+		return result;
+	}
+	
+	public static float parseFloat(Object obj) {
+		float result = 0;
+		result = Float.parseFloat(obj.toString());
 
+		return result;
+	}
+	
+	public static int axp(Object price, Object amount){
+		int result = 0;
+		result = (int)(parseInt(price)*parseFloat(amount));
+		
 		return result;
 	}
 }

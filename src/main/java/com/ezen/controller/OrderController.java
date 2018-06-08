@@ -81,6 +81,8 @@ public class OrderController {
 		for(OrderVO vo: list){
 			JSONObject obj = new JSONObject();
 			obj.put("idx", vo.getIdx());
+			obj.put("id", vo.getId());
+			obj.put("coin", coin);
 			obj.put("price", vo.getPrice());
 			obj.put("price_c", vo.getPrice_completed());
 			obj.put("amount", vo.getAmount());

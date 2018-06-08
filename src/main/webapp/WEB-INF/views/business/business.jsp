@@ -239,7 +239,8 @@ function fShowData() {
 		GetCoinData();
 		GetHoga();
 		GetTransactions();
-		GetOrdering();
+		GetMyData();
+		GetOrderList();
 	} catch(e){			
     } finally {
         setTimeout("fShowData()", 3000);
@@ -351,8 +352,8 @@ function GetOrderList(){
 			for(var i=0;i<data.length;i++){
 				var type = data[i].type;
 				if(type == 'B')	type = "<td style='color:red;'>매수</td>"; else type = "<td style='color:blue;'>매도</td>";
-				code = "<tr>"+type+"<td>"+data[i].date+"</td><td>"+data[i].price+"</td><td>"
-					+ Floor(data[i].amount,4)+"/"+Floor(data[i].amount_c,4)+"</td><td>"+data[i].price_c+"</td><td><a style='cursor:pointer;' data-toggle='modal' data-target='#order_cancel_Modal' data-idx="+data[i].idx+" data-type="+data[i].type+">취소</a></td></tr>";
+				code = "<tr>"+type+"<td>"+data[i].date+"</td><td>"+numberWithCommas(data[i].price)+"</td><td>"
+					+ Floor(data[i].amount,4)+"/"+Floor(data[i].amount_c,4)+"</td><td>"+numberWithCommas(data[i].price_c)+"</td><td><a style='cursor:pointer;' data-toggle='modal' data-target='#order_cancel_Modal' data-idx="+data[i].idx+" data-type="+data[i].type+">취소</a></td></tr>";
 				$('#order_table > tbody:last').append(code);
 			}
 		}

@@ -28,7 +28,7 @@
 	</select>
 	
 	<update id="getOrdering">
-		update coin_order set price_completed=price_completed+#{param2}, amount_completed=amount_completed+#{parma3} where idx=#{parma1}
+		update coin_order set price_completed=price_completed+#{param2}, amount_completed=amount_completed+#{param3} where idx=#{param1}
 	</update>
 	
 </mapper>

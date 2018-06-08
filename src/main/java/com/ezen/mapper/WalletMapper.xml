@@ -52,15 +52,24 @@
 	<update id="getOrderingUpdate">
 		update wallet set 
 		<choose>
-		 <when test="type != null and (type eq 'B'.toString())">
-		 	available_balance=available_balance-#{param1}, using_balance=using_balance-#{param1} where id=#{id} and coin_name='won';
-		 	available_balance=available_balance-#{param2} where id=#{id} and coin_name=#{coin};
+		 <when test="param5 != null and (param5 eq 'B'.toString())">
+		 	available_balance=available_balance-#{param3}, using_balance=using_balance-#{param3} where id=#{param1} and coin_name='won'
 		 </when>
-		 <when test="type != null and (type eq 'S'.toString())">
-		 	available_balance=available_balance-#{param2}, using_balance=using_balance-#{param2} where id=#{id} and coin_name=#{coin};
-		 	available_balance=available_balance+#{param1} where id=#{id} and coin_name='won';
+		 <when test="param5 != null and (param5 eq 'S'.toString())">
+		 	available_balance=available_balance-#{param4}, using_balance=using_balance-#{param4}, tot_balance=tot_balance-#{param4} where id=#{param1} and coin_name=#{param2}
 		 </when>
 		</choose>
 	</update>
 	
+	<update id="getOrderingUpdate2">
+		update wallet set 
+		<choose>
+		 <when test="param5 != null and (param5 eq 'B'.toString())">
+		 	available_balance=available_balance+#{param4} where id=#{param1} and coin_name=#{param2}
+		 </when>
+		 <when test="param5 != null and (param5 eq 'S'.toString())">
+		 	available_balance=available_balance+#{param3} where id=#{param1} and coin_name='won'
+		 </when>
+		</choose>
+	</update>
 </mapper>    
