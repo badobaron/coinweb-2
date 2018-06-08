@@ -39,3 +39,4 @@ local.properties
 .bulidpath
 .target
 /build/
+/target/

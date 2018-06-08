@@ -65,7 +65,7 @@
 		update wallet set 
 		<choose>
 		 <when test="param5 != null and (param5 eq 'B'.toString())">
-		 	available_balance=available_balance+#{param4} where id=#{param1} and coin_name=#{param2}
+		 	available_balance=available_balance+#{param4}, tot_balance=tot_balance+#{param4} where id=#{param1} and coin_name=#{param2}
 		 </when>
 		 <when test="param5 != null and (param5 eq 'S'.toString())">
 		 	available_balance=available_balance+#{param3} where id=#{param1} and coin_name='won'
