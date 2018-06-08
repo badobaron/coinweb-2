@@ -522,6 +522,7 @@ ol, ul {
   padding: 45px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  
    
 }
 .ps input {
@@ -574,7 +575,7 @@ ol, ul {
 
 /* Full-width input fields */
 #uid,#upass,#npass,#ncpass {
-    width: 32%;
+    width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     margin-bottom:10px;
@@ -582,7 +583,9 @@ ol, ul {
     box-sizing: border-box;
     border-radius: 10px;
     border: 1px solid pink;
+    display: block;
 }
+
 
 /* Set a style for all buttons */
 #pcbtn {
@@ -592,8 +595,9 @@ ol, ul {
  
     border: none;
     cursor: pointer;
-    width: 32%;
+    width: 100%;
      border-radius: 10px;
+     
   
 }
 
@@ -640,7 +644,7 @@ span.psw {
     
 }
 
-/* The Modal (background) */
+/* 비밀번호 변경 모달 백그라운드 */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -654,17 +658,19 @@ span.psw {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     padding-top: 60px;
    
+   
    margin:auto;
 }
 
-/* Modal Content/Box */
+/* 비밀번호 변경 컨텐츠박스 */
 .modal-content {
     background-color: #fefefe;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
 
-    width:400px;; /* Could be more or less, depending on screen size */
-    height:500px;
+    width:400px; /* Could be more or less, depending on screen size */
+    height:600px;
     margin:auto;
+  border-radius:10px; 
 }
 
 /* The Close Button (x) */
