@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="EUC-KR" import="coinweb.dao.*, coinweb.vo.*"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" href="http://localhost:8080/coinweb/css/coin.css">
+<script src="js/jquery-3.3.1.min.js"></script>
+
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -25,15 +29,20 @@
 		<div class="rangking_main">
 		<!-- 123위 -->
 			<div class="rangking_1">
+			 <c:forEach items="${list}" var="vo1" begin="0" end="0">
 				<img src="http://localhost:8080/coinweb/images/rank1.png" style="width: 150px; height: 150px;">
-					<h3>1위</h3><p>닉네임</p><p>총자산: 500원</p><p>수익률 : 500%</p></div>
+					<h3>1위</h3><p>${vo1.name}</p><p>총자산: ${vo1.money}</p><p>수익률 : ${vo1.money2}%</p></div>
+					 </c:forEach>
 			<div class="rangk_top2 rangking_2">
+			 <c:forEach items="${list}" var="vo2" begin="1" end="1">
 				<img src="http://localhost:8080/coinweb/images/rank2.png" style="width: 150px; height: 150px;">
-					<h3>2위</h3><p>닉네임</p><p>총자산: 500원</p><p>수익률 : 500%</p></div>
+					<h3>2위</h3><p>${vo2.name}</p><p>총자산: ${vo2.money}</p><p>수익률 : ${vo2.money2}%</p></div>
+					</c:forEach>
 			<div class="rangk_top2 rangking_3">
+			<c:forEach items="${list}" var="vo3" begin="2" end="2">
 				<img src="http://localhost:8080/coinweb/images/rank3.png" style="width: 150px; height: 150px;">
-					<h3>3위</h3><p>닉네임</p><p>총자산: 500원</p><p>수익률 : 500%</p></div>
-			
+					<h3>3위</h3><p>${vo3.name}</p><p>총자산: ${vo3.money}</p><p>수익률 : ${vo3.money2}%</p></div>
+				</c:forEach>
 			
 			
 			
@@ -46,108 +55,20 @@
 			    <th>총자산</th>
 			    <th>수익률</th>
 			  </tr>
+			   
+			  <c:forEach items="${list}" var="vo" begin="3" end="21">
 			  <tr>
-			    <td>4</td>
-			    <td>Griffin</td>
-			    <td>$95,613,449</td>
-			    <td>100%</td>
+			    <td>${vo.rno}</td>
+			    <td>${vo.name}</td>
+			    <td> ${vo.money}</td>
+			    <td>${vo.money2}%</td>
 			  </tr>
-			  <tr>
-			    <td>5</td>
-			    <td>Griffin</td>
-			    <td>$150</td>
-			    <td>100%</td>
-			  </tr>
-			  <tr>
-			    <td>6</td>
-			    <td>Swanson</td>
-			    <td>$300</td>
-			    <td>100%</td>
-			  </tr>
-			  <tr>
-			    <td>7</td>
-			    <td>Brown</td>
-			    <td>$250</td>
-			    <td>100%</td>
-			  </tr>
-			  	  <tr>
-			    <td>8</td>
-			    <td>Griffin</td>
-			    <td>$100</td>
-			    <td>100%</td>
-			  </tr>
-			  <tr>
-			    <td>9</td>
-			    <td>Griffin</td>
-			    <td>$150</td>
-			    <td>100%</td>
-			  </tr>
-			  <tr>
-			    <td>10</td>
-			    <td>Swanson</td>
-			    <td>$300</td>
-			    <td>100%</td>
-			  </tr>
-			  <tr>
-			    <td>11</td>
-			    <td>Brown</td>
-			    <td>$250</td>
-			    <td>100%</td>
-			  </tr>
-			  	  <tr>
-			    <td>12</td>
-			    <td>Griffin</td>
-			    <td>$100</td>
-			    <td>100%</td>
-			  </tr>
-			  <tr>
-			    <td>13</td>
-			    <td>Griffin</td>
-			    <td>$150</td>
-			    <td>100%</td>
-			  </tr>
-			  <tr>
-			    <td>14</td>
-			    <td>Swanson</td>
-			    <td>$300</td>
-			    <td>100%</td>
-			  </tr>
-			  <tr>
-			    <td>15</td>
-			    <td>Brown</td>
-			    <td>$250</td>
-			    <td>100%</td>
-			  </tr>
-			  	  <tr>
-			    <td>16</td>
-			    <td>Griffin</td>
-			    <td>$100</td>
-			    <td>100%</td>
-			  </tr>
-			  <tr>
-			    <td>17</td>
-			    <td>Griffin</td>
-			    <td>$150</td>
-			    <td>100%</td>
-			  </tr>
-			  <tr>
-			    <td>18</td>
-			    <td>Swanson</td>
-			    <td>$300</td>
-			    <td>100%</td>
-			  </tr>
-			  <tr>
-			    <td>19</td>
-			    <td>Brown</td>
-			    <td>$250</td>
-			    <td>100%</td>
-			  </tr>
-			   <tr>
-			    <td>20</td>
-			    <td>Brown</td>
-			    <td>$250</td>
-			    <td>100%</td>
-			  </tr>
+			  </c:forEach>
+			
+	
+			
+			
+			
 			</table>
 			
 		
