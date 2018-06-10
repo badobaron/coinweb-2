@@ -41,7 +41,7 @@
 		update wallet set 
 		<choose>
 		 <when test="type != null and (type eq 'B'.toString())">
-		 	using_balance=using_balance-((#{price}-#{price_completed})*(#{amount}-#{amount_completed})) where id=#{id} and coin_name='won'
+		 	using_balance=using_balance-((#{price}*#{amount})-#{price_completed}) where id=#{id} and coin_name='won'
 		 </when>
 		 <when test="type != null and (type eq 'S'.toString())">
 		 	using_balance=using_balance-(#{amount}-#{amount_completed}) where id=#{id} and coin_name=#{coin}

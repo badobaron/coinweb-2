@@ -31,4 +31,12 @@
 		update coin_order set price_completed=price_completed+#{param2}, amount_completed=amount_completed+#{param3} where idx=#{param1}
 	</update>
 	
+	<insert id="getHistoryInsert">
+		insert into coin_history values(#{param1},#{param2},#{param3},#{param4},#{param5},#{param4}*#{param5},sysdate)
+	</insert>
+	
+	<select id="getHistoryListResult" resultType="coinweb.vo.HistoryVO">
+		select id,coin,type,price,price_completed,amount,hdate from coin_history where id=#{param1} and coin=#{param2} order by hdate desc
+	</select>
+	
 </mapper>
