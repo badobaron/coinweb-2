@@ -2,8 +2,6 @@ package com.ezen.controller;
 
 import java.util.ArrayList;
 
-import javax.annotation.PostConstruct;
-
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import coinweb.dao.OrderDAO;
 import coinweb.dao.WalletDAO;
+import coinweb.vo.HistoryVO;
 import coinweb.vo.OrderVO;
 
 @Controller
@@ -81,12 +80,35 @@ public class OrderController {
 		for(OrderVO vo: list){
 			JSONObject obj = new JSONObject();
 			obj.put("idx", vo.getIdx());
+			obj.put("id", vo.getId());
+			obj.put("coin", coin);
 			obj.put("price", vo.getPrice());
 			obj.put("price_c", vo.getPrice_completed());
 			obj.put("amount", vo.getAmount());
 			obj.put("amount_c", vo.getAmount_completed());
 			obj.put("date", vo.getOdate());
 			obj.put("type", vo.getType());
+			
+			jarray.add(obj);
+		}
+		return jarray;
+	}
+	
+	@RequestMapping(value="history_list.do", method=RequestMethod.GET)
+	@ResponseBody
+	public JSONArray history_list(String id, String coin){
+		JSONArray jarray = new JSONArray();
+		if(id=="") id="0";
+		OrderDAO dao = sqlSession.getMapper(OrderDAO.class);
+		ArrayList<HistoryVO> list = dao.getHistoryListResult(id, coin);
+		
+		for(HistoryVO vo: list){
+			JSONObject obj = new JSONObject();
+			obj.put("type", vo.getType());
+			obj.put("price", vo.getPrice());
+			obj.put("amount", vo.getAmount());
+			obj.put("price_c", vo.getPrice_completed());
+			obj.put("date", vo.getHdate());
 			
 			jarray.add(obj);
 		}

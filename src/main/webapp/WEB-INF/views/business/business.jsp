@@ -30,6 +30,7 @@ $(function() {
 	GetChart();
 	GetMyData();
 	GetOrderList();
+	GetHistoryList();
 	$("#coinname").html(coin+'('+$('.coin_sec').text()+')');
 	$('.coin_btn').click(function (e) {
 		$(".coin_btn").removeClass('coin_sec');
@@ -46,6 +47,7 @@ $(function() {
 		GetChart();
 		GetMyData();
 		GetOrderList();
+		GetHistoryList();
 	});
 
 });
@@ -239,7 +241,9 @@ function fShowData() {
 		GetCoinData();
 		GetHoga();
 		GetTransactions();
-		GetOrdering();
+		GetMyData();
+		GetOrderList();
+		GetHistoryList();
 	} catch(e){			
     } finally {
         setTimeout("fShowData()", 3000);
@@ -351,9 +355,32 @@ function GetOrderList(){
 			for(var i=0;i<data.length;i++){
 				var type = data[i].type;
 				if(type == 'B')	type = "<td style='color:red;'>매수</td>"; else type = "<td style='color:blue;'>매도</td>";
-				code = "<tr>"+type+"<td>"+data[i].date+"</td><td>"+data[i].price+"</td><td>"
-					+ Floor(data[i].amount,4)+"/"+Floor(data[i].amount_c,4)+"</td><td>"+data[i].price_c+"</td><td><a style='cursor:pointer;' data-toggle='modal' data-target='#order_cancel_Modal' data-idx="+data[i].idx+" data-type="+data[i].type+">취소</a></td></tr>";
+				code = "<tr>"+type+"<td>"+data[i].date+"</td><td>"+numberWithCommas(data[i].price)+"</td><td>"
+					+ Floor(data[i].amount,4)+"/"+Floor(data[i].amount_c,4)+"</td><td>"+numberWithCommas(data[i].price_c)+"</td><td><a style='cursor:pointer;' data-toggle='modal' data-target='#order_cancel_Modal' data-idx="+data[i].idx+" data-type="+data[i].type+">취소</a></td></tr>";
 				$('#order_table > tbody:last').append(code);
+			}
+		}
+	});
+}
+
+function GetHistoryList(){
+	$.ajax({
+		url : 'http://localhost:8080/coinweb/history_list.do',
+		type :'GET',	
+		data : 'id='+sid+'&coin='+coin,
+		dataType : 'json',
+		success : function(data){
+			if(data.length != 0) $("#history_wait").hide();
+			else if(data.length == 0) $("#history_wait").show();
+			$('#history_table > tbody').empty();
+			var length = 0;
+			if(data.length < 5) lenght = data.length; else length = 5;
+			for(var i=0;i<length;i++){
+				var type = data[i].type;
+				if(type == 'B')	type = "<td style='color:red;'>매수</td>"; else type = "<td style='color:blue;'>매도</td>";
+				code = "<tr><td>"+data[i].date+"</td>"+type+"<td>"+numberWithCommas(data[i].price)+"</td><td>"
+					+Floor(data[i].amount,4)+"</td><td>"+numberWithCommas(data[i].price_c)+"</td><td>완료</td></tr>";
+				$('#history_table > tbody:last').append(code);
 			}
 		}
 	});
@@ -382,7 +409,7 @@ $(function(){
 	// 퍼센트 버튼 클릭시
 	$('.btn_buy_percent').click(function (e) {
 		if($('#buy_price').val() > 0) {
-			var pct_buy_coin = (avail_won * $(this).data('pct') / 100) / $('#buy_price').val();
+			var pct_buy_coin = avail_won * $(this).data('pct') / 100 / $('#buy_price').val();
 			$('#buy_unit').val(Floor(pct_buy_coin,4));
 			fCalcData();
 		}
@@ -417,6 +444,7 @@ $(function(){
 					if(data.length != 0){
 						GetMyData();
 						GetOrderList();
+						GetHistoryList();
 						$('#buy_unit').val(0);
 						fCalcData();
 					}
@@ -441,6 +469,7 @@ $(function(){
 				success:function(data){
 					if(data.length != 0){
 						GetOrderList();
+						GetHistoryList();
 						GetMyData();
 						$('#sell_unit').val(0);
 						fCalcData();
@@ -463,6 +492,7 @@ $(function(){
 			data:'id='+sid+'&coin='+coin+'&idx='+cancel_idx+'&type='+type,
 			success:function(data){
 					GetOrderList();
+					GetHistoryList();
 					GetMyData();
 			},
 			error:function(e){
@@ -922,15 +952,20 @@ $(function(){
 	 		<!-- 거래내역  -->	
 	 		<div class="container">
 	 			<div class="order_history_title">거래내역<span>(최근 5건만 보여집니다.)</span></div>
-	 				<table class="order_history_table">
-			 			<tr class="td" style="border-bottom: 2px solid #e3e3e3; color:#919191; ">
-			 				<td>거래일자</td>
-			 				<td>구분</td>
-			 				<td>체결가격 KRW</td>
-			 				<td>체결수량</td>
-			 				<td>체결금액 KRW</td>
-			 				<td>상태</td>
-			 			</tr>
+	 				<table class="order_history_table"  id="history_table">
+	 					<thead>
+				 			<tr class="td" style="border-bottom: 2px solid #e3e3e3; color:#919191; ">
+				 				<td>거래일자</td>
+				 				<td>구분</td>
+				 				<td>체결가격 KRW</td>
+				 				<td>체결수량</td>
+				 				<td>체결금액 KRW</td>
+				 				<td>상태</td>
+				 			</tr>
+				 			<tr id="history_wait">
+			 					<td colspan="6" rowspan="1" style="text-align: center;">거래내역이 없습니다.</td>
+			 				</tr>
+			 			</thead>
 			 		<!-- <tr style="border-bottom: 1px solid #e3e3e3;">
 			 				<td>거래일자</td>
 			 				<td>구분</td>
@@ -939,10 +974,10 @@ $(function(){
 			 				<td>체결금액 KRW</td>
 			 				<td>상태</td>
 			 			</tr> -->
-			 			<tr>
-			 				<td colspan="6" rowspan="1" style="text-align: center;">거래내역이 없습니다.</td>
-			 			</tr>
-			 			</table>
+			 			<tbody>
+			 			
+			 			</tbody>
+			 		</table>
 	 		</div>
 	 		<c:if test="${empty sid}">
 	 		<div style="width: 100%; height:122px; margin-top:-142px; margin-bottom:30px; position: relative; text-align: center;  

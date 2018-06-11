@@ -98,17 +98,18 @@ jQuery(document).ready(function(){
 			jQuery("#signup-email").focus();
 			return false;
 		}else if(jQuery("#signup-username").val()==""){
-			alert("닉네임을 입력하세요");
-			jQuery("#signup-username").focus();
-			return false;
-		}else if(jQuery("#pass").val()==""){
+				alert("닉네임을 입력하세요");
+				jQuery("#signup-username").focus();
+				return false;
+			}else if(jQuery("#pass").val()==""){
 			alert("비밀번호를 입력하세요.");
 			jQuery("#pass").focus();
-			return false;		
-		}else if(jQuery("#cpass").val()==""){
-			alert("비밀번호를 재입력 하세요.");
-			jQuery("#cpass").focus();
-			return false;
+			return false;	
+			
+			}else if(jQuery("#cpass").val()==""){
+				alert("비밀번호를 재입력 하세요.");
+				jQuery("#cpass").focus();
+				return false;
 		}else if(jQuery("#agree").is(":checked") == false){
 			alert("이용약관 및 개인정보 동의를 체크하세요.");
 			jQuery("#agree").focus();
@@ -123,13 +124,28 @@ jQuery(document).ready(function(){
 	jQuery("#cpass").focusout(function(){
 		// 1.패스워드 입력폼이 비어있는지 확인  비어있지 않은 상태에서만 비교
 		// 2. 1번의 결과중 비밀번호 확인폼이 비어있지 않은 상태에서만 비교를 진행 
+		var minimum = 8;
+		var pass = jQuery("#pass").val().length;
+		
+		
+		
 		if(jQuery("#pass").val()=="" ){
 			alert("패스워드를 입력하세요")
 			jQuery("#pass").focus;
 			return false;
+			
+		}else if(pass <minimum){
+			alert("패스워드를 8자리 이상 입력하세요")
+			jQuery("#pass").focus;
+			jQuery("#pass").val("");
+			jQuery("#cpass").val("");
+			return false;
+		
+			
 		
 		}else{
-			if(jQuery("#cpass").val()!=""){			
+			if(jQuery("#cpass").val()!=""){
+			
 			
 				//비밀번호 & 비밀번호 확인 체크
 				if(jQuery("#pass").val()== jQuery("#cpass").val()){
@@ -142,9 +158,13 @@ jQuery(document).ready(function(){
 				jQuery("#pass").val("").focus();
 				jQuery("#cpass").val("");
 					return false;
-		    }				
-		 }			
-		}	
+		    }
+				
+		 }
+			
+	  }
+		
+			
 	
 });
 	//아이디 중복체크 및 이메일 유효성검사 
@@ -172,17 +192,20 @@ jQuery(document).ready(function(){
 						jQuery("#id_msg").css("display","block").css("font-size","12pt")
 							.css("color","red").css("padding","3px 0px 0px 0px");
 						jQuery("#id_msg").text("이메일 형식이 올바르지 않습니다.");
-						jQuery("#signup-email").focus();
+						//jQuery("#signup-email").focus();
+						jQuery("#signup-email").val("");
 					}else if(data == 1){
 						jQuery("#id_msg").css("display","block").css("font-size","12pt")
 						.css("color","red").css("padding","3px 0px 0px 0px");
 						jQuery("#id_msg").text("중복된 이메일입니다.");
-						jQuery("#signup-email").focus();						  
+						//jQuery("#signup-email").focus();		
+						jQuery("#signup-email").val("");
 					}else{
 						jQuery("#id_msg").css("display","block").css("font-size","12pt")
 							.css("color","blue").css("padding","3px 0px 0px 0px");
 						jQuery("#id_msg").text("사용가능한 이메일 입니다.");
 						jQuery("#signup-username").focus();
+						
 					}
 			
 				}
@@ -210,7 +233,10 @@ jQuery(document).ready(function(){
 						 jQuery("#name_msg").css("display","block").css("font-size","12pt")
 						.css("color","red").css("padding","3px 0px 0px 0px");
 						 jQuery("#name_msg").text("중복된 닉네임입니다.");
-						 jQuery("#signup-username").val("").focus();			
+						 jQuery("#signup-username").val("").focus();
+		
+					
+						
 					}else{
 					
 						if(jQuery("#signup-username").val()==""){
@@ -234,25 +260,36 @@ jQuery(document).ready(function(){
 	
 	/*비밀번호 자릿수 유효성검사 */
 	
-	jQuery("#pass").focusout(function(){
+  /*  jQuery("#pass").focusout(function(){
 		var minimum = 8;
 		var pass = jQuery("#pass").val().length;
 	
 		if(pass < minimum){
 			jQuery("#msg")	.css("color","red").css("padding","3px 0px 0px 0px");
-			jQuery("#msg").text("8자 이상 입력 하세요.");			
+			jQuery("#msg").text("8자 이상 입력 하세요.");
+			jQuery("#pass").focus();
+			
+		return false;
+			
 		}else{
 			jQuery("#msg")	.css("color","red").css("padding","3px 0px 0px 0px");
 			jQuery("#msg").text("");
+			jQuery("#cpass").focus();
 		}
 
 		return false;
-	});
+	});*/
 	
-});
+});  
 </script>
+
+
+
 <script>                              
 jQuery(document).ready(function(){
+
+
+
 	var result = 0;
 
 	jQuery("#pcbtn").click(function(){
@@ -262,26 +299,38 @@ jQuery(document).ready(function(){
 
 		}else if(jQuery("#npass").val()==""){
 			alert("새비밀번호를 입력하세요.");
+
 			return false;
-		}else if(jQuery("#ncpass").val()==""){
-			alert("비밀번호를 재입력 하세요.");
-			return false;
-		}
+
+			}else if(jQuery("#ncpass").val()==""){
+				alert("비밀번호를 재입력 하세요.");
+
+				return false;
+
+			}
 
 		if(result==1)
+
 			passUpdate.submit();
+
 		else{
+
 			alert("현재 비밀번호를 다시 입력해주세요");
-			
+
 			return false;
+
 		}
+
 	}); //end
+
 
 	 jQuery("#upass").focusout(function(){
 		 var email = jQuery("#uid").val();
 		 var pass = jQuery("#upass").val();
-		 
+		// alert(email+","+pass);
+
 		 jQuery.ajax({
+
 			 url : 'http://localhost:8080/coinweb/password_check.do',
 			 type :'GET',
 			 data : 'email='+email+'&pass='+pass,
@@ -292,32 +341,64 @@ jQuery(document).ready(function(){
 					if(data != 1){
 						jQuery("#upw_msg").css("display","block").css("font-size","12pt")
 						.css("color","red").css("padding","3px 0px 0px 0px");
-						jQuery("#upw_msg").text("불일치!");
-						jQuery("#upass").focus();
+					jQuery("#upw_msg").text("불일치!");
+					jQuery("#upass").val("");
 					
-						return false; 		
+
+					
+					return false; 
+
+					
+
 					}else if (data == 1){
+
 						jQuery("#upw_msg").css("display","block").css("font-size","12pt")
 						.css("color","blue").css("padding","3px 0px 0px 0px");
-						jQuery("#upw_msg").text("일치!");
-						result = 1;
-						return result; 
+					jQuery("#upw_msg").text("일치!");
+					result = 1;
+					return result; 
 
 					}		
+
+			
+
 				 }
+
+		
+
+		
+
   		});
-	});   
+
+	});
+
+   
 
 	 jQuery("#ncpass").focusout(function(){
 			// 1.패스워드 입력폼이 비어있는지 확인  비어있지 않은 상태에서만 비교
 			// 2. 1번의 결과중 비밀번호 확인폼이 비어있지 않은 상태에서만 비교를 진행 
+			
+				var minimum = 8;
+			var pass = jQuery("#npass").val().length;
+			
+			
 			if(jQuery("#npass").val()=="" ){
-				alert("패스워드를 입력하세요");
+				alert("패스워드를 입력하세요")
 
 				return false;
+
+			}else if (pass <minimum){
+				alert("패스워드를 8자리 이상 입력해주세요.")
+				jQuery("#ncpass").val("");
+				jQuery("#npass").val("");
+				return false;
+			
 			}else{
+
 				if(jQuery("#ncpass").val()!=""){
+
 					//비밀번호 & 비밀번호 확인 체크
+
 					if(jQuery("#npass").val()== jQuery("#ncpass").val()){
 					jQuery("#nupw_msg").css("font-size","12pt").css("color","blue").css("display","block");
 					jQuery("#nupw_msg").text("비밀번호가 동일합니다.").css("padding","3px 0px 0px 0px");
@@ -325,35 +406,50 @@ jQuery(document).ready(function(){
 					return false;
 
 				}else{
+
 					jQuery("#nupw_msg").css("font-size","12pt").css("color","red").css("display","block").css("padding","3px 0px 0px 0px");
 					jQuery("#nupw_msg").text("비밀번호가 다릅니다. 다시 입력해주세요");
 					jQuery("#pass").val("").focus();
+
 					jQuery("#ncpass").val("");
 
-					return false;
+						return false;
+
 			    }
 			 }
 		  }
-	});	 
+	});
+
+	 
 
 	 /*비밀번호 자릿수 유효성검사 */
-		jQuery("#npass").focusout(function(){
+	/*	jQuery("#npass").focusout(function(){
+
 			var minimum = 8;
 			var pass = jQuery("#npass").val().length;
+
 		
 			if(pass < minimum){
 				jQuery("#nupw_msg")	.css("color","red").css("padding","3px 0px 0px 0px");
 				jQuery("#nupw_msg").text("8자 이상 입력 하세요.");
 				jQuery("#npass").focus();
 				return false;
+
 			}else{
+
 				jQuery("#nupw_msg")	.css("color","red").css("padding","3px 0px 0px 0px");
 				jQuery("#nupw_msg").text("");
 				jQuery("#ncpass").focus();
 				return false;
+
 			}
-		});
+
+		});*/
+
+	
+
 });
+
 </script>
 <body>
 <header>

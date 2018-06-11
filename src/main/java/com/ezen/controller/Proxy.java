@@ -44,7 +44,7 @@ public class Proxy {
 			reqUrl += "?" + targetParams;
 		}
 		
-		System.out.println(reqUrl);
+		//System.out.println(reqUrl);
 
 		try {
 			URL url = new URL(reqUrl);
