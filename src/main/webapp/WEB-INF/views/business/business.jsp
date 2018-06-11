@@ -356,7 +356,7 @@ function GetOrderList(){
 				var type = data[i].type;
 				if(type == 'B')	type = "<td style='color:red;'>매수</td>"; else type = "<td style='color:blue;'>매도</td>";
 				code = "<tr>"+type+"<td>"+data[i].date+"</td><td>"+numberWithCommas(data[i].price)+"</td><td>"
-					+ data[i].amount+"/"+data[i].amount_c+"</td><td>"+numberWithCommas(data[i].price_c)+"</td><td><a style='cursor:pointer;' data-toggle='modal' data-target='#order_cancel_Modal' data-idx="+data[i].idx+" data-type="+data[i].type+">취소</a></td></tr>";
+					+ Floor(data[i].amount,4)+"/"+Floor(data[i].amount_c,4)+"</td><td>"+numberWithCommas(data[i].price_c)+"</td><td><a style='cursor:pointer;' data-toggle='modal' data-target='#order_cancel_Modal' data-idx="+data[i].idx+" data-type="+data[i].type+">취소</a></td></tr>";
 				$('#order_table > tbody:last').append(code);
 			}
 		}
@@ -379,7 +379,7 @@ function GetHistoryList(){
 				var type = data[i].type;
 				if(type == 'B')	type = "<td style='color:red;'>매수</td>"; else type = "<td style='color:blue;'>매도</td>";
 				code = "<tr><td>"+data[i].date+"</td>"+type+"<td>"+numberWithCommas(data[i].price)+"</td><td>"
-					+data[i].amount+"</td><td>"+numberWithCommas(data[i].price_c)+"</td><td>완료</td></tr>";
+					+Floor(data[i].amount,4)+"</td><td>"+numberWithCommas(data[i].price_c)+"</td><td>완료</td></tr>";
 				$('#history_table > tbody:last').append(code);
 			}
 		}
@@ -409,7 +409,7 @@ $(function(){
 	// 퍼센트 버튼 클릭시
 	$('.btn_buy_percent').click(function (e) {
 		if($('#buy_price').val() > 0) {
-			var pct_buy_coin = (avail_won * $(this).data('pct') / 100) / $('#buy_price').val();
+			var pct_buy_coin = avail_won * $(this).data('pct') / 100 / $('#buy_price').val();
 			$('#buy_unit').val(Floor(pct_buy_coin,4));
 			fCalcData();
 		}
