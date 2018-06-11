@@ -61,8 +61,8 @@ font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "
 .am-pagination-default > .active > span:focus {
   z-index: 3;
   color: #fff;
-  background-color: #5eb95e;
-  border-color: #5eb95e;
+  background-color: rgb(51, 153, 255);
+  border-color: rgb(51, 153, 255);
   cursor: default;
 }
 .am-pagination-default > .disabled > span,

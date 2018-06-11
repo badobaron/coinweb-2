@@ -5,6 +5,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- jQuery, bootstrap -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<!-- 페이징처리 -->
+<script src="http://localhost:8080/coinweb/js/am-pagination.js"></script>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/am-pagination.css">
+
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/freeboard.css">
+
 
 </head>
 
@@ -12,12 +22,16 @@
 
 	<jsp:include page="../header.jsp"></jsp:include> 
 	
-	
-		<div class="commtitle">
-			 <h2>Freeboard</h2>
-		</div>
+	<section class="freeboard">
+		<div class="freeboard_header">
+			<h1 class="freeboard_header_h1">
+			자유게시판</h1></div>
+		
+			
 		<div class="container container_comm">	  
-		  <table class="table table-bordered table-striped comm-table">	
+		<div class="freeboard_table">
+		  <table class="table table-hover freeboard_list_table">	
+		 		<thead>
 		  	    <tr>
 		     		<th>NO</th>
 					<th>제목</th>
@@ -26,6 +40,7 @@
 					<th>조회수</th>
 					<th>좋아요</th>
 		        </tr>
+		        </thead>
 		       <c:forEach items="${list}" var="vo">
 		  		<tr class="comm-list">
 			  		<td class="rnotd">${vo.rno}</td>
@@ -40,34 +55,40 @@
 		  		</tr>	  		
 		  		</c:forEach>
 			</table>
-				<div id="ampaginationsm" style="text-align: center"></div>
+
+				
 				 <div class="form-group">
 				 <form action="/coinweb/freeboard_search.do?rpage=${rpage}" method="get">
-					<select name="findValue" class="form-control input-sm">
+					
+					<div style="display: inline-block;">
+					<select name="findValue" class="form-control" style="width: 100px; float: left;">
 						<option value=title>제목</option>
 						<option value=content>내용</select>
-					<input name="search" type="text" class="form-control form-group-search">
+					<input name="search" type="text" class="form-control" style="width: 150px; ">
+					</div>
 					
 					<button  type="submit" class="btn btn-comm-con" style="margin-top: 5px;">검색</button>
 					
-					<a href="/coinweb/freeboard_write.do"><button type="button" class= "btn-comm-con btn" style="float: right; margin-top: 5px;">글쓰기</button></a>
+					<a href="/coinweb/freeboard_write.do?=${name}"><button type="button" class= "btn-comm-con btn" style="float: right; margin-top: 5px;">글쓰기</button></a>
+					<div id="ampaginationsm" style="text-align: center; "></div>
 				</form>
 				</div>
 		</div>
+		</div>
+		</section>
 
 	<jsp:include page="../footer.jsp"></jsp:include>  
 </body>
 
 <script>
-jQuery.noConflict();
-	jQuery(document).ready(function($) {
+	$(document).ready(function($) {
 		
 		var pager = $('#ampaginationsm').pagination({
 			
 		    maxSize: 7,	    		// max page size
 		    totals: '${dbCount}',	// total pages	
 		    page: '${rpage}',		// initial page		
-		    pageSize: 5,			// max number items per page
+		    pageSize: 10,			// max number items per page
 		
 		    // custom labels		
 		    lastText: '&raquo;&raquo;', 		

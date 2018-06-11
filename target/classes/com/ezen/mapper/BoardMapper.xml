@@ -68,6 +68,7 @@
 	<select id="getBoardContent" resultType="coinweb.vo.BoardVO">
 			SELECT  NO
 				  , TITLE
+				  , NAME
 				  , BDATE
 				  , HITS
 				  , LIKEIT
@@ -78,7 +79,7 @@
  	<insert id="insertBoardContent" parameterType="coinweb.vo.BoardVO">
  			INSERT INTO COINWEB_BOARD VALUES(SEQU_COINWEB_BOARD_NO.NEXTVAL
  										   , #{title}
- 										   , 'NAME'
+ 										   , #{name}
  										   , #{content, jdbcType=CLOB}
  										   , SYSDATE
  										   , 0

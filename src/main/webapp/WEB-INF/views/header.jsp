@@ -9,15 +9,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="http://localhost:8080/coinweb/css/header.css">
-<link rel="stylesheet" href="http://localhost:8080/coinweb/css/am-pagination.css">
+
 
 <script src="http://localhost:8080/coinweb/js/jquery-3.3.1.min.js"></script>
 
-<!-- pagination -->
-<script src="http://localhost:8080/coinweb/js/am-pagination.js"></script>
-<script src="http://localhost:8080/coinweb/js/paging.js"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 <script type="text/javascript">jQuery.noConflict();</script>
