@@ -1,7 +1,8 @@
 package coinweb.vo;
 
 public class HistoryVO {
-	int id, price, price_completed, amount;
+	int id, price, price_completed;
+	float amount;
 	String coin, type, hdate;
 	
 	public int getId() {
@@ -22,10 +23,10 @@ public class HistoryVO {
 	public void setPrice_completed(int price_completed) {
 		this.price_completed = price_completed;
 	}
-	public int getAmount() {
+	public float getAmount() {
 		return amount;
 	}
-	public void setAmount(int amount) {
+	public void setAmount(float amount) {
 		this.amount = amount;
 	}
 	public String getCoin() {

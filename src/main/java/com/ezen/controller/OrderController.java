@@ -106,8 +106,8 @@ public class OrderController {
 			JSONObject obj = new JSONObject();
 			obj.put("type", vo.getType());
 			obj.put("price", vo.getPrice());
-			obj.put("price_c", vo.getPrice_completed());
 			obj.put("amount", vo.getAmount());
+			obj.put("price_c", vo.getPrice_completed());
 			obj.put("date", vo.getHdate());
 			
 			jarray.add(obj);
