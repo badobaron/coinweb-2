@@ -34,22 +34,22 @@ SqlSessionTemplate sqlSession;
 	public ModelAndView freeboard(String rpage){
 		ModelAndView mv = new ModelAndView();
 		BoardDAO dao = sqlSession.getMapper(coinweb.dao.BoardDAO.class);
-		//페이징 처리 - startCount, endCount 구하기
+
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 5;	//한페이지당 게시물 수
-		int reqPage = 1;	//요청페이지	
-		int pageCount = 1;	//전체 페이지 수
+		int pageSize = 10;	
+		int reqPage = 1;	
+		int pageCount = 1;	
 		int dbCount= dao.execTotalCount();
 	
-		//총 페이지 수 계산
+		
 		if(dbCount % pageSize == 0){
 			pageCount = dbCount/pageSize;
 		}else{
 			pageCount = dbCount/pageSize+1;
 		}
 
-		//요청 페이지 계산
+	
 		if(rpage != null){
 			reqPage = Integer.parseInt(rpage);
 			startCount = (reqPage-1) * pageSize+1; 
@@ -57,7 +57,7 @@ SqlSessionTemplate sqlSession;
 			
 		}else{
 			startCount = 1;
-			endCount = 5;
+			endCount = 10;
 			rpage="1";
 		}
 		
@@ -68,7 +68,7 @@ SqlSessionTemplate sqlSession;
 		mv.addObject("dbCount",dbCount);
 		return mv;		
 	}
-	/*search 후, 진행되는 list*/
+	
 	@RequestMapping(value="/freeboard_search.do", method=RequestMethod.GET)
 	public ModelAndView freeboard_saerch(String rpage,String search,String findValue){
 		
@@ -76,12 +76,12 @@ SqlSessionTemplate sqlSession;
 		ModelAndView mv = new ModelAndView();
 		BoardDAO dao = sqlSession.getMapper(coinweb.dao.BoardDAO.class);
 		ArrayList<BoardVO> list= new ArrayList<BoardVO>();
-		//페이징 처리 - startCount, endCount 구하기
+	
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 5;	//한페이지당 게시물 수
-		int reqPage = 1;	//요청페이지	
-		int pageCount = 1;	//전체 페이지 수
+		int pageSize = 10;	
+		int reqPage = 1;	
+		int pageCount = 1;
 		int dbCount=0;
 		if(findValue.equals("title")){
 			dbCount= dao.execTotalCountTitle(search);
@@ -91,14 +91,14 @@ SqlSessionTemplate sqlSession;
 			dbCount= dao.execTotalCount();
 		}
 		
-		//총 페이지 수 계산
+
 		if(dbCount % pageSize == 0){
 			pageCount = dbCount/pageSize;
 		}else{
 			pageCount = dbCount/pageSize+1;
 		}
 
-		//요청 페이지 계산
+	
 		if(rpage != null){
 			reqPage = Integer.parseInt(rpage);
 			startCount = (reqPage-1) * pageSize+1; 
@@ -106,7 +106,7 @@ SqlSessionTemplate sqlSession;
 			
 		}else{
 			startCount = 1;
-			endCount = 5;
+			endCount = 10;
 		}
 		if(findValue.equals("title")){
 			list =dao.getBoardListTitle(search,startCount,endCount);
@@ -137,7 +137,9 @@ SqlSessionTemplate sqlSession;
 	@RequestMapping(value="/freeboard_write_controller.do", method=RequestMethod.POST)
 	public String freeboard_controller(BoardVO vo){		
 		BoardDAO dao =sqlSession.getMapper(BoardDAO.class);
+	
 		dao.insertBoardContent(vo);	
+		
 		return "redirect:/freeboard.do";
 	}
 	

@@ -16,7 +16,7 @@
       }
   }(this, function ($) {
             var Pager = function (ele, opts) {
-            var options = $.extend({}, $.fn.pagination.sm, opts);
+            var options = $.extend({}, $.fn.pagination.default, opts);
             this.ele = ele;
            
             this.container=function(self){
@@ -342,7 +342,7 @@
 
         };
         
-        $.fn.pagination.sm = {
+        $.fn.pagination.default = {
             maxSize: 7,
             totals: 100,
             page: 1,

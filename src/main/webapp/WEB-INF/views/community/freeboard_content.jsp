@@ -96,41 +96,48 @@ height: 20px;
 width: 20px;
 }
 </style>
-<script src="http://localhost:8080/coinweb/js/jquery-3.3.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- summernote -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
-
+<!-- jQuery, bootstrap -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/freeboard.css">
+<!-- 리플 -->
 <script src="http://localhost:8080/coinweb/js/MyAjax.js"></script>
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include> 
 	
-			<div class="commtitle">
-				 <h2>Free Board</h2>
-			</div>
+			<div class="freeboard_header">
+			<h1 class="freeboard_header_h1">
+			자유게시판</h1></div>
+		
 		
 		<div class="container">	 
 		
-			<table class="table table-bordered table-striped">
-					<tr>
-						<th>번호</th>						
-						<td>${rno}</td>
-						<th>제목</th>
-						<td>${vo.title}</td>
-						<th>등록날짜</th>
-						<td>${vo.bdate}</td>
-						<th>조회수</th>
-						<td>${vo.hits}</td>
-						<th>추천</th>
-						<td class="likeittd">${vo.likeit}</td>										
-					</tr>
-					<tr>
-						<th colspan="10">
-						${vo.content}
-						</th>
-					</table>
+		 <div class="freeboard_content_title">
+                        <p class="freeboard_content_title_text">${vo.title}</p>
+                        <p class="freeboard_content_title_date">${vo.bdate}</p>
+       	 </div>
+		 <div class="freeboard_content_author">
+                        <p class="freeboard_content_author_name">${vo.name}</p>
+                        <div class="freeboard_content_author_info">
+                            <p>조회수 <span class="author_info">${vo.hits}</span></p>
+                            <p>좋아요 <span class="author_info like_count">${vo.likeit}</span></p>
+                            <p>댓글 <span class="author_info">0</span></p>
+                        </div>
+         </div>	
+				
+			<div class="freeboard_content">
+                        <p>
+                        	${vo.content}
+                        </p> </div>
+					
+					
+					
+				
 					
 					<div style="text-align: center;">
 						<button class="likeitBtn btn-like" type="button" onclick="likeitBtnMain()">좋아요</button>
@@ -147,7 +154,7 @@ width: 20px;
 						<div class="reply-writeMain">
 							<div class="reply-header">		
 								<p>전체 댓글 <span id="replyNum"></span></p>
-								<span>'ID 나올 곳'</span> 
+								<span>${name}</span> 
 							</div>			
 							<div class="reply-write">
 								<div>

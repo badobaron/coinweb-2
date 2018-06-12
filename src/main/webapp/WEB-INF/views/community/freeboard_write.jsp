@@ -4,21 +4,81 @@
 
 <!DOCTYPE html>
 <html>
+<head>
+  <title>Summernote</title>
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/freeboard.css">
+</head>
+
+<script type="text/javascript">
+
+/*CONTENT EMPTY&RESET*/
+$(document).ready(function(){
+	/*modal-background 수정함. 이것 수정하면 그림 영상 첨부할때 나오는 modal 값 수정 가능 */
+	$(".note-btn").click(function(){
+		$(".modal-backdrop").css("z-index","0").css("background-color","#000");
+		$(".note-toolbar").css("z-index","0");
+		
+	});
+	/*reset*/
+	$("#contentBtnReset").click(function(){
+		$("#summernote").summernote("reset");
+	});
+	/*컨탠츠 버튼 클릭시*/
+	$("#contentBtn").click(function(){
+		
+		if($("#title").val()==""){
+			alert("제목을 입력하세요");
+			$("#title").focus();
+			return false;	
+		/*content 없을때*/				
+		}else if($('#summernote').summernote('isEmpty')) {
+			  alert('내용을 입력하세요');
+			  $('#summernote').summernote('focus');
+			  return false;
+		/*등록 ajax*/	  
+		}else {
+			var htmlContent = $('#summernote').summernote('code');
+			alert(htmlContent);
+		/*
+			$(".summernote").html(htmlContent);
+			freeboard_form.submit;			
+		*/
+		}
+			
+	});		
+});
+</script>
 
 <body>
 
 	<jsp:include page="../header.jsp"></jsp:include>
 	
-	<div class="commtitle">
-		<h2>Free Board Write</h2>
-	</div>
+			<div class="freeboard_header">
+				<h1 class="freeboard_header_h1">게시판 글쓰기</h1></div>
 
 	<div class="container">
-	
+		
 		<form id="freeboard_form" class="freeboard_form" action="/coinweb/freeboard_write_controller.do" method="post">
-			<div style="text-align: left;">
-			<input class="title" id="title" name="title" type="text" placeholder="제목을 입력하세요" style="width: 500px">
+			<!-- 작성자 -->
+			<div class="form-group">
+			
+					<input type="text" class="title form-control" id="title" name="title" placeholder="제목을 입력하세요">
+				
 			</div>
+			<div class="form-group">
+			
+					<input type="text" class="name form-control" id="name" name="name" hidden="true" value="${name}">
+				
+			</div>
+	
+			
+			
 			<textarea class="content" name="content" id="summernote"></textarea>
 			
 			<div style="text-align: center;">	
@@ -32,61 +92,25 @@
 
 	<jsp:include page="../footer.jsp"></jsp:include>
 
-</body>
 <script>
 /*summernote form*/
-var jq = jQuery.noConflict();
 
-	jq(document).ready(function(){
-		jq('#summernote').summernote({
+
+		$('#summernote').summernote({
 		 height: 500,                 // set editor height
-		 minHeight: null,            // set minimum height of editor
-		 maxHeight: null,            // set maximum height of editor
+		 minHeight: 500,            // set minimum height of editor
+		 maxHeight: 800,            // set maximum height of editor
 	     focus: true,
-	     placeholder: '내용을 입력하세요',	  
+	     placeholder: '내용을 입력하세요.',	  
 		});		
-	});	
-		
-		
-		
+
   		
 		
 	
-	/*CONTENT EMPTY&RESET*/
-	jq(document).ready(function(){
-		/*modal-background 수정함. 이것 수정하면 그림 영상 첨부할때 나오는 modal 값 수정 가능 */
-		jq(".note-btn").click(function(){
-			jq(".modal-backdrop").css("z-index","-1").css("background-color","#000").css("button","0");
-		});
-		/*reset*/
-		jq("#contentBtnReset").click(function(){
-			jq("#summernote").summernote("reset");
-		});
-		/*컨탠츠 버튼 클릭시*/
-		jq("#contentBtn").click(function(){
-			
-			if(jq("#title").val()==""){
-				alert("제목을 입력하세요");
-				jq("#title").focus();
-				return false;	
-			/*content 없을때*/				
-			}else if(jq('#summernote').summernote('isEmpty')) {
-				  alert('내용을 입력하세요');
-				  jq('#summernote').summernote('focus');
-				  return false;
-			/*등록 ajax*/	  
-			}else {
-				var htmlContent = jq('#summernote').summernote('code');
-				alert(htmlContent);
-			/*
-				jq(".summernote").html(htmlContent);
-				freeboard_form.submit;			
-			*/
-			}
-				
-		});		
-	});
 </script>
+
+</body>
+
 
 
 
