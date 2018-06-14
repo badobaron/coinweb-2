@@ -5,100 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%-- 리플 입력 css--%>
-<style type="text/css">
-.reply-writeMain{
-border: 1px solid rgb(216, 216, 216); 
-padding: 5px;
-margin-top: 5px;
-}
-.replyDiv{
-border-top: 1px solid rgb(216, 216, 216);
-margin-top: 20px;
-padding-top: 20px;
-}
 
-.replyBtnDiv{
-float:right;
- display: inline; 
-
-}
-.replyBtn{
-background: none;
-border: 1px solid rgb(216, 216, 216);  
-width: 60px;
-height: 25px;
-}
-.replyRdate{
-color: rgb(216, 216, 216); 
-font-size: 13px; 
-}
-.fa-thumbs-o-up{
-position: absolute;
-right: 100px;
-bottom: 5px;
-}
-.fa-thumbs-o-down{
-position: absolute;
-right: 40px;
-bottom: 5px;
-}
-.replyTool{
-position: relative;
-}
-
-.reply-write{
-border: 1px solid rgb(216, 216, 216);
-position: relative;
-height: 110px;
-
-}
-.reply-write-title{
-position: absolute;
-z-index: -10;
-color: #9494b8;
-}
-.reply-write-content{
-height: 50px;
-z-index: 0;
-}
-.reply-write-contentSub{
- position: relative;
- z-index: 0;
-}
-.reply-write-button{
-position: absolute;
-right :3px;
-top :70px;
-background-color: MediumSeaGreen;
-color: white;
-}
-/*rereply toggle 위해 숨김*/
-.replyDivSub{
-position : relative;
-display : none;
-background-color: rgb(250, 250, 250);
-z-index: -15;
-}
-.reply-writeSub{
-width: 80%;
-z-index: 0;
-position: relative;
-padding: 10px;
-}
-.replyicon{
-border-left: 1px solid rgb(216, 216, 216);
-border-bottom: 1px solid rgb(216, 216, 216);
-display: inline-block;
-margin-right: 15px;
-margin-left: 15px;
-height: 20px;
-width: 20px;
-}
-</style>
 <!-- jQuery, bootstrap -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
@@ -106,7 +16,211 @@ width: 20px;
 <link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/freeboard.css">
 <!-- 리플 -->
 <script src="http://localhost:8080/coinweb/js/MyAjax.js"></script>
+
+<script>
+
+	$(function(){
+		
+		//토글기능
+		var check_value = $("#reply-content-check").val(); 
+		
+		if(check_value == "hide"){				
+			$(".reply-content").css("display","inline-block");			
+			$("#reply-content-check").val("show");
+		}else{
+			$(".reply-content").css("display","none");
+			$("#reply-content-check").val("hide");
+		}			
+		
+		var no = "${vo.no}";
+		
+		$.ajax({
+			url : 'http://localhost:8080/coinweb/reply_list.do',
+			method :'GET',	
+			data : 'no='+no,
+			dataType : 'json',
+			success : function(data){
+				$(".view1, .view2, .view3").remove();				
+				for(i=0;i<data.length;i++){
+					code = 	"<span class='view1'>"+data[i].rid+"</span>"
+							+ "<span class='view2'>"+data[i].rdate+"</span>"
+							+ "<div class='view3'>"+data[i].content+"</div>";					
+					
+					$(".reply-content").append(code);
+				}
+			}
+		});
+	});
+
+	$(document).ready(function(){			
+		
+		//댓글작성 버튼
+		$("#btnReWrite").click(function(){
+			var check_value = $("#reply-write-check").val();
+			
+			if(check_value == "hide"){
+				$(".reply-write").css("display","block");
+				$("#reply-write-check").val("show");
+			}else{
+				$(".reply-write").css("display","none");
+				$("#reply-write-check").val("hide");
+				$(".reply-write-content").text("");
+			}			
+		});
+		
+		
+		//댓글 등록버튼
+		$(".reply-write-button").click(function(){
+			
+			/* 댓글 등록 시작 */
+			var content = $(".reply-write-content").text();
+			var no = "${vo.no}";
+			//alert(no);
+			//alert(content);
+
+			$.ajax({
+				url : 'http://localhost:8080/coinweb/reply_write_check.do',
+				type :'GET',
+				data : 'content='+content+'&no='+no,
+				dataType : 'json',
+				contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+				success : function(data){				
+		
+					if(data.length != 0){	
+							
+						$(".reply-write").css("display","none");
+						$("#reply-write-check").val("hide");
+						$(".reply-write-content").text("");
+						
+						reply_view_load();
+					}						
+				}
+			});	//end of ajax			
+		});	
+
+		
+		//댓글보기			
+		$(".reply-view").click(function(){	
+			
+			//토글기능
+			var check_value = $("#reply-content-check").val(); 
+			
+			if(check_value == "hide"){				
+				$(".reply-content").css("display","inline-block");			
+				$("#reply-content-check").val("show");
+			}else{
+				$(".reply-content").css("display","none");
+				$("#reply-content-check").val("hide");
+			}				
+						
+			var no = "${vo.no}";
+			
+			$.ajax({
+				url : 'http://localhost:8080/coinweb/reply_list.do',
+				method :'GET',	
+				data : 'no='+no,
+				dataType : 'json',
+				success : function(data){
+					$(".view1, .view2, .view3").remove();				
+					for(i=0;i<data.length;i++){
+						code = 	"<span class='view1'>"+data[i].rid+"</span>"
+								+ "<span class='view2'>"+data[i].rdate+"</span>"
+								+ "<div class='view3'>"+data[i].content+"</div>";					
+						
+						$(".reply-content").append(code);
+					}
+				}
+			});
+		});			
+	});
+	
+	
+	//사용자 정의 함수
+	reply_view_load = function(){
+			
+			$(".reply-content").css("display","inline-block");			
+			//$("#reply-content-check").val("show");
+			
+			var no = "${vo.no}";
+			
+			$.ajax({
+				url : 'http://localhost:8080/coinweb/reply_list.do',
+				method :'GET',	
+				data : 'no='+no,
+				dataType : 'json',
+				success : function(data){
+					$(".view1, .view2, .view3").remove();				
+					for(i=0;i<data.length;i++){
+						code = 	"<span class='view1'>"+data[i].rid+"</span>"
+								+ "<span class='view2'>"+data[i].rdate+"</span>"
+								+ "<div class='view3'>"+data[i].content+"</div>";					
+						
+						$(".reply-content").append(code);
+					}
+				}
+			});
+		};
+	
+</script>
+<style>
+	.reply-header { text-align:right;}
+	.reply-title, .reply-view{ 			
+		cursor:pointer;		
+	}
+
+	.reply-write { display:none;}
+	.reply-write-title{
+		text-align:left;
+		padding:0px 0px 10px 10px;		
+	}
+	.reply-write-content{
+		dispaly:inline-block;
+		width:83%;
+		height:100px;		
+		float:left;	
+		margin-left:10px;
+		border:1px solid gray;	
+		text-align:left;
+		padding:3px;
+	}
+	.reply-write-button{
+		dispaly:inline-block;
+		width:14%;
+		height:100px;
+		line-height:100px;		
+		float:right;
+		background-color:lightGray;
+		border:1px solid gray;	
+		padding:3px 0px 3px 0px;
+		margin-right:1.3px;
+	}
+	.reply-content{
+		/*dispaly:none;*/
+		width:100%;
+		/*border:2px solid red;*/
+		clear:right;
+		margin-top:10px;
+	}
+	.view1, .view2, .view3 {border:1px solid gray; }
+	.view1, .view2 {
+		display:inline-block;
+		width:45%;
+		height:25px;
+		text-align:left;
+		background-color:#d9d9d9;
+	}
+	.view3 { 
+		width:90%; height:40px; margin:auto;
+		text-align:left;
+	}
+</style>
+
 </head>
+
+
+
+
+
 <body>
 <jsp:include page="../header.jsp"></jsp:include> 
 	
@@ -140,8 +254,8 @@ width: 20px;
 				
 					
 					<div style="text-align: center;">
-						<button class="likeitBtn btn-like" type="button" onclick="likeitBtnMain()">좋아요</button>
-						<button class="dislikeitBtn btn-dislike" type="button" onclick="dislikeitBtnMain()">싫어요</button>
+						<button class="likeitBtn btn-like btn" type="button" onclick="likeitBtnMain()">좋아요 <i class="fa fa-thumbs-up fa-lg"></i></button>
+						<button class="dislikeitBtn btn-dislike btn" type="button" onclick="dislikeitBtnMain()">싫어요 <i class="fa fa-thumbs-down fa-lg"></i></button>
 					</div>
 					<div style="text-align: center;">
 							<a href="/coinweb/freeboard.do?"><button type="button" class="btn btn-comm-con">이전 페이지</button></a>
@@ -149,55 +263,51 @@ width: 20px;
 							<a href="/coinweb/freeboard_delete.do?no=${no}&rno=${rno}"><button type="button" class="btn btn-comm-con">바로삭제</button></a>					
 							<a href="/coinweb/index.do"><button type="button" class="btn btn-comm-con">홈으로</button></a>									
 					</div>
-					<%--reply 세션으로 id 받아오면 id로 취하는 값들 노출시켜야함. 데이타베이스에 id 기입하는 열도 만들어야한다 --%>
-					<div id="test">
-						<div class="reply-writeMain">
-							<div class="reply-header">		
-								<p>전체 댓글 <span id="replyNum"></span></p>
-								<span>${name}</span> 
-							</div>			
-							<div class="reply-write">
-								<div>
-									<label id="reply-write-titleMain" class="reply-write-title">
-											저작권 등 다른 사람의 권리를 침해하거나 명예를 훼손하는 게시물은 이용약관 및 관련 법률에 의해 제재를 받을 수 있습니다. 건전한 토론문화와 양질의 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정 계층/민족, 종교 등을 비하하는 단어들은 표시가 제한됩니다.
-									</label>
-								</div>
-								<div contenteditable="true" id="reply-write-contentMain" class="reply-write-content" name="content"></div>
-		
-								<div style="text-align: right;">
-									<p> <span id="sizeLimitMain">0</span> /300</p>
-									<button id="reply-write-buttonMain" class="reply-write-button btn btn-comm-con" style="width: 100px;">등록</button>					
-								</div>														
-							</div>	
-						</div>
-						<div class="reply-content"></div>	
-						</div>		
-					<input type="hidden" name="no" value="${vo.no}">
+					
+			<!-- start of reply -->
+			<table>
+			
+				<tr>
+					<td colspan="8">
+				
+						<br><div class="reply-header">
+						<span class="reply-title" id="btnReWrite">댓글작성</span>			
+						|| <span class="reply-view">댓글보기</span>
+						</div>			
+						<div class="reply-write">
+						
+							<div class="reply-write-title">
+							<input type="hidden" name="rname" id="rname" value="${rname }">		
+							</div>
+							<div contenteditable="true" class="reply-write-content" id="content"  name="content">
+							</div>						
+							<div class="reply-write-button">등록</div>
+							<input type="hidden" id="reply-write-check" value="hide">
+							<input type="hidden" name="no" value="${vo.no }">
+						</div>												
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8">						
+						<div class="reply-content">	
+						<input type="hidden" id="reply-content-check" value="hide">										
+						</div>							
+					</td>
+				</tr>
+				</table>
+				<!-- end of reply -->	
+					
+						
+			
 					
 		
 					
 		</div>	
 	<jsp:include page="../footer.jsp"></jsp:include>  
-</body>
 
-<script data-for=ready>
-/*좋아요 버튼 
- * 로그인 후 횟수 제한 걸어야한다.*/
-function likeitBtnMain(){
-	var param ={'no' : '${no}'};
-	MyAjax.excute('/coinweb/freeboard_likeit.json', param, 'POST').done(function(response){
-			alert("누구에게\n좋아요를 눌렀습니다.");
-			$(".likeittd").text(response.likeit);		
-	});
-} //btn
 
-function dislikeitBtnMain(){
-	var param ={'no' : '${no}'};
-	MyAjax.excute('/coinweb/freeboard_dislikeit.json', param, 'POST').done(function(response){
-			alert("누구에게\n싫어요를 눌렀습니다.");
-			$(".likeittd").text(response.likeit);		
-	});			
-}
+
+<script>
 
 
 
@@ -216,10 +326,10 @@ $(function(){
 			var index =$(this).indexSearch();
 		    
 			if($("#reply-write-content"+index).text().length>0){
-				$("#reply-write-title"+index).fadeOut(100);
+				$("#reply-write-title"+index).fadeOut(50);
 				
 			}if($("#reply-write-content"+index).text().length==0){
-				$("#reply-write-title"+index).fadeIn(100);
+				$("#reply-write-title"+index).fadeIn(50);
 				
 			}				
 		});
@@ -376,37 +486,30 @@ reply_dislikeit = function(){
 };
 
 
+/*좋아요 버튼 
+ * 로그인 후 횟수 제한 걸어야한다.*/
+function likeitBtnMain(){
+	var param ={'no' : '${no}'};
+	MyAjax.excute('/coinweb/freeboard_likeit.json', param, 'POST').done(function(response){
+			alert("누구에게\n좋아요를 눌렀습니다.");
+			$(".likeittd").text(response.likeit);		
+	});
+} //btn
+
+function dislikeitBtnMain(){
+	var param ={'no' : '${no}'};
+	MyAjax.excute('/coinweb/freeboard_dislikeit.json', param, 'POST').done(function(response){
+			alert("누구에게\n싫어요를 눌렀습니다.");
+			$(".likeittd").text(response.likeit);		
+	});			
+}
 
 	
 </script>
 
-<%
-// "<div id='replyDivSub"+i+"'class='replyDivSub'>"+
-// "<div class='replyicon'></div>"+  // 이걸로 옆에 ㄴ 만듬
-// "<div class='reply-writeSub'>"+
-
-//		"<div class='reply-header'>"+
-//			"<span>'ID 나올 곳'</span>"+
-//		"</div>"+
-//		"<div class='reply-write'>"+
-//			"<div>"+
-//				"<label id='reply-write-title"+i+"' class='reply-write-title'>"+
-//					"저작권 등 다른 사람의 권리를 침해하거나 명예를 훼손하는 게시물은 이용약관 및 관련 법률에 의해 제재를 받을 수 있습니다. 건전한 토론문화와 양질의 댓글 문화를 위해, 타인에게 불쾌감을 주는 욕설 또는 특정 계층/민족, 종교 등을 비하하는 단어들은 표시가 제한됩니다."+
-//				"</label>"+
-//			"</div>"+
-//			"<div id='reply-write-content"+i+"' contenteditable='true' class='reply-write-content' name='contentSub'></div>"+
-//				"<div class='replyWriteTool' style='text-align: right;'>"+
-//				"<p> <span id='sizeLimit"+i+"'>0</span> /300</p>"+
-//			"<button id='reply-write-button"+i+"'class='reply-write-buttonSub reply-write-button btn btn-comm-con' style='width: 100px;'>등록</button>"+
-//		"</div>"+
-//	"</div>"+
-//"</div>"+
-//"<div class='reply-contentSub'></div>"+
-//"</div>";
-
-%>
 	
-
+	
+</body>
 
 
 

@@ -135,7 +135,8 @@
 	
 	
 	<insert id="getReplyInsertResult">
-		INSERT INTO COINWEB_BOARD_REPLY VALUES(SEQU_COINWEB_BOARD_REPLY_NO.NEXTVAL
+		INSERT INTO COINWEB_BOARD_REPLY VALUES(sequ_coinweb_board_reply_RID.NEXTVAL
+											 , #{rname}
 			 							     , #{content}
 			 								 , SYSDATE
 			 								 , #{bid}
@@ -154,7 +155,7 @@
 	<select id="getReplyLikeit" resultType="coinweb.vo.BoardReplyVO">
  	SELECT LIKEIT,DISLIKEIT FROM COINWEB_BOARD_REPLY WHERE BID=#{param1} AND RID =#{param2}
  	</select>
- 	
+ 
  	
 	
 	

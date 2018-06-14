@@ -107,7 +107,7 @@ table.freeboard_list_table td{
     float: left;
     font-size: 12px;
     font-weight: bold;
-    color: #F08235;
+    color: #0080ff;
 }
 
 .freeboard_content_author_info {
@@ -131,4 +131,16 @@ table.freeboard_list_table td{
     color: #333;
     font-weight: bold;
     line-height: 26px;
+}
+
+.likeitBtn{
+	margin-bottom: 20px;
+	background-color: #fe0159;
+	color: #fff;
+}
+
+.dislikeitBtn{
+	margin-bottom: 20px;
+	background-color: #0080ff;
+	color: #fff;
 }

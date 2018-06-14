@@ -33,13 +33,15 @@ public interface BoardDAO {
 	
 	public ArrayList<BoardVO> searchBoardList(String search);
 	
-	/*reply*/
-	public ArrayList<BoardReplyVO> getReplyList(String no);
+	
+	
+	//reply
+	public ArrayList<BoardReplyVO> getReplyList(String no);  //댓글리스트
 	public int getReplyInsertResult(BoardReplyVO vo);
 	public int getReplyCount(String no);
 	public void replyLikeitUp(String bid, String rid);
 	public void replyDislikeitUp(String bid, String rid);
 	public BoardReplyVO getReplyLikeit(String bid, String rid);
-
+	 
 
 }

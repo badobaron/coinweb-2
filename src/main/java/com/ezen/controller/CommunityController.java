@@ -1,8 +1,11 @@
 package com.ezen.controller;
 
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -10,6 +13,7 @@ import net.sf.json.JSONObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import coinweb.dao.BoardDAO;
 import coinweb.vo.BoardReplyVO;
 import coinweb.vo.BoardVO;
+import coinweb.vo.MemberVO;
 
 
 @Controller
@@ -27,7 +32,6 @@ public class CommunityController {
 ServletContext context;		
 @Autowired
 SqlSessionTemplate sqlSession;
-
 
 	
 	@RequestMapping(value="/freeboard.do", method=RequestMethod.GET)
@@ -227,6 +231,8 @@ SqlSessionTemplate sqlSession;
 	
 	
 	
+	
+
 
 	//REPLY
 	@RequestMapping(value="/reply_write_check.do", method=RequestMethod.GET)
