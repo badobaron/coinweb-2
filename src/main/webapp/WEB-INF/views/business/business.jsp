@@ -326,8 +326,8 @@ function GetMyData(){
 		$.ajax({
 			url : 'http://localhost:8080/coinweb/wallet_result.do',
 			type :'GET',	
-			data : 'id='+sid+'&coin_name='+coin,
-			//dataType : json,
+			data : 'id='+sid+'&coin='+coin,
+			dataType : 'json',
 			success : function(data){
 					$("#avail_using_won").html(numberWithCommas(data.available-data.using)+"¿ø");
 					$("#avail_coin").html(Floor((data.coin_avail-data.coin_using),4)+coin);

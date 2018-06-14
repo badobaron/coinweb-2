@@ -3,7 +3,7 @@ package coinweb.vo;
 public class WalletVO {
 	int id, using_balance, tot_balance, available_balance; 
 	float coin_avail, coin_using, coin_tot;
-	String coin_name, state;
+	String coin, coin_name, state;
 	
 	public int getAvailable_balance() {
 		return available_balance;
@@ -46,6 +46,12 @@ public class WalletVO {
 	}
 	public void setUsing_balance(int using_balance) {
 		this.using_balance = using_balance;
+	}
+	public String getCoin() {
+		return coin;
+	}
+	public void setCoin(String coin) {
+		this.coin = coin;
 	}
 	public String getCoin_name() {
 		return coin_name;

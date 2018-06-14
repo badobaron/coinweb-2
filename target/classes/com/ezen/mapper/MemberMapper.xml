@@ -44,9 +44,9 @@
 	
 	
 	<select id="getRankingList" resultType="coinweb.vo.RankingVO">
-select rownum  rno, id, name, money,(sum(money1)/30000000*100) as money2  from (select distinct c.id, c.name, to_char(w.TOT_BALANCE,'L999,999,999') as money,w.TOT_BALANCE as money1 
+select rownum  rno, id, name, money,(sum(money1)/30000000*100-100) as money2  from (select distinct c.id, c.name, to_char(w.TOT_BALANCE,'L999,999,999') as money,w.TOT_BALANCE as money1 
 from coinweb_member c,wallet w 
-where c.id = w.id and coin_name='won' order by  money desc, id)where  rownum <![CDATA[<=]]> 20 group by rownum  , id, name, money order by money desc, id 
+where c.id = w.id and coin='KRW' order by  money desc, id)where  rownum <![CDATA[<=]]> 20 group by rownum  , id, name, money order by money desc, id 
 
 	</select>
 	

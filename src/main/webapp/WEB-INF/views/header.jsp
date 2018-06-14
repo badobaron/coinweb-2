@@ -622,7 +622,7 @@ jQuery(document).ready(function(){
 							class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace"
 							for="signup-password">Password</label> <input
 							class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border"
-							id="pass" name="pass" type="password" placeholder="비밀번호 10자 이상입력">
+							id="pass" name="pass" type="password" placeholder="비밀번호 8자 이상입력">
 						<span id="msg"></span>
 					</p>
 					<p class="cd-signin-modal__fieldset">
@@ -670,7 +670,7 @@ jQuery(document).ready(function(){
 
 			<p>
 			<h1 id="pc">&ensp;&ensp;&ensp;&ensp; 비밀번호 변경</h1>
-			<div class="container">
+			<div class="ps_container">
 
 
 				<input type="text" value="${email} " id="uid" disabled> 
