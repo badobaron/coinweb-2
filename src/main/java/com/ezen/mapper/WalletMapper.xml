@@ -26,7 +26,7 @@
 	</select>
 	
 	<select id="getWalletListResult" resultType="coinweb.vo.WalletVO">
-		select coin, coin_name, available_balance, using_balance, tot_balance, state from wallet where id=#{id}
+		select coin, coin_name, available_balance, using_balance, tot_balance, tot_balance as coin_tot, state from wallet where id=#{id}
 	</select>
 	
 	<update id="getWalletUpdate">
@@ -75,5 +75,9 @@
 		 	available_balance=available_balance+#{param3} where id=#{param1} and coin='KRW'
 		 </when>
 		</choose>
+	</update>
+	
+	<update id="getWalletTotalUpdate">
+		update wallet set tot_balance = #{param2} where id=#{param1} and coin='KRW'
 	</update>
 </mapper>    

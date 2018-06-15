@@ -876,7 +876,6 @@ table.coinWallet td{
 .sell_price_label {
 	top: 10px;
     padding: 0;
-	margin-left:2px;
     font-size: 12px;
     font-weight: 600;
     color: #333;
@@ -996,7 +995,7 @@ table.coinWallet td{
 
 
 #trade_section_4 .container {
-	margin-top:20px;
+	margin-top:-10px;
  	width:100%;
 	background-color:white;
 	padding: 20px 20px 20px 20px;

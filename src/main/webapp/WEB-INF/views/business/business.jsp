@@ -575,8 +575,8 @@ $(function(){
                                             <p class="total_cahs_price" id="avail_using_won" onChange="fCalcData()">0원</p>
                                         </div>
                                         <div class="form-group form_sell_price">
-                                            <label class="col-sm-2 col-xs-12 control-label sell_price_label">주문가격</label>
-                                            <div class="col-sm-7 col-xs-12">
+                                            <label class="col-sm-2 col-xs-10 control-label sell_price_label">주문가격</label>
+                                            <div class="col-sm-7 col-xs-10">
                                                 <input type="number" class="form-control order_price" id="buy_price" value="0" onkeyup="fCalcData()" onblur="fCalcData()" onChange="fCalcData()">
                                             </div>
                                             <div class="col-sm-3 col-xs-12 sell_price_text">
@@ -942,7 +942,7 @@ $(function(){
 	 			</div>
 	 		</div>
 	 		<c:if test="${empty sid}">
-	 		<div style="width: 100%; height:122px; margin-top:-142px; margin-bottom:30px; position: relative; text-align: center;  
+	 		<div style="width: 100%; height:122px; margin-top:-122px; margin-bottom:30px; position: relative; text-align: center;  
 	 			background-color: rgba(77, 77, 77, 0.8); color: white; padding-top: 40px;"> 
 	 			<span style=" padding: 20px; position: relative; margin-top:150px; font-size: 30px;" >로그인이 필요합니다.</span></div>
 	 		</c:if>
