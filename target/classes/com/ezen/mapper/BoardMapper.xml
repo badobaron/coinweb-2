@@ -121,6 +121,7 @@
  	
  	<select id="getReplyList" resultType="coinweb.vo.BoardReplyVO">
 		SELECT RID
+			 , RNAME
 			 , CONTENT
 			 , RDATE
 			 , BID 
@@ -136,10 +137,10 @@
 	
 	<insert id="getReplyInsertResult">
 		INSERT INTO COINWEB_BOARD_REPLY VALUES(sequ_coinweb_board_reply_RID.NEXTVAL
-											 , #{rname}
-			 							     , #{content}
+											 ,#{param1} 
+			 							     , #{param2}
 			 								 , SYSDATE
-			 								 , #{bid}
+			 								 , #{param3}
 			 								 , 0
 			 								 , 0)			 					
 	</insert>

@@ -144,3 +144,72 @@ table.freeboard_list_table td{
 	background-color: #0080ff;
 	color: #fff;
 }
+
+
+
+
+
+
+/*´ñ±Û°Ô½ÃÆÇ*/
+.reply-write{
+border: 1px solid rgb(216, 216, 216); 
+padding: 5px;
+margin-top: 5px;
+}
+
+
+.reply-write-title{
+position: absolute;
+z-index: -10;
+color: #9494b8;
+}
+
+
+.reply-write-content{
+height: 100px;
+z-index: 0;
+}
+
+
+.view1{
+	color:red;
+}
+
+
+.replyDiv{
+border-top: 1px solid rgb(216, 216, 216);
+margin-top: 20px;
+padding-top: 20px;
+}
+
+.replyTool{
+position: relative;
+float:right;
+display: inline; 
+margin-top: -35px; 
+}
+
+.replyBtn{
+background: none;
+border: 1px solid rgb(216, 216, 216);  
+width: 60px;
+height: 25px;
+}
+.replyRdate{
+color: gray; 
+font-size: 13px; 
+}
+.fa-thumbs-o-up{
+position: absolute;
+right: 100px;
+bottom: 5px;
+}
+.fa-thumbs-o-down{
+position: absolute;
+right: 40px;
+bottom: 5px;
+}
+
+.communitySearchBtn{
+	margin-top: 5px;
+}

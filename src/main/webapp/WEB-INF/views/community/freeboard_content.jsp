@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR" import="coinweb.vo.BoardVO, coinweb.dao.BoardDAO, java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8" import="coinweb.vo.BoardVO, coinweb.dao.BoardDAO, java.util.ArrayList"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
 <!DOCTYPE html>
@@ -14,105 +14,100 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/freeboard.css">
-<!-- ¸®ÇÃ -->
+<!-- ë¦¬í”Œ -->
 <script src="http://localhost:8080/coinweb/js/MyAjax.js"></script>
 
 <script>
 
+
+
+
+(function($){
+	
+	$.fn.indexSearch = function(data){	
+		return $(this).attr("id").slice($(this).attr("class").length);
+	};	
+})(jQuery);
+
 	$(function(){
 		
-		//Åä±Û±â´É
-		var check_value = $("#reply-content-check").val(); 
 		
-		if(check_value == "hide"){				
-			$(".reply-content").css("display","inline-block");			
-			$("#reply-content-check").val("show");
-		}else{
-			$(".reply-content").css("display","none");
-			$("#reply-content-check").val("hide");
-		}			
+		//ëŒ“ê¸€ì“°ê¸° ì•ˆë‚´ ì‚¬ë¼ì§€ê²Œ í•˜ê¸°
+		$(".reply-write-content").keyup(function(){
+			var index =$(this).indexSearch();
+		    
+			if($(".reply-write-content"+index).text().length>0){
+				$(".reply-write-title"+index).fadeOut(100);
+				
+			}if($(".reply-write-content"+index).text().length==0){
+				$(".reply-write-title"+index).fadeIn(100);
+				
+			}				
+		});
 		
-		var no = "${vo.no}";
 		
-		$.ajax({
-			url : 'http://localhost:8080/coinweb/reply_list.do',
-			method :'GET',	
-			data : 'no='+no,
-			dataType : 'json',
-			success : function(data){
-				$(".view1, .view2, .view3").remove();				
-				for(i=0;i<data.length;i++){
-					code = 	"<span class='view1'>"+data[i].rid+"</span>"
-							+ "<span class='view2'>"+data[i].rdate+"</span>"
-							+ "<div class='view3'>"+data[i].content+"</div>";					
-					
-					$(".reply-content").append(code);
+		//ëŒ“ê¸€ìˆ«ì ì²´í¬
+		$(".reply-write-content").keyup(function(){	
+			var index =$(this).indexSearch();
+	
+			$("#sizeLimit"+index).text($(".reply-write-content"+index).text().length);
+						
+				if($(".reply-write-content"+index).text().length>300){
+					alert("ê¸€ììˆ˜ 300ìê¹Œì§€\nì…ë ¥í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
+					var data =$(".reply-write-content"+index).text().substring(0,300);
+					$(".reply-write-content"+index).text(data);
+					$("#sizeLimit"+index).text($(".reply-write-content"+index).text().length);
 				}
-			}
 		});
-	});
 
-	$(document).ready(function(){			
+
 		
-		//´ñ±ÛÀÛ¼º ¹öÆ°
-		$("#btnReWrite").click(function(){
-			var check_value = $("#reply-write-check").val();
-			
-			if(check_value == "hide"){
-				$(".reply-write").css("display","block");
-				$("#reply-write-check").val("show");
-			}else{
-				$(".reply-write").css("display","none");
-				$("#reply-write-check").val("hide");
-				$(".reply-write-content").text("");
-			}			
-		});
+
+	});
+	
+
+
+$(document).ready(function(){			
+	
 		
 		
-		//´ñ±Û µî·Ï¹öÆ°
+		//ëŒ“ê¸€ ë“±ë¡ë²„íŠ¼
 		$(".reply-write-button").click(function(){
 			
-			/* ´ñ±Û µî·Ï ½ÃÀÛ */
+			/* ëŒ“ê¸€ ë“±ë¡ ì‹œì‘ */
 			var content = $(".reply-write-content").text();
+			var rname = "${name}";
 			var no = "${vo.no}";
-			//alert(no);
-			//alert(content);
+	
+			
+			var content = $(".reply-write-content").text();
+			if(content == ""){
+				alert("ë§ê¸€ ë‚´ìš©ì„\nì…ë ¥í•´ì£¼ì„¸ìš”.");
+			}else{
+			
 
 			$.ajax({
 				url : 'http://localhost:8080/coinweb/reply_write_check.do',
 				type :'GET',
-				data : 'content='+content+'&no='+no,
+				data : 'rname='+rname+'&content='+content+'&no='+no,
 				dataType : 'json',
 				contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 				success : function(data){				
 		
 					if(data.length != 0){	
-							
-						$(".reply-write").css("display","none");
-						$("#reply-write-check").val("hide");
-						$(".reply-write-content").text("");
-						
-						reply_view_load();
+									
+						 location.reload();
 					}						
 				}
-			});	//end of ajax			
+			});	
+			}
 		});	
 
 		
-		//´ñ±Ûº¸±â			
-		$(".reply-view").click(function(){	
+//ëŒ“ê¸€ë³´ê¸°			
+$(function(){	
 			
-			//Åä±Û±â´É
-			var check_value = $("#reply-content-check").val(); 
 			
-			if(check_value == "hide"){				
-				$(".reply-content").css("display","inline-block");			
-				$("#reply-content-check").val("show");
-			}else{
-				$(".reply-content").css("display","none");
-				$("#reply-content-check").val("hide");
-			}				
-						
 			var no = "${vo.no}";
 			
 			$.ajax({
@@ -123,97 +118,66 @@
 				success : function(data){
 					$(".view1, .view2, .view3").remove();				
 					for(i=0;i<data.length;i++){
-						code = 	"<span class='view1'>"+data[i].rid+"</span>"
-								+ "<span class='view2'>"+data[i].rdate+"</span>"
-								+ "<div class='view3'>"+data[i].content+"</div>";					
+						code = 	"<div class='replyDiv'>"+
+					      "<input id='rid"+i+"' value='"+data[i].rid+"' name='rid' type='hidden'>"+
+					      "<span class='view1'>"+data[i].rname +"</span>&nbsp;&nbsp;&nbsp;"+
+					      "<span class='view3 replyRdate'>"+data[i].rdate +"</span>"+
+					      "<div class='view2'>"+data[i].content+"</div>"+
+					      
+					      "<div class='replyTool'>"+
+
+						  "<i class='fa fa-thumbs-o-up'></i><button id='replyBtnLikeit"+i+"' data-id='"+i+"' type='button' class='replyBtnLikeit replyBtn'>"+data[i].likeit+"</button>"+	
+						  "<i class='fa fa-thumbs-o-down'></i><button id='replyBtnLikeit"+i+"' data-id='"+i+"' type='button' class='replyBtnDislikeit replyBtn'>"+data[i].dislikeit+"</button>"+							
+					    
+						  "</div>"+
+						  "</div>";				
 						
 						$(".reply-content").append(code);
 					}
+						
+					reply_likeit();
+					reply_dislikeit();
 				}
 			});
-		});			
+		});	
+
 	});
 	
 	
-	//»ç¿ëÀÚ Á¤ÀÇ ÇÔ¼ö
-	reply_view_load = function(){
+	
+	
+reply_likeit = function(){
+		$(".replyBtnlikeit").click(function(){	
 			
-			$(".reply-content").css("display","inline-block");			
-			//$("#reply-content-check").val("show");
+		var index = $(this).data("id");
+		var rid = $("#rid"+index).val();
+		alert("${vo.name}ë‹˜ì„ ì¶”ì²œí•©ë‹ˆë‹¤");
+		var param ={'bid' : '${no}' , 'rid' :rid };
+		MyAjax.excute('/coinweb/freeboardreply_likeit.json', param, 'POST').done(function(response){
+			$("#replyBtnLikeit"+index).text(response.likeit);
 			
-			var no = "${vo.no}";
-			
-			$.ajax({
-				url : 'http://localhost:8080/coinweb/reply_list.do',
-				method :'GET',	
-				data : 'no='+no,
-				dataType : 'json',
-				success : function(data){
-					$(".view1, .view2, .view3").remove();				
-					for(i=0;i<data.length;i++){
-						code = 	"<span class='view1'>"+data[i].rid+"</span>"
-								+ "<span class='view2'>"+data[i].rdate+"</span>"
-								+ "<div class='view3'>"+data[i].content+"</div>";					
-						
-						$(".reply-content").append(code);
-					}
-				}
-			});
-		};
+		});	
+	});
+};
+	
+reply_dislikeit = function(){
+	$(".replyBtnDislikeit").click(function(){
+		var index = $(this).data("id");
+		var rid = $("#rid"+index).val();
+		alert("${vo.name}ë‹˜ì„ ë°˜ëŒ€í•©ë‹ˆë‹¤");
+		var param ={'bid' : '${no}' , 'rid' :rid };
+		MyAjax.excute('/coinweb/freeboardreply_dislikeit.json', param, 'POST').done(function(response){
+			  $("#replyBtnDislikeit"+index).text(response.dislikeit);
+		});
+	});
+};
+
+
+		
+		
 	
 </script>
-<style>
-	.reply-header { text-align:right;}
-	.reply-title, .reply-view{ 			
-		cursor:pointer;		
-	}
 
-	.reply-write { display:none;}
-	.reply-write-title{
-		text-align:left;
-		padding:0px 0px 10px 10px;		
-	}
-	.reply-write-content{
-		dispaly:inline-block;
-		width:83%;
-		height:100px;		
-		float:left;	
-		margin-left:10px;
-		border:1px solid gray;	
-		text-align:left;
-		padding:3px;
-	}
-	.reply-write-button{
-		dispaly:inline-block;
-		width:14%;
-		height:100px;
-		line-height:100px;		
-		float:right;
-		background-color:lightGray;
-		border:1px solid gray;	
-		padding:3px 0px 3px 0px;
-		margin-right:1.3px;
-	}
-	.reply-content{
-		/*dispaly:none;*/
-		width:100%;
-		/*border:2px solid red;*/
-		clear:right;
-		margin-top:10px;
-	}
-	.view1, .view2, .view3 {border:1px solid gray; }
-	.view1, .view2 {
-		display:inline-block;
-		width:45%;
-		height:25px;
-		text-align:left;
-		background-color:#d9d9d9;
-	}
-	.view3 { 
-		width:90%; height:40px; margin:auto;
-		text-align:left;
-	}
-</style>
 
 </head>
 
@@ -226,7 +190,7 @@
 	
 			<div class="freeboard_header">
 			<h1 class="freeboard_header_h1">
-			ÀÚÀ¯°Ô½ÃÆÇ</h1></div>
+			ììœ ê²Œì‹œíŒ</h1></div>
 		
 		
 		<div class="container">	 
@@ -238,9 +202,9 @@
 		 <div class="freeboard_content_author">
                         <p class="freeboard_content_author_name">${vo.name}</p>
                         <div class="freeboard_content_author_info">
-                            <p>Á¶È¸¼ö <span class="author_info">${vo.hits}</span></p>
-                            <p>ÁÁ¾Æ¿ä <span class="author_info like_count">${vo.likeit}</span></p>
-                            <p>´ñ±Û <span class="author_info">0</span></p>
+                            <p>ì¡°íšŒìˆ˜ <span class="author_info">${vo.hits}</span></p>
+                            <p>ì¢‹ì•„ìš” <span class="author_info like_count">${vo.likeit}</span></p>
+                            <p>ëŒ“ê¸€ <span class="author_info">0</span></p>
                         </div>
          </div>	
 				
@@ -254,47 +218,54 @@
 				
 					
 					<div style="text-align: center;">
-						<button class="likeitBtn btn-like btn" type="button" onclick="likeitBtnMain()">ÁÁ¾Æ¿ä <i class="fa fa-thumbs-up fa-lg"></i></button>
-						<button class="dislikeitBtn btn-dislike btn" type="button" onclick="dislikeitBtnMain()">½È¾î¿ä <i class="fa fa-thumbs-down fa-lg"></i></button>
+						<button class="likeitBtn btn-like btn" type="button" onclick="likeitBtnMain()">ì¢‹ì•„ìš” <i class="fa fa-thumbs-up fa-lg"></i></button>
+						<button class="dislikeitBtn btn-dislike btn" type="button" onclick="dislikeitBtnMain()">ì‹«ì–´ìš” <i class="fa fa-thumbs-down fa-lg"></i></button>
 					</div>
 					<div style="text-align: center;">
-							<a href="/coinweb/freeboard.do?"><button type="button" class="btn btn-comm-con">ÀÌÀü ÆäÀÌÁö</button></a>
-							<a href="/coinweb/freeboard_update.do?no=${no}&rno=${rno}"><button type="button" class="btn btn-comm-con">¼öÁ¤ÇÏ±â</button></a>
-							<a href="/coinweb/freeboard_delete.do?no=${no}&rno=${rno}"><button type="button" class="btn btn-comm-con">¹Ù·Î»èÁ¦</button></a>					
-							<a href="/coinweb/index.do"><button type="button" class="btn btn-comm-con">È¨À¸·Î</button></a>									
+							<a href="/coinweb/freeboard.do?"><button type="button" class="btn btn-comm-con">ì´ì „ í˜ì´ì§€</button></a>
+							<a href="/coinweb/freeboard_update.do?no=${no}&rno=${rno}"><button type="button" class="btn btn-comm-con">ìˆ˜ì •í•˜ê¸°</button></a>
+							<a href="/coinweb/freeboard_delete.do?no=${no}&rno=${rno}"><button type="button" class="btn btn-comm-con">ë°”ë¡œì‚­ì œ</button></a>					
+							<a href="/coinweb/index.do"><button type="button" class="btn btn-comm-con">í™ˆìœ¼ë¡œ</button></a>									
 					</div>
 					
 			<!-- start of reply -->
-			<table>
+			<div class="container">
 			
-				<tr>
-					<td colspan="8">
-				
-						<br><div class="reply-header">
-						<span class="reply-title" id="btnReWrite">´ñ±ÛÀÛ¼º</span>			
-						|| <span class="reply-view">´ñ±Ûº¸±â</span>
-						</div>			
-						<div class="reply-write">
+							
+						<br>
+						<div>
+						<span class="reply-title" id="btnReWrite"><strong>Comments</strong></span>		
 						
-							<div class="reply-write-title">
-							<input type="hidden" name="rname" id="rname" value="${rname }">		
-							</div>
-							<div contenteditable="true" class="reply-write-content" id="content"  name="content">
-							</div>						
-							<div class="reply-write-button">µî·Ï</div>
-							<input type="hidden" id="reply-write-check" value="hide">
-							<input type="hidden" name="no" value="${vo.no }">
-						</div>												
-					</td>
-				</tr>
-				<tr>
-					<td colspan="8">						
+						 </div>
+							
+							
+							<div class="reply-write">
+								<label id="reply-write-title" class="reply-write-title">
+											ëŒ“ê¸€ì„ ë‚¨ê²¨ì£¼ì„¸ìš”.
+									</label>
+								<div style="width: 100%; "  contenteditable="true" class="reply-write-content" id="content"  
+								name="content" ></div>
+							</div>	
+								<div style="text-align: right; margin-top: 10px;">
+								
+									<span id="sizeLimit">0</span> /300 
+									<button class="reply-write-button btn">ë“±ë¡</button>
+								
+								</div>
+								
+								<input type="hidden" id="reply-write-check" value="hide">
+								<input type="hidden" name="no" value="${vo.no }">
+							
+			
+																			
+				
+						<!-- ë¦¬í”Œ ë¦¬ìŠ¤íŠ¸ -->				
 						<div class="reply-content">	
 						<input type="hidden" id="reply-content-check" value="hide">										
 						</div>							
-					</td>
-				</tr>
-				</table>
+				
+				
+				</div>
 				<!-- end of reply -->	
 					
 						
@@ -310,188 +281,12 @@
 <script>
 
 
-
-
-$(function(){
-	
-
- 	//reply 
-	/*µ¡±Û Ã³À½ºÎÅÍ º¸ÀÌ°Ô ÇÏ±â*/
-	reply_total_size();
-	reply_view_load();
-	
-	/*reply-re±îÁö ¼³Á¤*/
-	/*µ¡±Û¾µ¶§ ¾Æ·¡ label »ç¶óÁ³´Ù º¸¿©Áö´Â °¨¼º*/	
-	$(".reply-write-content").keyup(function(){
-			var index =$(this).indexSearch();
-		    
-			if($("#reply-write-content"+index).text().length>0){
-				$("#reply-write-title"+index).fadeOut(50);
-				
-			}if($("#reply-write-content"+index).text().length==0){
-				$("#reply-write-title"+index).fadeIn(50);
-				
-			}				
-		});
-	/*reply-re±îÁö ¼³Á¤*/
-	/*µ¡±Û 300ÀÚ Á¦ÇÑ*/		
-	$(".reply-write-content").keyup(function(){	
-		var index =$(this).indexSearch();
-
-		$("#sizeLimit"+index).text($("#reply-write-content"+index).text().length);
-					
-			if($("#reply-write-content"+index).text().length>300){
-				alert("±ÛÀÚ¼ö 300ÀÚ±îÁö\nÀÔ·ÂÇÒ ¼ö ÀÖ½À´Ï´Ù.");
-				var data =$("#reply-write-content"+index).text().substring(0,300);
-				$("#reply-write-content"+index).text(data);
-				$("#sizeLimit"+index).text($("#reply-write-content"+index).text().length);
-			}
-	});
-	
-	/*´ñ±Û µî·Ï¹öÆ°*/
-	$(".reply-write-buttonMain").click(function(){
-		alert($(this).attr("id"));
-		var index =$(this).indexSearch();
-		alert(index);
-		
-		var content = $("#reply-write-content"+index).text();
-		if(content == ""){
-			alert("µ¡±Û ³»¿ëÀ»\nÀÔ·ÂÇØÁÖ¼¼¿ä.");
-			$("#reply-write-content"+index).focus();
-		}else{
-		$.ajax({
-			url : '/coinweb/reply_write_check.do',
-			type :'GET',
-			data : {
-				'content':content,'no':'${no}'	
-				},
-			dataType : 'json',
-			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-			success : function(data){
-					reply_total_size();
-					reply_view_load();
-						//µî·Ï ½Ã µ¡±Û ¾Æ·¡ ±Û¾¾ ´Ù½Ã ¶ç¿ì±â
-						$("#reply-write-content"+index).text("");
-						$("#reply-write-title"+index).fadeIn(100);
-					}
-			});	
-		}
-		
-	});	
-		
-	
-	
-});//end of ready fn
-
-
-/* index»Ì±â 
- * 
- * id¸¦ class+index·Î ¸¸µç µÚ index »ÌÀ» ¶§ »ç¿ë  
- * <div class="div" id="div3">
- * index = 3;
- */
-
- 
-(function($){
-	$.fn.indexSearch = function(data){	
-		return $(this).attr("id").slice($(this).attr("class").length);
-	};	
-})(jQuery);			
-
-reply_view_load = function(){				
-		$.ajax({
-			url : '/coinweb/reply_list.do',
-			method :'GET',	
-			data : 'no=${no}',
-			dataType : 'json',
-			success : function(data){
-				$(".replyDiv").remove();
-
-				for(var i=0;i<data.length;i++){
-				var code= "<div class='replyDiv'>"+
-					      "<input id='rid"+i+"' value='"+data[i].rid+"' name='rid' type='hidden'>"+
-					      "<span class='replyId'>id³ª¿Ã °÷</span>"+
-					      "<div class='replyContent'>"+data[i].content+"</div>"+
-					      "<span class='replyRdate'>"+data[i].rdate+"</span>"+
-					      "<div class='replyTool'>"+
-					      "<button id='replyBtnSub"+i+"' type='button' class='replyBtnSub replyBtn'>´ä±Û</button>"+
-						  "<div class='replyBtnDiv'>"+
-						  "<i class='fa fa-thumbs-o-up'></i><button id='replyBtnLikeit"+i+"' data-id='"+i+"' type='button' class='replyBtnLikeit replyBtn'>"+data[i].likeit+"</button>"+	
-						  "<i class='fa fa-thumbs-o-down'></i><button id='replyBtnDislikeit"+i+"' data-id='"+i+"' type='button' class='replyBtnDislikeit replyBtn'>"+data[i].dislikeit+"</button>"+							
-					      "</div>"+
-						  "</div>"+
-						  "</div>";
-				   	
-			
-				$(".reply-content").append(code);
-				}
-				/*¿©±â´Ù ³Ö±â*/
-					reply_likeit();
-					reply_dislikeit();
-					
-					$(".replyBtnSub").click(function(){
-						var index =$(this).attr("id").slice(11);
-						alert(index);
-						$("#replyDivSub"+index).toggle(100);
-					});
-												
-			}
-		});
-	};
-	
-reply_total_size = function(){
-	$.ajax({
-		url : '/coinweb/reply_count.do',
-		method :'GET',	
-		data : 'no=${no}',
-		dataType :'json',
-		success : function(data){
-			$("#replyNum").text(data.count);				
-			}
-		});	
-	};
-	
-
-	// function likeitBtnMain(){
-//	 	var param ={'no' : '${no}'};
-//	 	MyAjax.excute('/coinweb/freeboard_likeit.json', param, 'POST').done(function(response){
-//	 			alert("´©±¸¿¡°Ô\nÁÁ¾Æ¿ä¸¦ ´­·¶½À´Ï´Ù.");
-//	 			$(".likeittd").text(response.likeit);		
-//	 	});
-	// } //btn
-
-	
-reply_likeit = function(){
-		$(".replyBtnlikeit").click(function(){	
-		var index = $(this).data("id");
-		var rid = $("#rid"+index).val();
-		alert("´©±¸´©±¸¿¡°Ô\nÃßÃµÇÕ´Ï´Ù");
-		var param ={'bid' : '${no}' , 'rid' :rid };
-		MyAjax.excute('/coinweb/freeboardreply_likeit.json', param, 'POST').done(function(response){
-			$("#replyBtnLikeit"+index).text(response.likeit);
-		});	
-	});
-};
-	
-reply_dislikeit = function(){
-	$(".replyBtnDislikeit").click(function(){
-		var index = $(this).data("id");
-		var rid = $("#rid"+index).val();
-		alert("´©±¸´©±¸¿¡°Ô\n¹İ´ëÇÕ´Ï´Ù");
-		var param ={'bid' : '${no}' , 'rid' :rid };
-		MyAjax.excute('/coinweb/freeboardreply_dislikeit.json', param, 'POST').done(function(response){
-			  $("#replyBtnDislikeit"+index).text(response.dislikeit);
-		});
-	});
-};
-
-
-/*ÁÁ¾Æ¿ä ¹öÆ° 
- * ·Î±×ÀÎ ÈÄ È½¼ö Á¦ÇÑ °É¾î¾ßÇÑ´Ù.*/
+/*ì¢‹ì•„ìš” ë²„íŠ¼ 
+ * ë¡œê·¸ì¸ í›„ íšŸìˆ˜ ì œí•œ ê±¸ì–´ì•¼í•œë‹¤.*/
 function likeitBtnMain(){
 	var param ={'no' : '${no}'};
 	MyAjax.excute('/coinweb/freeboard_likeit.json', param, 'POST').done(function(response){
-			alert("´©±¸¿¡°Ô\nÁÁ¾Æ¿ä¸¦ ´­·¶½À´Ï´Ù.");
+			alert("${vo.name}ë‹˜ì—ê²Œ ì¢‹ì•„ìš”ë¥¼ ëˆŒë €ìŠµë‹ˆë‹¤.");
 			$(".likeittd").text(response.likeit);		
 	});
 } //btn
@@ -499,7 +294,7 @@ function likeitBtnMain(){
 function dislikeitBtnMain(){
 	var param ={'no' : '${no}'};
 	MyAjax.excute('/coinweb/freeboard_dislikeit.json', param, 'POST').done(function(response){
-			alert("´©±¸¿¡°Ô\n½È¾î¿ä¸¦ ´­·¶½À´Ï´Ù.");
+			alert("${vo.name}ë‹˜ì—ê²Œ ì‹«ì–´ìš”ë¥¼ ëˆŒë €ìŠµë‹ˆë‹¤.");
 			$(".likeittd").text(response.likeit);		
 	});			
 }
