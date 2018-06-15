@@ -18,8 +18,15 @@
 	</delete>
 	
 	<select id="getOrderListResult" resultType="coinweb.vo.OrderVO">
-		select idx,coin,id,price,price_completed,amount,amount_completed,odate,type
-					from coin_order where id=#{param1} and coin=#{param2} order by idx desc
+		select idx,coin,id,price,price_completed,amount,amount_completed,odate,type	from coin_order 
+		<choose>
+		 <when test="param2 != null and (param2 eq 'ALL'.toString())">
+		 	where id=#{param1} order by idx desc
+		 </when>
+		 <otherwise>
+		 	where id=#{param1} and coin=#{param2} order by idx desc
+		 </otherwise>
+		</choose>
 	</select>
 	
 	<select id="getOrderAllListResult" resultType="coinweb.vo.OrderVO">
@@ -36,7 +43,15 @@
 	</insert>
 	
 	<select id="getHistoryListResult" resultType="coinweb.vo.HistoryVO">
-		select id,coin,type,price,price_completed,amount,hdate from coin_history where id=#{param1} and coin=#{param2} order by hdate desc
+		select id,coin,type,price,price_completed,amount,hdate from coin_history 
+		<choose>
+		 <when test="param2 != null and (param2 eq 'ALL'.toString())">
+		 	where id=#{param1} order by hdate desc
+		 </when>
+		 <otherwise>
+		 	where id=#{param1} and coin=#{param2} order by hdate desc
+		 </otherwise>
+		</choose>
 	</select>
 	
 </mapper>

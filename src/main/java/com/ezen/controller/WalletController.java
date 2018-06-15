@@ -40,13 +40,14 @@ public class WalletController {
 	
 	@RequestMapping(value="wallet_result.do", method=RequestMethod.GET)
 	@ResponseBody
-	public JSONObject wallet_result(int id, String coin_name){
+	public JSONObject wallet_result(int id, String coin){
 		
 		WalletDAO dao = sqlSession.getMapper(WalletDAO.class);
-		WalletVO vo = dao.getWalletResult(id, coin_name);
+		WalletVO vo = dao.getWalletResult(id, coin);
 				
 		JSONObject obj = new JSONObject();
-		obj.put("coin", vo.getCoin_name());
+		obj.put("coin", vo.getCoin());
+		obj.put("coin_name", vo.getCoin_name());
 		obj.put("available", vo.getAvailable_balance());
 		obj.put("using", vo.getUsing_balance());
 		obj.put("tot", vo.getTot_balance());
@@ -56,6 +57,36 @@ public class WalletController {
 		obj.put("state", vo.getState());		
 		return obj;
 	}
+	
+	@RequestMapping(value="wallet_list.do", method=RequestMethod.GET)
+	@ResponseBody
+	public JSONArray wallet_list(String id){
+		JSONArray jarray = new JSONArray();
+		WalletDAO dao = sqlSession.getMapper(WalletDAO.class);
+		ArrayList<WalletVO> list = dao.getWalletListResult(id);
+		
+		for(WalletVO vo: list){
+			JSONObject obj = new JSONObject();
+			obj.put("coin", vo.getCoin());
+			obj.put("coin_name", vo.getCoin_name());
+			obj.put("available", vo.getAvailable_balance());
+			obj.put("using", vo.getUsing_balance());
+			obj.put("tot", vo.getTot_balance());
+			obj.put("coin_tot", vo.getCoin_tot());
+			obj.put("state", vo.getState());
+			jarray.add(obj);
+		}
+		return jarray;
+	}
+	
+	@RequestMapping(value="thread2.do", method=RequestMethod.GET)
+	public String thread(){
+		WalletUpdate trd = new WalletUpdate(sqlSession);
+		trd.run();
+		
+		return "index";
+	}
+
 	
 /*	@RequestMapping(value="wallet_update.do", method=RequestMethod.GET)
 	public String wallet_update(int id, String coin){

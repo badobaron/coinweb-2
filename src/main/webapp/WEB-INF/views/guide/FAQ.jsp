@@ -14,7 +14,7 @@
     padding: 60px 0px 60px 0px;}
     .usermanual_text{color: white;}
 </style>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 </head>
 <body>
 <jsp:include page="../header.jsp" />

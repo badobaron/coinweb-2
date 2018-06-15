@@ -6,33 +6,37 @@
 <mapper namespace="coinweb.dao.WalletDAO">
 
 	<insert id="getInsertResult">
-		insert all into wallet values(#{param1},'won',30000000,0,30000000,'on')
-					into wallet values(#{param1},'BTC',0,0,0,'on')
-					into wallet values(#{param1},'BCH',0,0,0,'on')
-					into wallet values(#{param1},'ETH',0,0,0,'on')
-					into wallet values(#{param1},'ETC',0,0,0,'on')
-					into wallet values(#{param1},'XRP',0,0,0,'on')
-					into wallet values(#{param1},'DASH',0,0,0,'on')
-					into wallet values(#{param1},'LTC',0,0,0,'on')
-					into wallet values(#{param1},'XMR',0,0,0,'on')
-					into wallet values(#{param1},'ZEC',0,0,0,'on')
-					into wallet values(#{param1},'QTUM',0,0,0,'on') SELECT * FROM DUAL
+		insert all into wallet values(#{param1},'KRW','Won',30000000,0,30000000,'on')
+					into wallet values(#{param1},'BTC','Bitcoin',0,0,0,'on')
+					into wallet values(#{param1},'BCH','Bitcoin Cash',0,0,0,'on')
+					into wallet values(#{param1},'ETH','Ethereum',0,0,0,'on')
+					into wallet values(#{param1},'ETC','Ethereum Classic',0,0,0,'on')
+					into wallet values(#{param1},'XRP','Ripple',0,0,0,'on')
+					into wallet values(#{param1},'DASH','Dash',0,0,0,'on')
+					into wallet values(#{param1},'LTC','Litecoin',0,0,0,'on')
+					into wallet values(#{param1},'XMR','Monero',0,0,0,'on')
+					into wallet values(#{param1},'ZEC','Zcash',0,0,0,'on')
+					into wallet values(#{param1},'QTUM','Qtum',0,0,0,'on') SELECT * FROM DUAL
 	</insert>
 
 	<select id="getWalletResult" resultType="coinweb.vo.WalletVO">
-		select won.available_balance, won.using_balance, won.tot_balance,
-				coin.coin_name, coin.available_balance as coin_avail, coin.using_balance as coin_using, coin.tot_balance as coin_tot, coin.state
-				from wallet won, wallet coin where won.id=#{param1} and won.id=coin.id and won.coin_name='won' and coin.coin_name=#{param2}	
+		select KRW.available_balance, KRW.using_balance, KRW.tot_balance,
+				coin.coin, coin.available_balance as coin_avail, coin.using_balance as coin_using, coin.tot_balance as coin_tot, coin.state
+				from wallet KRW, wallet coin where KRW.id=#{param1} and KRW.id=coin.id and KRW.coin='KRW' and coin.coin=#{param2}	
+	</select>
+	
+	<select id="getWalletListResult" resultType="coinweb.vo.WalletVO">
+		select coin, coin_name, available_balance, using_balance, tot_balance, tot_balance as coin_tot, state from wallet where id=#{id}
 	</select>
 	
 	<update id="getWalletUpdate">
 		update wallet set
 		<choose>
 		 <when test="param5 != null and (param5 eq 'B'.toString())">
-		 	using_balance=using_balance+(#{param3}*#{param4}) where id=#{param1} and coin_name='won'
+		 	using_balance=using_balance+(#{param3}*#{param4}) where id=#{param1} and coin='KRW'
 		 </when>
 		 <when test="param5 != null and (param5 eq 'S'.toString())">
-		 	using_balance=using_balance+#{param4} where id=#{param1} and coin_name=#{param2}
+		 	using_balance=using_balance+#{param4} where id=#{param1} and coin=#{param2}
 		 </when>
 		</choose>
 	</update>
@@ -41,10 +45,10 @@
 		update wallet set 
 		<choose>
 		 <when test="type != null and (type eq 'B'.toString())">
-		 	using_balance=using_balance-((#{price}*#{amount})-#{price_completed}) where id=#{id} and coin_name='won'
+		 	using_balance=using_balance-((#{price}*#{amount})-#{price_completed}) where id=#{id} and coin='KRW'
 		 </when>
 		 <when test="type != null and (type eq 'S'.toString())">
-		 	using_balance=using_balance-(#{amount}-#{amount_completed}) where id=#{id} and coin_name=#{coin}
+		 	using_balance=using_balance-(#{amount}-#{amount_completed}) where id=#{id} and coin=#{coin}
 		 </when>
 		</choose>
 	</update>
@@ -53,10 +57,10 @@
 		update wallet set 
 		<choose>
 		 <when test="param5 != null and (param5 eq 'B'.toString())">
-		 	available_balance=available_balance-#{param3}, using_balance=using_balance-#{param3} where id=#{param1} and coin_name='won'
+		 	available_balance=available_balance-#{param3}, using_balance=using_balance-#{param3} where id=#{param1} and coin='KRW'
 		 </when>
 		 <when test="param5 != null and (param5 eq 'S'.toString())">
-		 	available_balance=available_balance-#{param4}, using_balance=using_balance-#{param4}, tot_balance=tot_balance-#{param4} where id=#{param1} and coin_name=#{param2}
+		 	available_balance=available_balance-#{param4}, using_balance=using_balance-#{param4}, tot_balance=tot_balance-#{param4} where id=#{param1} and coin=#{param2}
 		 </when>
 		</choose>
 	</update>
@@ -65,11 +69,15 @@
 		update wallet set 
 		<choose>
 		 <when test="param5 != null and (param5 eq 'B'.toString())">
-		 	available_balance=available_balance+#{param4}, tot_balance=tot_balance+#{param4} where id=#{param1} and coin_name=#{param2}
+		 	available_balance=available_balance+#{param4}, tot_balance=tot_balance+#{param4} where id=#{param1} and coin=#{param2}
 		 </when>
 		 <when test="param5 != null and (param5 eq 'S'.toString())">
-		 	available_balance=available_balance+#{param3} where id=#{param1} and coin_name='won'
+		 	available_balance=available_balance+#{param3} where id=#{param1} and coin='KRW'
 		 </when>
 		</choose>
+	</update>
+	
+	<update id="getWalletTotalUpdate">
+		update wallet set tot_balance = #{param2} where id=#{param1} and coin='KRW'
 	</update>
 </mapper>    

@@ -58,6 +58,7 @@ public class OrderController {
 		for(OrderVO vo: list){
 			JSONObject obj = new JSONObject();
 			obj.put("idx", vo.getIdx());
+			obj.put("coin", vo.getCoin());
 			obj.put("price", vo.getPrice());
 			obj.put("price_c", vo.getPrice_completed());
 			obj.put("amount", vo.getAmount());
@@ -105,6 +106,7 @@ public class OrderController {
 		for(HistoryVO vo: list){
 			JSONObject obj = new JSONObject();
 			obj.put("type", vo.getType());
+			obj.put("coin", vo.getCoin());
 			obj.put("price", vo.getPrice());
 			obj.put("amount", vo.getAmount());
 			obj.put("price_c", vo.getPrice_completed());
