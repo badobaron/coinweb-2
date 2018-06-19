@@ -237,13 +237,11 @@ SqlSessionTemplate sqlSession;
 	//REPLY
 	@RequestMapping(value="/reply_write_check.do", method=RequestMethod.GET)
 	@ResponseBody
-	public String reply_write_check(String content, String no){
-		BoardReplyVO vo = new BoardReplyVO();
-		vo.setContent(content);
-		vo.setBid(Integer.parseInt(no));
+	public String reply_write_check(String rname, String content, String no){
+	
 	
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		int result = dao.getReplyInsertResult(vo);		
+		int result = dao.getReplyInsertResult(rname, content, no);		
 		return String.valueOf(result);
 	}
 	
@@ -260,6 +258,7 @@ SqlSessionTemplate sqlSession;
 		for(BoardReplyVO vo:list){
 			JSONObject obj = new JSONObject();
 			obj.put("rid", vo.getRid());
+			obj.put("rname", vo.getRname());
 			obj.put("content", vo.getContent());
 			obj.put("rdate", vo.getRdate());
 			obj.put("bid", vo.getBid());
