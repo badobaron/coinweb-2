@@ -18,9 +18,9 @@
 	<!-- MyBatis -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
   <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
-  <property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE" />
-  <property name="username" value="scott" />
-  <property name="password" value="tiger" />
+  <property name="url" value="jdbc:mysql://localhost:3306/coinweb?characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;useSSL=false" />
+  <property name="username" value="root" />
+  <property name="password" value="root" />
  </bean>
 	
 	<!-- sqlSessionFactoryBuilder & sqlSessionFactory 생성 -->

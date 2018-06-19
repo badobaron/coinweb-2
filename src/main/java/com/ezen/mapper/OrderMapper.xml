@@ -6,7 +6,8 @@
 <mapper namespace="coinweb.dao.OrderDAO">
 
 	<insert id="getOrderResult">
-		insert into coin_order values(sequ_coinweb_order_idx.nextval,#{param1},#{param2},#{param3},0,#{param4},0,sysdate,#{param5})
+		insert into coin_order(id,coin,price,price_completed,amount,amount_completed,odate,type)
+		 values(#{param1},#{param2},#{param3},0,#{param4},0,now(),#{param5})
 	</insert>
 	
 	<select id="getOrderCancelResult" resultType="coinweb.vo.OrderVO">
@@ -39,7 +40,8 @@
 	</update>
 	
 	<insert id="getHistoryInsert">
-		insert into coin_history values(#{param1},#{param2},#{param3},#{param4},#{param5},#{param4}*#{param5},sysdate)
+		insert into coin_history(id,coin,type,price,amount,price_completed,hdate)
+		 values(#{param1},#{param2},#{param3},#{param4},#{param5},#{param4}*#{param5},now())
 	</insert>
 	
 	<select id="getHistoryListResult" resultType="coinweb.vo.HistoryVO">

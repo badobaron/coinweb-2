@@ -4,54 +4,16 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="coinweb.dao.BoardDAO">  
 	<select id="getBoardList" resultType="coinweb.vo.BoardVO">
-		   SELECT RNO
-		   		, NO
-		   		, TITLE
-		   		, NAME
-		   		, BDATE
-		   		, HITS
-		   		, LIKEIT FROM (SELECT ROWNUM AS RNO
-		   							, NO
-		   							, TITLE
-		   							, NAME
-		   							, TO_CHAR(BDATE,'YY-MM-DD')AS BDATE
-		   							, HITS
-		   							, LIKEIT FROM (SELECT * FROM COINWEB_BOARD ORDER BY BDATE DESC)) 
-		   							  WHERE RNO BETWEEN #{param1} AND #{param2}
+		SELECT NO, TITLE, NAME, date_format(bdate, '%Y-%m-%d') AS BDATE, HITS, LIKEIT 
+		FROM COINWEB_BOARD ORDER BY BDATE DESC limit #{param1} ,#{param2} 
 	</select>
 	<select id="getBoardListContent" resultType="coinweb.vo.BoardVO">
-		   SELECT RNO
-		   		, NO
-		   		, TITLE
-		   		, NAME
-		   		, BDATE
-		   		, HITS
-		   		, LIKEIT FROM (SELECT ROWNUM AS RNO
-		   							, NO
-		   							, TITLE
-		   							, NAME
-		   							, TO_CHAR(BDATE,'YY-MM-DD')AS BDATE
-		   							, HITS
-		   							, LIKEIT FROM (SELECT * FROM COINWEB_BOARD ORDER BY BDATE DESC) 
-		   							  WHERE UPPER(CONTENT) LIKE ('%' || UPPER(#{param1}) ||'%'))
-		   							  WHERE RNO BETWEEN #{param2} AND #{param3}
+		SELECT  NO, TITLE, NAME, date_format(bdate, '%YY-%m-%d') AS BDATE, HITS, LIKEIT 
+		FROM COINWEB_BOARD WHERE UPPER(CONTENT) LIKE ('%' || UPPER(#{param1}) ||'%')) ORDER BY BDATE DESC limit #{param1} ,#{param2} 
 	</select>
 	<select id="getBoardListTitle" resultType="coinweb.vo.BoardVO">
-		   SELECT RNO
-		   		, NO
-		   		, TITLE
-		   		, NAME
-		   		, BDATE
-		   		, HITS
-		   		, LIKEIT FROM (SELECT ROWNUM AS RNO
-		   							, NO
-		   							, TITLE
-		   							, NAME
-		   							, TO_CHAR(BDATE,'YY-MM-DD')AS BDATE
-		   							, HITS
-		   							, LIKEIT FROM (SELECT * FROM COINWEB_BOARD ORDER BY BDATE DESC) 
-		   							  WHERE UPPER(TITLE) LIKE ('%' || UPPER(#{param1}) ||'%')) 
-		   							  WHERE RNO BETWEEN #{param2} AND #{param3}
+		SELECT ROWNUM AS RNO, NO, TITLE, NAME, date_format(bdate, '%YY-%m-%d') AS BDATE, HITS, LIKEIT 
+		FROM COINWEB_BOARD WHERE UPPER(TITLE) LIKE ('%' || UPPER(#{param1}) ||'%')) ORDER BY BDATE DESC limit #{param1} ,#{param2}
 	</select>
 	
 	<select id="execTotalCount" resultType="Integer">
@@ -77,14 +39,8 @@
 	</select>
 	
  	<insert id="insertBoardContent" parameterType="coinweb.vo.BoardVO">
- 			INSERT INTO COINWEB_BOARD VALUES(SEQU_COINWEB_BOARD_NO.NEXTVAL
- 										   , #{title}
- 										   , #{name}
- 										   , #{content, jdbcType=CLOB}
- 										   , SYSDATE
- 										   , 0
- 										   , 0)
-
+ 			INSERT INTO COINWEB_BOARD(id,title,name,content,bdate,hits,likeit) 
+ 			VALUES(#{id}, #{title}, #{name}, #{content, jdbcType=CLOB}, now(), 0, 0)
  	</insert>
  	<delete id="deleteBoardContent">
  			DELETE FROM COINWEB_BOARD WHERE NO=#{no}
@@ -100,7 +56,7 @@
  			SELECT ROWNUM AS RNO
  				 , TITLE
  				 , NAME
- 				 , TO_CHAR(BDATE,'YY-MM-DD')AS BDATE
+ 				 , date_format(bdate, '%YY-%m-%d') AS BDATE
 				 , HITS
 				 , LIKEIT FROM COINWEB_BOARD 
 				   WHERE TITLE LIKE '%' || #{search} || '%' 
@@ -135,13 +91,8 @@
 	
 	
 	<insert id="getReplyInsertResult">
-		INSERT INTO COINWEB_BOARD_REPLY VALUES(sequ_coinweb_board_reply_RID.NEXTVAL
-											 , #{rname}
-			 							     , #{content}
-			 								 , SYSDATE
-			 								 , #{bid}
-			 								 , 0
-			 								 , 0)			 					
+		INSERT INTO COINWEB_BOARD_REPLY(rid,bid,content,rdate,likeit,dislikeit)
+		 VALUES(#{rname}, #{bid}, #{content}, now(), 0, 0)			 					
 	</insert>
 	
 	<update id="replyLikeitUp">

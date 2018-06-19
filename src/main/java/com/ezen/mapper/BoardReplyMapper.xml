@@ -4,12 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reply">  
 	<insert id= "insertReply">
-		INSERT INTO COINWEB_BOARD_REPLY VALUES(sequ_coinweb_board_reply_RID.NEXTVAL
-												, #{rname}
-												, #{content}
-												, SYSDATE 
-												, #{bid}
-												,0
-												,0)	;
+		INSERT INTO COINWEB_BOARD_REPLY(rid,bid,content,rdate,likeit,dislikeit)
+		 VALUES(#{rname}, #{bid}, #{content}, now(), 0, 0)		
 	</insert>
 </mapper>

@@ -32,8 +32,8 @@
 			<h3>1위</h3>
 			<c:forEach items="${list}" var="vo1" begin="0" end="0">
 				<p>${vo1.name}</p>
-				<p>총자산: ${vo1.money}</p>
-				<p>수익률 : ${vo1.money2}%</p>
+				<p>총자산: <font color=red>${vo1.money}</font>원</p>
+				<p>수익률 : <font color=red>${vo1.profit}</font>%</p>
 			</c:forEach>
 		</div>
 		
@@ -42,8 +42,8 @@
 			<h3>2위</h3>
 			<c:forEach items="${list}" var="vo2" begin="1" end="1">
 				<p>${vo2.name}</p>
-				<p>총자산: ${vo2.money}</p>
-				<p>수익률 : ${vo2.money2}%</p>
+				<p>총자산: <font color=red>${vo2.money}</font>원</p>
+				<p>수익률 : <font color=red>${vo2.profit}</font>%</p>
 			</c:forEach>
 		</div>
 		
@@ -52,8 +52,8 @@
 			<h3>3위</h3>
 			<c:forEach items="${list}" var="vo3" begin="2" end="2">
 				<p>${vo3.name}</p>
-				<p>총자산: ${vo3.money}</p>
-				<p>수익률 : ${vo3.money2}%</p>
+				<p>총자산: <font color=red>${vo3.money}</font>원</p>
+				<p>수익률 : <font color=red>${vo3.profit}</font>%</p>
 			</c:forEach>
 		</div>
 		
@@ -71,8 +71,8 @@
 			  <tr>
 			    <td>${vo.rno}</td>
 			    <td>${vo.name}</td>
-			    <td> ${vo.money}</td>
-			    <td>${vo.money2}%</td>
+			    <td><font color=red>${vo.money}</font>원</td>
+			    <td><font color=red>${vo.profit}</font>%</td>
 			  </tr>
 			  </c:forEach>
 			

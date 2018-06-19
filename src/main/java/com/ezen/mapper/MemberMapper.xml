@@ -6,7 +6,7 @@
 <mapper namespace="coinweb.dao.MemberDAO">
 
 	<insert id="getInsertResult">
-		insert into coinweb_member values(sequ_coinweb_member_id.nextval,#{email},#{name},#{pass},#{agree},sysdate)
+		insert into coinweb_member(email,name,pass,agree,jdate) values(#{email},#{name},#{pass},#{agree},now())
 	</insert>
 	
 	<select id="getLoginResult" resultType="int">
@@ -14,8 +14,7 @@
 	</select>
 	
 	<select id="getResultList" resultType="coinweb.vo.MemberVO">
-		select rownum as rno,id,email,name,to_char(jdate,'yyyy-mm-dd') as jdate 
-			from (select * from coinweb_member ORDER BY jdate)
+		select id,email,name,date_format(jdate, '%Y%m%d') as jdate from coinweb_member ORDER BY jdate
 	</select>
 	
 	<select id="getResultVO" resultType="coinweb.vo.MemberVO">
@@ -27,26 +26,25 @@
 	</select>
 	
 	<select id="getJoinIdResult" resultType="coinweb.vo.MemberVO">
-		select rownum, id from (select * from coinweb_member order by jdate desc) where rownum=1
+		select id from coinweb_member order by jdate desc limit 1
 	</select>
 	
 	<select id="getNameCheckResult" resultType="int">
-	select count(*) from coinweb_member where name=#{name}
+		select count(*) from coinweb_member where name=#{name}
 	</select>
 	
 	<select id="getLoginCheckResult" resultType="int">
-	select count(*) from coinweb_member where pass=#{param2} and id=#{param3}
+		select count(*) from coinweb_member where pass=#{param2} and id=#{param3}
 	</select>
 	
 	<update id="getPassWordChangeResult">
-	update coinweb_member set pass=#{pass} where email=#{email}
+		update coinweb_member set pass=#{pass} where email=#{email}
 	</update>
 	
 	
 	<select id="getRankingList" resultType="coinweb.vo.RankingVO">
-select rownum  rno, id, name, money,(sum(money1)/30000000*100-100) as money2  from (select distinct c.id, c.name, to_char(w.TOT_BALANCE,'L99,999,999,999') as money,w.TOT_BALANCE as money1 
-from coinweb_member c,wallet w 
-where c.id = w.id and coin='KRW' order by  money desc, id)where  rownum <![CDATA[<=]]> 20 group by rownum  , id, name, money order by money desc, id 
+		select distinct c.id, c.name, FORMAT(w.TOT_BALANCE , 0) as money,w.TOT_BALANCE as profit from coinweb_member c,wallet w 
+			where c.id = w.id and coin='KRW' order by  money desc, id limit 20 
 
 	</select>
 	

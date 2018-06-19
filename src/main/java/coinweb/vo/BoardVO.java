@@ -5,7 +5,7 @@ import java.util.Base64;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class BoardVO {
-	int rno,no,hits,likeit;
+	int rno,no,hits,likeit, id;
 	String title,name,bdate;
 	String rfname,content;
 	Base64 contents;
@@ -35,6 +35,12 @@ public class BoardVO {
 	
 	public String getRfname() {
 		return rfname;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getContent() {
 		return content;
