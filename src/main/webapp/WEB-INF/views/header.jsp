@@ -458,7 +458,7 @@ jQuery(document).ready(function(){
 <c:when test="${sid == null}">
 <div class="topnav shadow" id="navbar">
 	<div class="nav">
-	  <a class="activea" href="http://localhost:8080/coinweb/index.do"><span>Coinweb</span></a>
+	  <a class="activea" href="http://localhost:8080/coinweb/index.do"><span style="font-family: 'Raleway', sans-serif; font-weight:lighter; font-size: 22px;">COINWEB</span></a>
 	    <div class="topnav-right">
 	         <div class="cd-main-nav__list js-signin-modal-trigger">
 	             <a class="cd" href="http://localhost:8080/coinweb/business.do">거래하기</a>

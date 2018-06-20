@@ -4,7 +4,7 @@
 @import url('http://fonts.googleapis.com/earlyaccess/jejugothic.css');
 /*³ª´®½ºÄù¾î*/
 /*º£³Ê*/
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 
 body {
   margin: 0;
@@ -26,9 +26,30 @@ footer {
 /*¹Ú½º*/
 .coinBox h3{
 	margin-left: 10px;
+	
 }
 
+.index_btn{
+	margin-top:20px;
+	border: none;
+    display: inline-block;
+    padding: 15px 50px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: white;
+    background: rgba(0, 153, 204, 0.6);
+    text-align: center;
+  	font-weight:bold;
+    font-size: 35px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.105), 0 1px 2px rgba(0,0,0,.18);
+}
 
+.index_btn:hover {
+	color: white;
+	box-shadow: 0 1px 20px rgba(0,0,0,.105), 0 1px 20px rgba(0,0,0,.18);
+    
+}
 
 .coinBox{
   margin: auto;
@@ -68,7 +89,7 @@ footer {
     background: rgba(192, 192, 192,0.2 ); /* Black background with transparency */
     color: black;
     width: 100%;
-    line-height: 100%;
+    line-height: 80%;
     padding: 5px 40px 15px 20px;
     font-size: 12px;
 }

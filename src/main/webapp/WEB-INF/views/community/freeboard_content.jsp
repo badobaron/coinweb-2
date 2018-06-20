@@ -1,19 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8" import="coinweb.vo.BoardVO, coinweb.dao.BoardDAO, java.util.ArrayList"%>
+	pageEncoding="utf-8"
+	import="coinweb.vo.BoardVO, coinweb.dao.BoardDAO, java.util.ArrayList"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    
+
 <!DOCTYPE html>
 <html>
 <head>
 
 <!-- jQuery, bootstrap -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+<link
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css"
+	rel="stylesheet">
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css"
+	rel="stylesheet">
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 <!-- CSS -->
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/freeboard.css">
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/coinweb/css/freeboard.css">
 <!-- 리플 -->
 <script src="http://localhost:8080/coinweb/js/MyAjax.js"></script>
 
@@ -186,99 +195,113 @@ reply_dislikeit = function(){
 
 
 <body>
-<jsp:include page="../header.jsp"></jsp:include> 
-	
-			<div class="freeboard_header">
-			<h1 class="freeboard_header_h1">
-			자유게시판</h1></div>
-		
-		
-		<div class="container">	 
-		
-		 <div class="freeboard_content_title">
-                        <p class="freeboard_content_title_text">${vo.title}</p>
-                        <p class="freeboard_content_title_date">${vo.bdate}</p>
-       	 </div>
-		 <div class="freeboard_content_author">
-                        <p class="freeboard_content_author_name">${vo.name}</p>
-                        <div class="freeboard_content_author_info">
-                            <p>조회수 <span class="author_info">${vo.hits}</span></p>
-                            <p>좋아요 <span class="author_info like_count">${vo.likeit}</span></p>
-                            <p>댓글 <span class="author_info">0</span></p>
-                        </div>
-         </div>	
-				
-			<div class="freeboard_content">
-                        <p>
-                        	${vo.content}
-                        </p> </div>
-					
-					
-					
-				
-					
-					<div style="text-align: center;">
-						<button class="likeitBtn btn-like btn" type="button" onclick="likeitBtnMain()">좋아요 <i class="fa fa-thumbs-up fa-lg"></i></button>
-						<button class="dislikeitBtn btn-dislike btn" type="button" onclick="dislikeitBtnMain()">싫어요 <i class="fa fa-thumbs-down fa-lg"></i></button>
-					</div>
-					<div style="text-align: center;">
-							<a href="/coinweb/freeboard.do?"><button type="button" class="btn btn-comm-con">이전 페이지</button></a>
-							<a href="/coinweb/freeboard_update.do?no=${no}&rno=${rno}"><button type="button" class="btn btn-comm-con">수정하기</button></a>
-							<a href="/coinweb/freeboard_delete.do?no=${no}&rno=${rno}"><button type="button" class="btn btn-comm-con">바로삭제</button></a>					
-							<a href="/coinweb/index.do"><button type="button" class="btn btn-comm-con">홈으로</button></a>									
-					</div>
-					
-			<!-- start of reply -->
-			<div class="container">
-			
-							
-						<br>
-						<div>
-						<span class="reply-title" id="btnReWrite"><strong>Comments</strong></span>		
-						
-						 </div>
-							
-							
-							<div class="reply-write">
-								<label id="reply-write-title" class="reply-write-title">
-											댓글을 남겨주세요.
-									</label>
-								<div style="width: 100%; "  contenteditable="true" class="reply-write-content" id="content"  
-								name="content" ></div>
-							</div>	
-								<div style="text-align: right; margin-top: 10px;">
-								
-									<span id="sizeLimit">0</span> /300 
-									<button class="reply-write-button btn">등록</button>
-								
-								</div>
-								
-								<input type="hidden" id="reply-write-check" value="hide">
-								<input type="hidden" name="no" value="${vo.no }">
-							
-			
-																			
-				
-						<!-- 리플 리스트 -->				
-						<div class="reply-content">	
-						<input type="hidden" id="reply-content-check" value="hide">										
-						</div>							
-				
-				
-				</div>
-				<!-- end of reply -->	
-					
-						
-			
-					
-		
-					
-		</div>	
-	<jsp:include page="../footer.jsp"></jsp:include>  
+	<jsp:include page="../header.jsp"></jsp:include>
+
+	<div class="freeboard_header">
+		<h1 class="freeboard_header_h1">자유게시판</h1>
+	</div>
+
+
+	<div class="container">
+
+		<div class="freeboard_content_title">
+			<p class="freeboard_content_title_text">${vo.title}</p>
+			<p class="freeboard_content_title_date">${vo.bdate}</p>
+		</div>
+		<div class="freeboard_content_author">
+			<p class="freeboard_content_author_name">${vo.name}</p>
+			<div class="freeboard_content_author_info">
+				<p>
+					조회수 <span class="author_info">${vo.hits}</span>
+				</p>
+				<p>
+					좋아요 <span class="author_info like_count">${vo.likeit}</span>
+				</p>
+				<p>
+					댓글 <span class="author_info">0</span>
+				</p>
+			</div>
+		</div>
+
+		<div class="freeboard_content">
+			<p>${vo.content}</p>
+		</div>
 
 
 
-<script>
+
+
+		<div style="text-align: center;">
+			<button class="likeitBtn btn-like btn" type="button"
+				onclick="likeitBtnMain()">
+				좋아요 <i class="fa fa-thumbs-up fa-lg"></i>
+			</button>
+			<button class="dislikeitBtn btn-dislike btn" type="button"
+				onclick="dislikeitBtnMain()">
+				싫어요 <i class="fa fa-thumbs-down fa-lg"></i>
+			</button>
+		</div>
+		<div style="text-align: center;">
+			<a href="/coinweb/freeboard.do?"><button type="button"
+					class="btn btn-comm-con">이전 페이지</button></a> <a
+				href="/coinweb/freeboard_update.do?no=${no}&rno=${rno}"><button
+					type="button" class="btn btn-comm-con">수정하기</button></a> <a
+				href="/coinweb/freeboard_delete.do?no=${no}&rno=${rno}"><button
+					type="button" class="btn btn-comm-con">바로삭제</button></a> <a
+				href="/coinweb/index.do"><button type="button"
+					class="btn btn-comm-con">홈으로</button></a>
+		</div>
+
+		<!-- start of reply -->
+		<div class="container">
+
+
+			<br>
+			<div>
+				<span class="reply-title" id="btnReWrite"><strong>Comments</strong></span>
+
+			</div>
+
+
+			<div class="reply-write">
+				<label id="reply-write-title" class="reply-write-title"> 댓글을
+					남겨주세요. </label>
+				<div style="width: 100%;" contenteditable="true"
+					class="reply-write-content" id="content" name="content"></div>
+			</div>
+			<div style="text-align: right; margin-top: 10px;">
+
+				<span id="sizeLimit">0</span> /300
+				<button class="reply-write-button btn">등록</button>
+
+			</div>
+
+			<input type="hidden" id="reply-write-check" value="hide"> <input
+				type="hidden" name="no" value="${vo.no }">
+
+
+
+
+			<!-- 리플 리스트 -->
+			<div class="reply-content">
+				<input type="hidden" id="reply-content-check" value="hide">
+			</div>
+
+
+		</div>
+		<!-- end of reply -->
+
+
+
+
+
+
+	</div>
+	<jsp:include page="../footer.jsp"></jsp:include>
+
+
+
+	<script>
 
 
 /*좋아요 버튼 
@@ -299,11 +322,14 @@ function dislikeitBtnMain(){
 	});			
 }
 
+
+
+
 	
 </script>
 
-	
-	
+
+
 </body>
 
 
