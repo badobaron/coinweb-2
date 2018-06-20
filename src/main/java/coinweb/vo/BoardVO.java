@@ -6,7 +6,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class BoardVO {
 	int rno,no,hits,likeit, id;
-	String title,name,bdate;
+	String title,name,fbdate;
 	String rfname,content;
 	Base64 contents;
 	CommonsMultipartFile file;
@@ -88,11 +88,11 @@ public class BoardVO {
 		this.name = name;
 	}
 	
-	public String getBdate() {
-		return bdate;
+	public String getFbdate() {
+		return fbdate;
 	}
-	public void setBdate(String bdate) {
-		this.bdate = bdate;
+	public void setFbdate(String fbdate) {
+		this.fbdate = fbdate;
 	}
 	
 	

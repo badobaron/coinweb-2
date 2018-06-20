@@ -44,7 +44,7 @@ $(document).ready(function(){
 		/*등록 ajax*/	  
 		}else {
 			var htmlContent = $('#summernote').summernote('code');
-			alert(htmlContent);
+			//alert(htmlContent);
 		/*
 			$(".summernote").html(htmlContent);
 			freeboard_form.submit;			
@@ -74,6 +74,7 @@ $(document).ready(function(){
 			<div class="form-group">
 			
 					<input type="text" class="name form-control" id="name" name="name" hidden="true" value="${name}">
+					<input type="text" class="id form-control" id="id" name="id" hidden="true" value="${sid}">
 				
 			</div>
 	
