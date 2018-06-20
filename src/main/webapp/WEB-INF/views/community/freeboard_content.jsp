@@ -27,17 +27,12 @@
 <script src="http://localhost:8080/coinweb/js/MyAjax.js"></script>
 
 <script>
-
-
-
-
 (function($){
 	
 	$.fn.indexSearch = function(data){	
 		return $(this).attr("id").slice($(this).attr("class").length);
 	};	
 })(jQuery);
-
 	$(function(){
 		
 		
@@ -68,14 +63,9 @@
 					$("#sizeLimit"+index).text($(".reply-write-content"+index).text().length);
 				}
 		});
-
-
 		
-
 	});
 	
-
-
 $(document).ready(function(){			
 	
 		
@@ -94,7 +84,6 @@ $(document).ready(function(){
 				alert("댓글 내용을 입력해주세요.");
 			}else{
 			
-
 			$.ajax({
 				url : 'http://localhost:8080/coinweb/reply_write_check.do',
 				type :'GET',
@@ -111,7 +100,6 @@ $(document).ready(function(){
 			});	
 			}
 		});	
-
 		
 //댓글보기			
 $(function(){	
@@ -134,7 +122,6 @@ $(function(){
 					      "<div class='view2'>"+data[i].content+"</div>"+
 					      
 					      "<div class='replyTool'>"+
-
 						  "<i class='fa fa-thumbs-o-up'></i><button id='replyBtnLikeit"+i+"' data-id='"+i+"' type='button' class='replyBtnLikeit replyBtn'>"+data[i].likeit+"</button>"+	
 						  "<i class='fa fa-thumbs-o-down'></i><button id='replyBtnLikeit"+i+"' data-id='"+i+"' type='button' class='replyBtnDislikeit replyBtn'>"+data[i].dislikeit+"</button>"+							
 					    
@@ -149,9 +136,7 @@ $(function(){
 				}
 			});
 		});	
-
 	});
-
 function reply_likeit(){
 		$(".replyBtnlikeit").click(function(){	
 		alert("1");
@@ -177,20 +162,12 @@ function reply_dislikeit(){
 		});
 	});
 };
-
 </script>
 
 
 </head>
 
-
-
-
-
 <body>
-<<<<<<< HEAD
-	<jsp:include page="../header.jsp"></jsp:include>
-=======
 <jsp:include page="../header.jsp"></jsp:include> 
 	
 			<div class="freeboard_header">
@@ -280,115 +257,9 @@ function reply_dislikeit(){
 					
 		</div>	
 	<jsp:include page="../footer.jsp"></jsp:include>  
->>>>>>> 199e553c6c77654ee91ce7537902c88eb15530af
-
-	<div class="freeboard_header">
-		<h1 class="freeboard_header_h1">자유게시판</h1>
-	</div>
-
-
-	<div class="container">
-
-		<div class="freeboard_content_title">
-			<p class="freeboard_content_title_text">${vo.title}</p>
-			<p class="freeboard_content_title_date">${vo.bdate}</p>
-		</div>
-		<div class="freeboard_content_author">
-			<p class="freeboard_content_author_name">${vo.name}</p>
-			<div class="freeboard_content_author_info">
-				<p>
-					조회수 <span class="author_info">${vo.hits}</span>
-				</p>
-				<p>
-					좋아요 <span class="author_info like_count">${vo.likeit}</span>
-				</p>
-				<p>
-					댓글 <span class="author_info">0</span>
-				</p>
-			</div>
-		</div>
-
-		<div class="freeboard_content">
-			<p>${vo.content}</p>
-		</div>
-
-
-
-
-
-		<div style="text-align: center;">
-			<button class="likeitBtn btn-like btn" type="button"
-				onclick="likeitBtnMain()">
-				좋아요 <i class="fa fa-thumbs-up fa-lg"></i>
-			</button>
-			<button class="dislikeitBtn btn-dislike btn" type="button"
-				onclick="dislikeitBtnMain()">
-				싫어요 <i class="fa fa-thumbs-down fa-lg"></i>
-			</button>
-		</div>
-		<div style="text-align: center;">
-			<a href="/coinweb/freeboard.do?"><button type="button"
-					class="btn btn-comm-con">이전 페이지</button></a> <a
-				href="/coinweb/freeboard_update.do?no=${no}&rno=${rno}"><button
-					type="button" class="btn btn-comm-con">수정하기</button></a> <a
-				href="/coinweb/freeboard_delete.do?no=${no}&rno=${rno}"><button
-					type="button" class="btn btn-comm-con">바로삭제</button></a> <a
-				href="/coinweb/index.do"><button type="button"
-					class="btn btn-comm-con">홈으로</button></a>
-		</div>
-
-		<!-- start of reply -->
-		<div class="container">
-
-
-			<br>
-			<div>
-				<span class="reply-title" id="btnReWrite"><strong>Comments</strong></span>
-
-			</div>
-
-
-			<div class="reply-write">
-				<label id="reply-write-title" class="reply-write-title"> 댓글을
-					남겨주세요. </label>
-				<div style="width: 100%;" contenteditable="true"
-					class="reply-write-content" id="content" name="content"></div>
-			</div>
-			<div style="text-align: right; margin-top: 10px;">
-
-				<span id="sizeLimit">0</span> /300
-				<button class="reply-write-button btn">등록</button>
-
-			</div>
-
-			<input type="hidden" id="reply-write-check" value="hide"> <input
-				type="hidden" name="no" value="${vo.no }">
-
-
-
-
-			<!-- 리플 리스트 -->
-			<div class="reply-content">
-				<input type="hidden" id="reply-content-check" value="hide">
-			</div>
-
-
-		</div>
-		<!-- end of reply -->
-
-
-
-
-
-
-	</div>
-	<jsp:include page="../footer.jsp"></jsp:include>
-
 
 
 	<script>
-
-
 /*좋아요 버튼 
  * 로그인 후 횟수 제한 걸어야한다.*/
 function likeitBtnMain(){
@@ -398,7 +269,6 @@ function likeitBtnMain(){
 			$(".likeittd").text(response.likeit);		
 	});
 } //btn
-
 function dislikeitBtnMain(){
 	var param ={'no' : '${no}'};
 	MyAjax.excute('/coinweb/freeboard_dislikeit.json', param, 'POST').done(function(response){
@@ -406,10 +276,6 @@ function dislikeitBtnMain(){
 			$(".likeittd").text(response.likeit);		
 	});			
 }
-
-
-
-
 	
 </script>
 

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"
 	import="coinweb.vo.BoardVO, coinweb.dao.BoardDAO, java.util.ArrayList"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -14,7 +14,7 @@
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-<!-- í˜ì´ì§•ì²˜ë¦¬ -->
+<!-- ÆäÀÌÂ¡Ã³¸® -->
 <script src="http://localhost:8080/coinweb/js/am-pagination.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="http://localhost:8080/coinweb/css/am-pagination.css">
@@ -31,56 +31,7 @@
 
 	<section class="freeboard">
 		<div class="freeboard_header">
-<<<<<<< HEAD
-			<h1 class="freeboard_header_h1">ììœ ê²Œì‹œíŒ</h1>
-=======
-			<h1 class="freeboard_header_h1">
-			ììœ ê²Œì‹œíŒ</h1></div>
-		
-			
-		<div class="container container_comm">	  
-		<div class="freeboard_table">
-		  <table class="table table-hover freeboard_list_table">	
-		 		<thead>
-		  	    <tr>
-		     		<th>NO</th>
-					<th>ì œëª©</th>
-					<th>ì‘ì„±ì</th>
-					<th>ì‘ì„±ì¼</th>
-					<th>ì¡°íšŒìˆ˜</th>
-					<th>ì¢‹ì•„ìš”</th>
-		        </tr>
-		        </thead>
-		       <c:forEach items="${list}" var="vo">
-		  		<tr class="comm-list">
-			  		<td class="rnotd">${vo.no}</td>
-			  		<td class="titletd"><a href="/coinweb/freeboard_content.do?no=${vo.no}">${vo.title}</a></td>	
-			  		<td class="nametd">${vo.name}</td>
-			  		<td class="bdatetd">${vo.fbdate}</td>
-			  		<td class="hitstd">${vo.hits}</td>
-			  		<td class="likeittd">${vo.likeit}</td>	  		
-		  		</tr>	  		
-		  		</c:forEach>
-			</table>
-
-				
-				 <div class="form-group">
-				 <form action="/coinweb/freeboard_search.do?rpage=${rpage}" method="get">
-					
-					<div style="display: inline-block;">
-					<select name="findValue" class="form-control" style="width: 100px; float: left;">
-						<option value=title>ì œëª©</option>
-						<option value=content>ë‚´ìš©</select>
-					<input name="search" type="text" class="form-control" style="width: 150px; ">
-					</div>
-					
-					<button  type="submit" class="btn btn-comm-con" style="margin-top: 5px;">ê²€ìƒ‰</button>
-					
-					<a href="/coinweb/freeboard_write.do"><button type="button" class= "btn-comm-con btn" style="float: right; margin-top: 5px;">ê¸€ì“°ê¸°</button></a>
-					<div id="ampaginationsm" style="text-align: center; "></div>
-				</form>
-				</div>
->>>>>>> 199e553c6c77654ee91ce7537902c88eb15530af
+			<h1 class="freeboard_header_h1">ÀÚÀ¯°Ô½ÃÆÇ</h1>
 		</div>
 
 
@@ -90,11 +41,11 @@
 					<thead>
 						<tr>
 							<th>NO</th>
-							<th>ì œëª©</th>
-							<th>ì‘ì„±ì</th>
-							<th>ì‘ì„±ì¼</th>
-							<th>ì¡°íšŒìˆ˜</th>
-							<th>ì¢‹ì•„ìš”</th>
+							<th>Á¦¸ñ</th>
+							<th>ÀÛ¼ºÀÚ</th>
+							<th>ÀÛ¼ºÀÏ</th>
+							<th>Á¶È¸¼ö</th>
+							<th>ÁÁ¾Æ¿ä</th>
 						</tr>
 					</thead>
 					<c:forEach items="${list}" var="vo">
@@ -104,7 +55,7 @@
 								href="/coinweb/freeboard_content.do?no=${vo.no}&rno=${vo.rno}">
 									${vo.title}</a></td>
 							<td class="nametd">${vo.name}</td>
-							<td class="bdatetd">${vo.bdate}</td>
+							<td class="bdatetd">${vo.fbdate}</td>
 							<td class="hitstd">${vo.hits}</td>
 							<td class="likeittd">${vo.likeit}</td>
 						</tr>
@@ -119,18 +70,18 @@
 						<div style="display: inline-block;">
 							<select name="findValue" class="form-control"
 								style="width: 100px; float: left;">
-								<option value=title>ì œëª©</option>
-								<option value=content>ë‚´ìš©
+								<option value=title>Á¦¸ñ</option>
+								<option value=content>³»¿ë
 							</select> <input name="search" type="text" class="form-control"
 								style="width: 150px;">
 						</div>
 
 						<button type="submit" class="btn btn-comm-con"
-							style="margin-top: 5px;">ê²€ìƒ‰</button>
+							style="margin-top: 5px;">°Ë»ö</button>
 
-						<a href="/coinweb/freeboard_write.do?=${name}"><button
-								type="button" class="btn-comm-con btn"
-								style="float: right; margin-top: 5px;">ê¸€ì“°ê¸°</button></a>
+						<button
+								type="button" class="btn-comm-con btn"  id="freeboard_write_btn" 
+								style="float: right; margin-top: 5px;">±Û¾²±â</button>
 						<div id="ampaginationsm" style="text-align: center;"></div>
 					</form>
 				</div>
@@ -165,6 +116,15 @@
 			$(location).attr('href', "/coinweb/freeboard.do?rpage=" + e.page);
 		});
 	});
+	
+	$("#freeboard_write_btn").click(function($){
+
+		alert("${email}");
+		
+	});
+	
+	
+	
 </script>
 
 </html>
