@@ -10,11 +10,13 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import coinweb.dao.OrderDAO;
 import coinweb.dao.WalletDAO;
 
 public class Ordering extends Thread {
+	@Autowired
 	SqlSessionTemplate sqlSession;
 
 	public Ordering() {
