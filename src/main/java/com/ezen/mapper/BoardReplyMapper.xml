@@ -5,6 +5,6 @@
 <mapper namespace="reply">  
 	<insert id= "insertReply">
 		INSERT INTO COINWEB_BOARD_REPLY(rid,bid,content,rdate,likeit,dislikeit)
-		 VALUES(#{rname}, #{bid}, #{content}, now(), 0, 0)		
+		 VALUES( #{rname}, #{bid}, #{content}, now(), 0, 0)		
 	</insert>
 </mapper>
