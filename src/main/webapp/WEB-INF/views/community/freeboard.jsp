@@ -23,7 +23,9 @@
 	href="http://localhost:8080/coinweb/css/freeboard.css">
 
 
+
 </head>
+
 
 <body>
 
@@ -88,7 +90,8 @@
 			</div>
 		</div>
 	</section>
-
+	
+	
 	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 
@@ -118,10 +121,19 @@
 	});
 	
 	$("#freeboard_write_btn").click(function($){
+		var email = "${email}";
 
-		alert("${email}");
+		if(email==""){
+			alert("로그인 후 이용하실수 있습니다.");
+		}else{
+			location.href= '/coinweb/freeboard_write.do?=${email}';
+
+			
+		}
 		
 	});
+	
+	
 	
 	
 	

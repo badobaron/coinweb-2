@@ -39,6 +39,11 @@
 		//댓글쓰기 안내 사라지게 하기
 		$(".reply-write-content").keyup(function(){
 			var index =$(this).indexSearch();
+			var email = "${email}";
+
+			if(email==""){
+				alert("로그인 후 이용하실수 있습니다.");
+			}else{
 		    
 			if($(".reply-write-content"+index).text().length>0){
 				$(".reply-write-title"+index).fadeOut(100);
@@ -46,7 +51,9 @@
 			}if($(".reply-write-content"+index).text().length==0){
 				$(".reply-write-title"+index).fadeIn(100);
 				
-			}				
+			}
+			
+			}
 		});
 		
 		
@@ -77,7 +84,11 @@ $(document).ready(function(){
 			var content = $(".reply-write-content").text();
 			var rname = "${name}";
 			var no = "${vo.no}";
-	
+			var email = "${email}";
+
+			if(email==""){
+				alert("로그인 후 이용하실수 있습니다.");
+			}else{
 			
 			var content = $(".reply-write-content").text();
 			if(content == ""){
@@ -98,6 +109,7 @@ $(document).ready(function(){
 					}						
 				}
 			});	
+			}
 			}
 		});	
 		
@@ -266,14 +278,18 @@ function likeitBtnMain(){
 	var param ={'no' : '${no}'};
 	MyAjax.excute('/coinweb/freeboard_likeit.json', param, 'POST').done(function(response){
 			alert("${vo.name}님에게 좋아요를 눌렀습니다.");
-			$(".likeittd").text(response.likeit);		
+			$(".likeittd").text(response.likeit);
+			
+			location.reload();
 	});
 } //btn
 function dislikeitBtnMain(){
 	var param ={'no' : '${no}'};
 	MyAjax.excute('/coinweb/freeboard_dislikeit.json', param, 'POST').done(function(response){
 			alert("${vo.name}님에게 싫어요를 눌렀습니다.");
-			$(".likeittd").text(response.likeit);		
+			$(".likeittd").text(response.likeit);
+			
+			location.reload();
 	});			
 }
 	
