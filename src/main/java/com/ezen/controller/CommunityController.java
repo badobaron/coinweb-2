@@ -56,16 +56,16 @@ SqlSessionTemplate sqlSession;
 	
 		if(rpage != null){
 			reqPage = Integer.parseInt(rpage);
-			startCount = (reqPage-1) * pageSize+1; 
+			startCount = (reqPage-1) * pageSize; 
 			endCount = reqPage *pageSize;
 			
 		}else{
-			startCount = 1;
+			startCount = 0;
 			endCount = 10;
 			rpage="1";
 		}
 		
-		ArrayList<BoardVO> list =dao.getBoardList(startCount,endCount);
+		ArrayList<BoardVO> list =dao.getBoardList(startCount,pageSize);
 		mv.setViewName("/community/freeboard");
 		mv.addObject("list",list);
 		mv.addObject("rpage",rpage);
@@ -148,14 +148,13 @@ SqlSessionTemplate sqlSession;
 	}
 	
 	@RequestMapping(value="/freeboard_content.do", method=RequestMethod.GET)
-	public ModelAndView freeboard_content(String no,String rno){
+	public ModelAndView freeboard_content(String no){
 		ModelAndView mv = new ModelAndView();
 		BoardDAO dao =sqlSession.getMapper(BoardDAO.class);
 		dao.getUpdateHits(no);
 		BoardVO vo=dao.getBoardContent(no);	
 		mv.addObject("vo",vo);
 		mv.addObject("no",no);
-		mv.addObject("rno", rno);
 		mv.setViewName("/community/freeboard_content");		
 		return mv;
 	}
@@ -168,13 +167,13 @@ SqlSessionTemplate sqlSession;
 	}
 	
 	@RequestMapping(value="/freeboard_update.do", method=RequestMethod.GET)
-	public ModelAndView freeboard_update(String no,String rno){
+	public ModelAndView freeboard_update(String no){
 		ModelAndView mv = new ModelAndView();
 		BoardDAO dao =sqlSession.getMapper(BoardDAO.class);
 		BoardVO vo=dao.getBoardContent(no);
 		mv.addObject("vo",vo);
 		mv.addObject("no",no);
-		mv.addObject("rno", rno);
+		
 		mv.setViewName("/community/freeboard_update");
 		return mv;
 	}
@@ -195,10 +194,9 @@ SqlSessionTemplate sqlSession;
 		ArrayList<BoardVO>list =dao.searchBoardList(search);
 		for(BoardVO vo:list){
 			JSONObject obj = new JSONObject();
-			obj.put("rno",vo.getRno());
 			obj.put("title",vo.getTitle());
 			obj.put("name",vo.getName());
-			obj.put("bdate",vo.getBdate());
+			obj.put("bdate",vo.getFbdate());
 			obj.put("hits",vo.getHits());
 			obj.put("likeit",vo.getLikeit());
 			jsonArray.add(obj);
@@ -241,7 +239,7 @@ SqlSessionTemplate sqlSession;
 	
 	
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		int result = dao.getReplyInsertResult(rname, content, no);		
+		int result = dao.getReplyInsertResult(no, rname, content);		
 		return String.valueOf(result);
 	}
 	

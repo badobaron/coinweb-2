@@ -82,7 +82,7 @@ $(document).ready(function(){
 			
 			var content = $(".reply-write-content").text();
 			if(content == ""){
-				alert("덧글 내용을\n입력해주세요.");
+				alert("댓글 내용을 입력해주세요.");
 			}else{
 			
 
@@ -142,13 +142,10 @@ $(function(){
 		});	
 
 	});
-	
-	
-	
-	
-reply_likeit = function(){
+
+function reply_likeit(){
 		$(".replyBtnlikeit").click(function(){	
-			
+		alert("1");
 		var index = $(this).data("id");
 		var rid = $("#rid"+index).val();
 		alert("${vo.name}님을 추천합니다");
@@ -160,7 +157,7 @@ reply_likeit = function(){
 	});
 };
 	
-reply_dislikeit = function(){
+function reply_dislikeit(){
 	$(".replyBtnDislikeit").click(function(){
 		var index = $(this).data("id");
 		var rid = $("#rid"+index).val();
@@ -172,10 +169,6 @@ reply_dislikeit = function(){
 	});
 };
 
-
-		
-		
-	
 </script>
 
 
@@ -197,7 +190,7 @@ reply_dislikeit = function(){
 		
 		 <div class="freeboard_content_title">
                         <p class="freeboard_content_title_text">${vo.title}</p>
-                        <p class="freeboard_content_title_date">${vo.bdate}</p>
+                        <p class="freeboard_content_title_date">${vo.fbdate}</p>
        	 </div>
 		 <div class="freeboard_content_author">
                         <p class="freeboard_content_author_name">${vo.name}</p>
@@ -223,8 +216,8 @@ reply_dislikeit = function(){
 					</div>
 					<div style="text-align: center;">
 							<a href="/coinweb/freeboard.do?"><button type="button" class="btn btn-comm-con">이전 페이지</button></a>
-							<a href="/coinweb/freeboard_update.do?no=${no}&rno=${rno}"><button type="button" class="btn btn-comm-con">수정하기</button></a>
-							<a href="/coinweb/freeboard_delete.do?no=${no}&rno=${rno}"><button type="button" class="btn btn-comm-con">바로삭제</button></a>					
+							<a href="/coinweb/freeboard_update.do?no=${no}"><button type="button" class="btn btn-comm-con">수정하기</button></a>
+							<a href="/coinweb/freeboard_delete.do?no=${no}"><button type="button" class="btn btn-comm-con">바로삭제</button></a>					
 							<a href="/coinweb/index.do"><button type="button" class="btn btn-comm-con">홈으로</button></a>									
 					</div>
 					

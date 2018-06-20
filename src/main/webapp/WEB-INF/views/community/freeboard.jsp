@@ -43,13 +43,10 @@
 		        </thead>
 		       <c:forEach items="${list}" var="vo">
 		  		<tr class="comm-list">
-			  		<td class="rnotd">${vo.rno}</td>
-			  		<td class="titletd"> 
-			  		<a href="/coinweb/freeboard_content.do?no=${vo.no}&rno=${vo.rno}">
-			  		${vo.title}</a>
-			  		</td>	
+			  		<td class="rnotd">${vo.no}</td>
+			  		<td class="titletd"><a href="/coinweb/freeboard_content.do?no=${vo.no}">${vo.title}</a></td>	
 			  		<td class="nametd">${vo.name}</td>
-			  		<td class="bdatetd">${vo.bdate}</td>
+			  		<td class="bdatetd">${vo.fbdate}</td>
 			  		<td class="hitstd">${vo.hits}</td>
 			  		<td class="likeittd">${vo.likeit}</td>	  		
 		  		</tr>	  		
@@ -69,7 +66,7 @@
 					
 					<button  type="submit" class="btn btn-comm-con" style="margin-top: 5px;">검색</button>
 					
-					<a href="/coinweb/freeboard_write.do?=${name}"><button type="button" class= "btn-comm-con btn" style="float: right; margin-top: 5px;">글쓰기</button></a>
+					<a href="/coinweb/freeboard_write.do"><button type="button" class= "btn-comm-con btn" style="float: right; margin-top: 5px;">글쓰기</button></a>
 					<div id="ampaginationsm" style="text-align: center; "></div>
 				</form>
 				</div>
