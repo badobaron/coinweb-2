@@ -409,7 +409,7 @@ $(function(){
 	// 퍼센트 버튼 클릭시
 	$('.btn_buy_percent').click(function (e) {
 		if($('#buy_price').val() > 0) {
-			var pct_buy_coin = avail_won * $(this).data('pct') / 100 / $('#buy_price').val();
+			var pct_buy_coin = ((avail_won * $(this).data('pct')) / 100) / $('#buy_price').val();
 			$('#buy_unit').val(Floor(pct_buy_coin,4));
 			fCalcData();
 		}

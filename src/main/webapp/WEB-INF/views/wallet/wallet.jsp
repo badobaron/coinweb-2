@@ -47,9 +47,10 @@ function GetWalletList(){
 						$("#profit").html(Floor((data[0].tot/30000000)*100-100,2)+"%");
 					$('#wallet_table > tbody').empty();
 					for(var i=0;i<data.length;i++){
-						code = "<tr><td>"+data[i].coin+"</td><td>"+data[i].coin_name+"</td><td>"+Floor(data[i].available,4)+"</td><td>"
-						+Floor(data[i].using,4);
-						$('#wallet_table > tbody:last').append(code);
+						if(data[i].available>0){
+							code = "<tr><td>"+data[i].coin+"</td><td>"+data[i].coin_name+"</td><td>"+Floor(data[i].available,4)+"</td><td>"+Floor(data[i].using,4);
+							$('#wallet_table > tbody:last').append(code);
+						}
 					}
 				}	
 			});
@@ -88,7 +89,7 @@ function GetHistoryList(){
 			else if(data.length == 0) $("#history_wait").show();
 			$('#history_table > tbody').empty();
 			var length = 0;
-			if(data.length < 100) lenght = data.length; else length = 100;
+			if(data.length < 100) length = data.length; else length = 100;
 			for(var i=0;i<length;i++){
 				var type = data[i].type;
 				if(type == 'B')	type = "<td style='color:red;'>매수</td>"; else type = "<td style='color:blue;'>매도</td>";

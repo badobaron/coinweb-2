@@ -1,49 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"
-	import="coinweb.vo.BoardVO, coinweb.dao.BoardDAO, java.util.ArrayList"%>
+    pageEncoding="utf-8" import="coinweb.vo.BoardVO, coinweb.dao.BoardDAO, java.util.ArrayList"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+    
 <!DOCTYPE html>
 <html>
 <head>
 
 <!-- jQuery, bootstrap -->
-<link
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css"
-	rel="stylesheet">
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-<script
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-<link
-	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css"
-	rel="stylesheet">
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 <!-- CSS -->
-<link rel="stylesheet" type="text/css"
-	href="http://localhost:8080/coinweb/css/freeboard.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/freeboard.css">
 <!-- 리플 -->
 <script src="http://localhost:8080/coinweb/js/MyAjax.js"></script>
 
 <script>
+var sid = '<c:out value="${sid}"/>';
+
 (function($){
 	
 	$.fn.indexSearch = function(data){	
 		return $(this).attr("id").slice($(this).attr("class").length);
 	};	
 })(jQuery);
-	$(function(){
+
+	$(function(){		
+		
+		$(".reply-write-content").click(function(){
+			if(sid==""){
+				alert("로그인 후 이용하실수 있습니다.");
+				$(".reply-write-content").css('cursor', 'default');
+				$(".reply-write-content").blur();
+			}
+		});
 		
 		
 		//댓글쓰기 안내 사라지게 하기
 		$(".reply-write-content").keyup(function(){
 			var index =$(this).indexSearch();
-			var email = "${email}";
-
-			if(email==""){
-				alert("로그인 후 이용하실수 있습니다.");
-			}else{
 		    
 			if($(".reply-write-content"+index).text().length>0){
 				$(".reply-write-title"+index).fadeOut(100);
@@ -51,9 +48,7 @@
 			}if($(".reply-write-content"+index).text().length==0){
 				$(".reply-write-title"+index).fadeIn(100);
 				
-			}
-			
-			}
+			}				
 		});
 		
 		
@@ -70,9 +65,8 @@
 					$("#sizeLimit"+index).text($(".reply-write-content"+index).text().length);
 				}
 		});
-		
 	});
-	
+
 $(document).ready(function(){			
 	
 		
@@ -84,39 +78,34 @@ $(document).ready(function(){
 			var content = $(".reply-write-content").text();
 			var rname = "${name}";
 			var no = "${vo.no}";
-			var email = "${email}";
-
-			if(email==""){
+			
+			if(sid==""){
 				alert("로그인 후 이용하실수 있습니다.");
 			}else{
+				if(content == ""){
+					alert("댓글 내용을 입력해주세요.");
+				}else{
+				$.ajax({
+					url : 'http://localhost:8080/coinweb/reply_write_check.do',
+					type :'GET',
+					data : 'rname='+rname+'&content='+content+'&no='+no,
+					dataType : 'json',
+					contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+					success : function(data){				
 			
-			var content = $(".reply-write-content").text();
-			if(content == ""){
-				alert("댓글 내용을 입력해주세요.");
-			}else{
-			
-			$.ajax({
-				url : 'http://localhost:8080/coinweb/reply_write_check.do',
-				type :'GET',
-				data : 'rname='+rname+'&content='+content+'&no='+no,
-				dataType : 'json',
-				contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-				success : function(data){				
-		
-					if(data.length != 0){	
-									
-						 location.reload();
-					}						
+						if(data.length != 0){	
+										
+							 location.reload();
+						}						
+					}
+				});	
 				}
-			});	
-			}
 			}
 		});	
+
 		
-//댓글보기			
-$(function(){	
-			
-			
+		//댓글보기			
+		$(function(){	
 			var no = "${vo.no}";
 			
 			$.ajax({
@@ -134,6 +123,7 @@ $(function(){
 					      "<div class='view2'>"+data[i].content+"</div>"+
 					      
 					      "<div class='replyTool'>"+
+
 						  "<i class='fa fa-thumbs-o-up'></i><button id='replyBtnLikeit"+i+"' data-id='"+i+"' type='button' class='replyBtnLikeit replyBtn'>"+data[i].likeit+"</button>"+	
 						  "<i class='fa fa-thumbs-o-down'></i><button id='replyBtnLikeit"+i+"' data-id='"+i+"' type='button' class='replyBtnDislikeit replyBtn'>"+data[i].dislikeit+"</button>"+							
 					    
@@ -148,17 +138,19 @@ $(function(){
 				}
 			});
 		});	
-	});
+});
+
 function reply_likeit(){
-		$(".replyBtnlikeit").click(function(){	
-		alert("1");
+		$(".replyBtnLikeit").click(function(){	
 		var index = $(this).data("id");
 		var rid = $("#rid"+index).val();
-		alert("${vo.name}님을 추천합니다");
-		var param ={'bid' : '${no}' , 'rid' :rid };
+		var param ={'bid' : '${no}' , 'rid' :rid , 'id' : sid };
 		MyAjax.excute('/coinweb/freeboardreply_likeit.json', param, 'POST').done(function(response){
-			$("#replyBtnLikeit"+index).text(response.likeit);
-			
+			if(response == 1){
+				alert("${vo.name}님의 댓글을 추천합니다");
+			}else{
+				alert("이미 추천을 눌렀습니다.");
+			}			
 		});	
 	});
 };
@@ -167,17 +159,48 @@ function reply_dislikeit(){
 	$(".replyBtnDislikeit").click(function(){
 		var index = $(this).data("id");
 		var rid = $("#rid"+index).val();
-		alert("${vo.name}님을 반대합니다");
-		var param ={'bid' : '${no}' , 'rid' :rid };
+		var param ={'bid' : '${no}', 'rid' :rid, 'id' : sid};
 		MyAjax.excute('/coinweb/freeboardreply_dislikeit.json', param, 'POST').done(function(response){
-			  $("#replyBtnDislikeit"+index).text(response.dislikeit);
+			if(response == 1){
+				alert("${vo.name}님의 댓글을 반대합니다");
+			}else{
+				alert("이미 반대를 눌렀습니다.");
+			}			
 		});
 	});
 };
+
+
+function likeitBtnMain(){
+	var param ={'no' : '${no}', 'id' : sid};
+	MyAjax.excute('/coinweb/freeboard_likeit.json', param, 'POST').done(function(response){
+		if(response == 1){
+			alert("${vo.name}님의 게시물에 좋아요를 눌렀습니다.");
+		}else{
+			alert("이미 좋아요를 눌렀습니다.");
+		}
+	});
+} 
+
+function dislikeitBtnMain(){
+	var param ={'no' : '${no}', 'id' : sid};
+	MyAjax.excute('/coinweb/freeboard_dislikeit.json', param, 'POST').done(function(response){
+		if(response == 1){
+			alert("${vo.name}님의 게시물에 싫어요를 눌렀습니다.");
+		}else{
+			alert("이미 싫어요를 눌렀습니다.");
+		}
+	});			
+}
+
 </script>
 
 
 </head>
+
+
+
+
 
 <body>
 <jsp:include page="../header.jsp"></jsp:include> 
@@ -269,34 +292,7 @@ function reply_dislikeit(){
 					
 		</div>	
 	<jsp:include page="../footer.jsp"></jsp:include>  
-
-
-	<script>
-/*좋아요 버튼 
- * 로그인 후 횟수 제한 걸어야한다.*/
-function likeitBtnMain(){
-	var param ={'no' : '${no}'};
-	MyAjax.excute('/coinweb/freeboard_likeit.json', param, 'POST').done(function(response){
-			alert("${vo.name}님에게 좋아요를 눌렀습니다.");
-			$(".likeittd").text(response.likeit);
-			
-			location.reload();
-	});
-} //btn
-function dislikeitBtnMain(){
-	var param ={'no' : '${no}'};
-	MyAjax.excute('/coinweb/freeboard_dislikeit.json', param, 'POST').done(function(response){
-			alert("${vo.name}님에게 싫어요를 눌렀습니다.");
-			$(".likeittd").text(response.likeit);
-			
-			location.reload();
-	});			
-}
 	
-</script>
-
-
-
 </body>
 
 

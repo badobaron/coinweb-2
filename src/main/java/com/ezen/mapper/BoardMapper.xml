@@ -8,12 +8,12 @@
 		FROM COINWEB_BOARD ORDER BY BDATE DESC limit #{param1} ,#{param2}
 	</select>
 	<select id="getBoardListContent" resultType="coinweb.vo.BoardVO">
-		SELECT  NO, TITLE, NAME, date_format(bdate, '%YY-%m-%d') AS FBDATE, HITS, LIKEIT 
-		FROM COINWEB_BOARD WHERE UPPER(CONTENT) LIKE ('%' || UPPER(#{param1}) ||'%')) ORDER BY BDATE DESC limit #{param1} ,#{param2} 
+		SELECT  NO, TITLE, NAME, date_format(bdate, '%Y-%m-%d') AS FBDATE, HITS, LIKEIT 
+		FROM COINWEB_BOARD WHERE UPPER(CONTENT) LIKE '%' || UPPER(#{param1}) || '%' ORDER BY BDATE DESC limit #{param2} ,#{param3} 
 	</select>
 	<select id="getBoardListTitle" resultType="coinweb.vo.BoardVO">
-		SELECT ROWNUM AS RNO, NO, TITLE, NAME, date_format(bdate, '%YY-%m-%d') AS FBDATE, HITS, LIKEIT 
-		FROM COINWEB_BOARD WHERE UPPER(TITLE) LIKE ('%' || UPPER(#{param1}) ||'%')) ORDER BY BDATE DESC limit #{param1} ,#{param2}
+		SELECT NO, TITLE, NAME, date_format(bdate, '%Y-%m-%d') AS FBDATE, HITS, LIKEIT 
+		FROM COINWEB_BOARD WHERE UPPER(TITLE) LIKE '%' || UPPER(#{param1}) || '%' ORDER BY BDATE DESC limit #{param2} ,#{param3}
 	</select>
 	
 	<select id="execTotalCount" resultType="Integer">
@@ -53,8 +53,7 @@
  	</update>
  	
  	<select id="searchBoardList" resultType="coinweb.vo.BoardVO">
- 			SELECT ROWNUM AS RNO
- 				 , TITLE
+ 			SELECT TITLE
  				 , NAME
  				 , date_format(bdate, '%YY-%m-%d') AS BDATE
 				 , HITS
@@ -98,20 +97,48 @@
 	</insert>
 	
 	<update id="replyLikeitUp">
- 	  UPDATE COINWEB_BOARD_REPLY SET LIKEIT = LIKEIT+1 WHERE BID =#{param1} AND RID =#{param2}
+ 	  	UPDATE COINWEB_BOARD_REPLY SET LIKEIT = LIKEIT+1 WHERE BID =#{param1} AND RID =#{param2}
  	</update>
 
  	<update id="replyDislikeitUp">
- 	  UPDATE COINWEB_BOARD_REPLY SET DISLIKEIT = DISLIKEIT+1 WHERE BID =#{param1} AND RID =#{param2}
+ 		  UPDATE COINWEB_BOARD_REPLY SET DISLIKEIT = DISLIKEIT+1 WHERE BID =#{param1} AND RID =#{param2}
+ 	</update>
+ 	
+ 	<update id="replyLikeitDown">
+ 	  	UPDATE COINWEB_BOARD_REPLY SET LIKEIT = LIKEIT-1 WHERE BID =#{param1} AND RID =#{param2}
+ 	</update>
+
+ 	<update id="replyDislikeitDown">
+ 		  UPDATE COINWEB_BOARD_REPLY SET DISLIKEIT = DISLIKEIT-1 WHERE BID =#{param1} AND RID =#{param2}
  	</update>
  	
 	<select id="getReplyLikeit" resultType="coinweb.vo.BoardReplyVO">
- 	SELECT LIKEIT,DISLIKEIT FROM COINWEB_BOARD_REPLY WHERE BID=#{param1} AND RID =#{param2}
+ 		SELECT LIKEIT,DISLIKEIT FROM COINWEB_BOARD_REPLY WHERE BID=#{param1} AND RID =#{param2}
  	</select>
  
- 	
+ 	<insert id="insertBoardLikeit">
+		INSERT INTO board_likeit(bid,id,type,date) VALUES(#{param1}, #{param2}, #{param3}, now())			 				 					
+	</insert>
 	
+	<insert id="insertReplyLikeit">
+		INSERT INTO reply_likeit(bid,rid,id,type,date) VALUES(#{param1}, #{param2}, #{param3}, #{param4}, now())			 				 					
+	</insert>
 	
+	<insert id="deleteBoardLikeit">
+		delete from board_likeit where bid=#{param1} and id=#{param2}			 				 					
+	</insert>
+	
+	<insert id="deleteReplyLikeit">
+		delete from reply_likeit where bid=#{param1} and rid=#{param2} and id=#{param3}			 				 					
+	</insert>
+	
+	<select id="getBoardLikeitCheck" parameterType="HashMap" resultType="String">
+		select type from board_likeit where bid=#{param1} and id=#{param2}
+	</select>
+	
+	<select id="getReplyLikeitCheck" parameterType="HashMap" resultType="String">
+		select type from reply_likeit where bid=#{param1} and rid=#{param2} and id=#{param3}
+	</select>
   
    
 </mapper>

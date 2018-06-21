@@ -5,7 +5,8 @@ MyAjax = {
 		async : true,
 		cache : false,
 		dataType : 'json',
-		contentType : 'application/x-www-form-urlencoded; charset=UTF-8'
+		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+		success : function(){location.reload();}
 	},
 
 	excute : function(paramUrl, paramData, paramRequestMethod) {
@@ -25,8 +26,3 @@ MyAjax = {
 		
 		
 	};
-	
-	
-	
-
-	

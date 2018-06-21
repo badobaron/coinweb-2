@@ -2,9 +2,11 @@ package coinweb.dao;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import coinweb.vo.BoardReplyVO;
 import coinweb.vo.BoardVO;
+import coinweb.vo.LikeitVO;
 
 
 public interface BoardDAO {
@@ -20,28 +22,29 @@ public interface BoardDAO {
 	/* community content */	
 	public BoardVO getBoardContent(String no);
 	public int getUpdateHits(String no);
-	/*좋아요*/
 	public int likeitUp(String no);
 	public int likeitDown(String no);
 	public BoardVO getLikeit(String no);
-	/*섹션 만든 후, name값 연동 */
 	public int insertBoardContent(BoardVO vo);
-	
 	public int deleteBoardContent(String no);
-	
 	public int updateBoardContent(BoardVO vo);
-	
 	public ArrayList<BoardVO> searchBoardList(String search);
-	
+	public int insertBoardLikeit(String bid, String id, String type);
+	public int deleteBoardLikeit(String bid, String id);
+	public LikeitVO getBoardLikeitCheck(HashMap<String, String> params);
 	
 	
 	//reply
-	public ArrayList<BoardReplyVO> getReplyList(String no);  //댓글리스트
+	public ArrayList<BoardReplyVO> getReplyList(String no);
 	public int getReplyInsertResult(String rname, String content,String no);
 	public int getReplyCount(String no);
 	public void replyLikeitUp(String bid, String rid);
 	public void replyDislikeitUp(String bid, String rid);
+	public void replyLikeitDown(String bid, String rid);
+	public void replyDislikeitDown(String bid, String rid);
 	public BoardReplyVO getReplyLikeit(String bid, String rid);
-	 
+	public int insertReplyLikeit(String bid, String rid, String id, String type);
+	public int deleteReplyLikeit(String bid, String rid, String id);
+	public int getReplyLikeitCheck(HashMap<String, String> params);
 
 }

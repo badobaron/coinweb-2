@@ -51,7 +51,7 @@ function proc() {
 	<div class="PolyBackground_text">
 		<h1>도전! 암호화폐 모의거래!<br> 다른 사람들과 수익률을 경쟁해보세요.</h1><br>
 		<h3>실제 거래소의 실시간 데이터에 기반하여 <br>모의 거래를 해보세요!</h3>
-		<a href="http://localhost:8080/coinweb/business.do"><button class="index_btn">모의거래 시작하기</button></a>
+		<a href="http://localhost:8080/coinweb/business.do"><button class="btn">모의거래 시작하기</button></a>
 		</div>
 </div>
 </section>

@@ -39,7 +39,7 @@
 			  		${vo.title}</a>
 			  		</td>	
 			  		<td class="nametd">${vo.name}</td>
-			  		<td class="bdatetd">${vo.bdate}</td>
+			  		<td class="bdatetd">${vo.fbdate}</td>
 			  		<td class="hitstd">${vo.hits}</td>
 			  		<td class="likeittd">${vo.likeit}</td>	  		
 		  		</tr>	  		

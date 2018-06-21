@@ -1,19 +1,13 @@
 package com.ezen.controller;
 
-import java.lang.reflect.Member;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,7 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 import coinweb.dao.BoardDAO;
 import coinweb.vo.BoardReplyVO;
 import coinweb.vo.BoardVO;
-import coinweb.vo.MemberVO;
+import coinweb.vo.LikeitVO;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 
 @Controller
@@ -105,17 +101,17 @@ SqlSessionTemplate sqlSession;
 	
 		if(rpage != null){
 			reqPage = Integer.parseInt(rpage);
-			startCount = (reqPage-1) * pageSize+1; 
+			startCount = (reqPage-1) * pageSize; 
 			endCount = reqPage *pageSize;
 			
 		}else{
-			startCount = 1;
+			startCount = 0;
 			endCount = 10;
 		}
 		if(findValue.equals("title")){
-			list =dao.getBoardListTitle(search,startCount,endCount);
+			list =dao.getBoardListTitle(search,startCount,pageSize);
 		}else if(findValue.equals("content")){
-			list =dao.getBoardListContent(search,startCount,endCount);
+			list =dao.getBoardListContent(search,startCount,pageSize);
 		}else if(search.equals("")){
 			list=dao.getBoardList(startCount, endCount);		
 		}
@@ -206,30 +202,57 @@ SqlSessionTemplate sqlSession;
 	
 	@RequestMapping(value="/freeboard_likeit.json", method=RequestMethod.POST)
 	@ResponseBody
-	public JSONObject freeboard_likeit(String no) {
-		BoardDAO dao=sqlSession.getMapper(BoardDAO.class);
-		JSONObject jsonObject = new JSONObject();
-		dao.likeitUp(no);
-		BoardVO vo= dao.getLikeit(no);
-		jsonObject.put("likeit",vo.getLikeit());
-		return jsonObject;
+	public int freeboard_likeit(String no, String id) {
+		int result = 0;
+		
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("param1", no);
+		params.put("param2", id);
+		
+		String type = sqlSession.selectOne("getBoardLikeitCheck", params);
+		
+		if(type != null && type.equals("L")) {
+			result = 0;
+		} else {
+			BoardDAO dao=sqlSession.getMapper(BoardDAO.class);
+			if(type != null && type.equals("DL")) {
+				dao.deleteBoardLikeit(no, id);
+				dao.likeitUp(no);
+			}
+			dao.likeitUp(no);
+			dao.insertBoardLikeit(no, id, "L");
+			result = 1;
+		}
+		System.out.println(result);
+		return result;
 	}
 	
 
 	@RequestMapping(value="/freeboard_dislikeit.json", method=RequestMethod.POST)
 	@ResponseBody
-	public JSONObject freeboard_dislikeit(String no) {
-		BoardDAO dao=sqlSession.getMapper(BoardDAO.class);
-		JSONObject jsonObject = new JSONObject();
-		dao.likeitDown(no);
-		BoardVO vo= dao.getLikeit(no);
-		jsonObject.put("likeit",vo.getLikeit());
-		return jsonObject;
+	public int freeboard_dislikeit(String no, String id) {
+		int result = 0;
+		
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("param1", no);
+		params.put("param2", id);
+		
+		String type = sqlSession.selectOne("getBoardLikeitCheck", params);
+		
+		if(type != null && type.equals("DL")) {
+			result = 0;
+		} else {
+			BoardDAO dao=sqlSession.getMapper(BoardDAO.class);
+			if(type != null && type.equals("L")) {
+				dao.deleteBoardLikeit(no, id);
+				dao.likeitDown(no);
+			}
+			dao.likeitDown(no);
+			dao.insertBoardLikeit(no, id, "DL");
+			result = 1;
+		}
+		return result;
 	}
-	
-	
-	
-	
 
 
 	//REPLY
@@ -279,48 +302,58 @@ SqlSessionTemplate sqlSession;
 	
 	@RequestMapping(value="/freeboardreply_likeit.json", method=RequestMethod.POST)
 	@ResponseBody
-	public JSONObject freeboardreply_likeit(String bid,String rid) {
-		BoardDAO dao=sqlSession.getMapper(BoardDAO.class);
-		JSONObject jsonObject = new JSONObject();
-		dao.replyLikeitUp(bid,rid);
-		BoardReplyVO vo= dao.getReplyLikeit(bid,rid);
-		jsonObject.put("likeit",vo.getLikeit());
-		return jsonObject;
+	public int freeboardreply_likeit(String bid,String rid, String id) {
+		int result = 0;
+		
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("param1", bid);
+		params.put("param2", rid);
+		params.put("param3", id);
+		
+		String type = sqlSession.selectOne("getReplyLikeitCheck", params);
+		
+		if(type != null && type.equals("L")) {
+			result = 0;
+		} else {
+			BoardDAO dao=sqlSession.getMapper(BoardDAO.class);
+			if(type != null && type.equals("DL")) {
+				dao.deleteReplyLikeit(bid, rid, id);
+				dao.replyDislikeitDown(bid,rid);
+			}
+			dao.replyLikeitUp(bid,rid);
+			dao.insertReplyLikeit(bid,rid,id,"L");
+			result = 1;
+		}
+		return result;
 	}
 	
 	@RequestMapping(value="/freeboardreply_dislikeit.json", method=RequestMethod.POST)
 	@ResponseBody
-	public JSONObject freeboardreply_dislikeit(String bid,String rid) {
-		BoardDAO dao=sqlSession.getMapper(BoardDAO.class);
-		JSONObject jsonObject = new JSONObject();
-		dao.replyDislikeitUp(bid,rid);
-		BoardReplyVO vo= dao.getReplyLikeit(bid,rid);
-		jsonObject.put("dislikeit",vo.getDislikeit());
-		return jsonObject;
+	public int freeboardreply_dislikeit(String bid,String rid, String id) {
+		int result = 0;
+		
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("param1", bid);
+		params.put("param2", rid);
+		params.put("param3", id);
+		
+		String type = sqlSession.selectOne("getReplyLikeitCheck", params);
+		
+		if(type != null && type.equals("DL")) {
+			result = 0;
+		} else {
+			BoardDAO dao=sqlSession.getMapper(BoardDAO.class);
+			if(type != null && type.equals("L")) {
+				dao.deleteReplyLikeit(bid, rid, id);
+				dao.replyLikeitDown(bid,rid);
+			}
+			dao.replyDislikeitUp(bid,rid);
+			dao.insertReplyLikeit(bid,rid,id,"DL");
+			result = 1;
+		}
+		return result;
 	}
 	
-	
-	
-	
-	
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

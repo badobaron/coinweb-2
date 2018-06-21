@@ -1,11 +1,10 @@
 package coinweb.vo;
 
 public class BoardReplySubVO {
-	int rid;  // BoardReplyVO의 rid 참조 값
+	int rid;  
 	int rrid;
 	int likeit,dislikeit;
 	String content,rdate;
-	/*덧글마다 추천 반대 likeit,dislikeit*/
 	
 	
 	public int getLikeit() {
