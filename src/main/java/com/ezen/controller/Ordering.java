@@ -27,7 +27,6 @@ public class Ordering extends Thread {
 	};
 
 	public void run() {
-		while(true){
 			OrderDAO dao = sqlSession.getMapper(OrderDAO.class);
 			WalletDAO w_dao = sqlSession.getMapper(WalletDAO.class);
 	
@@ -145,13 +144,6 @@ public class Ordering extends Thread {
 					}
 				}
 			}
-	
-			try {
-				Thread.sleep(3500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
 		}
 	}
 

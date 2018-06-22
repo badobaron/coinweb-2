@@ -66,7 +66,7 @@
 					
 					<button  type="submit" class="btn btn-comm-con" style="margin-top: 5px;">검색</button>
 					
-					<a href="/coinweb/freeboard_write.do"><button type="button" class= "btn-comm-con btn" style="float: right; margin-top: 5px;">글쓰기</button></a>
+					<button type="button" id="freeboard_write_btn" class= "btn-comm-con btn" style="float: right; margin-top: 5px;">글쓰기</button>
 					<div id="ampaginationsm" style="text-align: center; "></div>
 				</form>
 				</div>
@@ -79,7 +79,6 @@
 
 <script>
 	$(document).ready(function($) {
-		
 		var pager = $('#ampaginationsm').pagination({
 			
 		    maxSize: 7,	    		// max page size
@@ -103,15 +102,14 @@
 		});	
 	
 	$("#freeboard_write_btn").click(function($){
-		var email = "${email}";
+		var sid = '<c:out value="${sid}"/>';
 
-		if(email==""){
+		if(sid==""){
 			alert("로그인 후 이용하실수 있습니다.");
 		}else{
-			location.href= '/coinweb/freeboard_write.do?=${email}';			
+			location.href= '/coinweb/freeboard_write.do';			
 		}
-		 		
-		 	});
+	});
 </script>
 
 </html>

@@ -258,11 +258,11 @@ SqlSessionTemplate sqlSession;
 	//REPLY
 	@RequestMapping(value="/reply_write_check.do", method=RequestMethod.GET)
 	@ResponseBody
-	public String reply_write_check(String rname, String content, String no){
+	public String reply_write_check(String id, String rname, String content, String no){
 	
 	
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		int result = dao.getReplyInsertResult(no, rname, content);		
+		int result = dao.getReplyInsertResult(id, no, rname, content);		
 		return String.valueOf(result);
 	}
 	

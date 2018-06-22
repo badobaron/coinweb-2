@@ -36,7 +36,7 @@ public interface BoardDAO {
 	
 	//reply
 	public ArrayList<BoardReplyVO> getReplyList(String no);
-	public int getReplyInsertResult(String rname, String content,String no);
+	public int getReplyInsertResult(String id, String rname, String content,String no);
 	public int getReplyCount(String no);
 	public void replyLikeitUp(String bid, String rid);
 	public void replyDislikeitUp(String bid, String rid);

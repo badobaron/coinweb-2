@@ -44,7 +44,7 @@ public class LoginController {
 			session.setAttribute("sid", vo.getId());
 			session.setAttribute("name", vo.getName());
 			session.setAttribute("email", vo.getEmail());
-			mv.setViewName("index");
+			mv.setViewName("redirect:/index.do");
 		}else{
 			mv.setViewName("index");
 			writer.println("<script>");
@@ -65,7 +65,7 @@ public class LoginController {
     	if(sid != 0)
     		session.invalidate();
 		
-		return "index";
+		return "redirect:/index.do";
 	}
 	
 	/*비밀번호 변경 아이디 비밀번호 비교*/

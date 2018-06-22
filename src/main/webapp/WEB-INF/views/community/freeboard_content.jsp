@@ -88,7 +88,7 @@ $(document).ready(function(){
 				$.ajax({
 					url : 'http://localhost:8080/coinweb/reply_write_check.do',
 					type :'GET',
-					data : 'rname='+rname+'&content='+content+'&no='+no,
+					data : 'id='+sid+'&rname='+rname+'&content='+content+'&no='+no,
 					dataType : 'json',
 					contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 					success : function(data){				
@@ -141,56 +141,72 @@ $(document).ready(function(){
 });
 
 function reply_likeit(){
-		$(".replyBtnLikeit").click(function(){	
-		var index = $(this).data("id");
-		var rid = $("#rid"+index).val();
-		var param ={'bid' : '${no}' , 'rid' :rid , 'id' : sid };
-		MyAjax.excute('/coinweb/freeboardreply_likeit.json', param, 'POST').done(function(response){
-			if(response == 1){
-				alert("${vo.name}님의 댓글을 추천합니다");
-			}else{
-				alert("이미 추천을 눌렀습니다.");
-			}			
-		});	
+	$(".replyBtnLikeit").click(function(){
+		if(sid==""){
+			alert("로그인 후 이용하실수 있습니다.");
+		}else{
+			var index = $(this).data("id");
+			var rid = $("#rid"+index).val();
+			var param ={'bid' : '${no}' , 'rid' :rid , 'id' : sid };
+			MyAjax.excute('/coinweb/freeboardreply_likeit.json', param, 'POST').done(function(response){
+				if(response == 1){
+					alert("${vo.name}님의 댓글을 추천합니다");
+				}else{
+					alert("이미 추천을 눌렀습니다.");
+				}		
+			});
+		}
 	});
 };
 	
 function reply_dislikeit(){
 	$(".replyBtnDislikeit").click(function(){
-		var index = $(this).data("id");
-		var rid = $("#rid"+index).val();
-		var param ={'bid' : '${no}', 'rid' :rid, 'id' : sid};
-		MyAjax.excute('/coinweb/freeboardreply_dislikeit.json', param, 'POST').done(function(response){
-			if(response == 1){
-				alert("${vo.name}님의 댓글을 반대합니다");
-			}else{
-				alert("이미 반대를 눌렀습니다.");
-			}			
-		});
+		if(sid==""){
+			alert("로그인 후 이용하실수 있습니다.");
+		}else{
+			var index = $(this).data("id");
+			var rid = $("#rid"+index).val();
+			var param ={'bid' : '${no}', 'rid' :rid, 'id' : sid};
+			MyAjax.excute('/coinweb/freeboardreply_dislikeit.json', param, 'POST').done(function(response){
+				if(response == 1){
+					alert("${vo.name}님의 댓글을 반대합니다");
+				}else{
+					alert("이미 반대를 눌렀습니다.");
+				}		
+			});
+		}
 	});
 };
 
 
 function likeitBtnMain(){
-	var param ={'no' : '${no}', 'id' : sid};
-	MyAjax.excute('/coinweb/freeboard_likeit.json', param, 'POST').done(function(response){
-		if(response == 1){
-			alert("${vo.name}님의 게시물에 좋아요를 눌렀습니다.");
-		}else{
-			alert("이미 좋아요를 눌렀습니다.");
-		}
-	});
+	if(sid==""){
+		alert("로그인 후 이용하실수 있습니다.");
+	}else{
+		var param ={'no' : '${no}', 'id' : sid};
+		MyAjax.excute('/coinweb/freeboard_likeit.json', param, 'POST').done(function(response){
+			if(response == 1){
+				alert("${vo.name}님의 게시물에 좋아요를 눌렀습니다.");
+			}else{
+				alert("이미 좋아요를 눌렀습니다.");
+			}
+		});
+	}
 } 
 
 function dislikeitBtnMain(){
-	var param ={'no' : '${no}', 'id' : sid};
-	MyAjax.excute('/coinweb/freeboard_dislikeit.json', param, 'POST').done(function(response){
-		if(response == 1){
-			alert("${vo.name}님의 게시물에 싫어요를 눌렀습니다.");
-		}else{
-			alert("이미 싫어요를 눌렀습니다.");
-		}
-	});			
+	if(sid==""){
+		alert("로그인 후 이용하실수 있습니다.");
+	}else{
+		var param ={'no' : '${no}', 'id' : sid};
+		MyAjax.excute('/coinweb/freeboard_dislikeit.json', param, 'POST').done(function(response){
+			if(response == 1){
+				alert("${vo.name}님의 게시물에 싫어요를 눌렀습니다.");
+			}else{
+				alert("이미 싫어요를 눌렀습니다.");
+			}
+		});
+	}
 }
 
 </script>

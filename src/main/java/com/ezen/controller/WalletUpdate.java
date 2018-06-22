@@ -25,7 +25,6 @@ public class WalletUpdate {
 	};
 
 	public void run() {
-		while(true){
 			WalletDAO dao = sqlSession.getMapper(WalletDAO.class);
 	
 			URL url = null, url2 = null, url3 = null;
@@ -89,15 +88,9 @@ public class WalletUpdate {
 				dao.getWalletTotalUpdate(id, tot);
 				
 				}
-			}
-			
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			}	
 		}
-	}
+	
 
 	public static int parseInt(Object obj) {
 		int result = 0;
