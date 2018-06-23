@@ -17,7 +17,7 @@ $(document).ready(function() {
   });
 });
 </script>
-<title>Insert title here</title>
+<title>Coinweb - 가상화폐 모의투자</title>
 </head>
 <body>
 <jsp:include page="../header.jsp" />

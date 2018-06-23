@@ -17,7 +17,7 @@ $(document).ready(function() {
   });
 });
 </script>
-<title>Insert title here</title>
+<title>Coinweb - 가상화폐 모의투자</title>
 </head>
 <body>
 	<jsp:include page="../header.jsp" />
@@ -98,6 +98,7 @@ $(document).ready(function() {
 
 					<p style="color: #F08235">Answer</p>
 					<p>상단 네비게이션 메뉴에서 [문의게시판]을 선택하셔서 하고싶은 내용을 전달해 주시면 됩니다.</p>
+					<p>답변은 메일을 통해 보내드립니다.</p>
 
 				</span>
 

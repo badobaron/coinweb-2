@@ -6,8 +6,8 @@ import coinweb.vo.MemberVO;
 import coinweb.vo.RankingVO;
 
 public interface MemberDAO {	
-	 
-	public int getInsertResult(MemberVO vo);	
+	
+	public int getInsertResult(MemberVO vo); 
 	public int getLoginResult(MemberVO vo);	
 	public ArrayList<MemberVO> getResultList();
 	public MemberVO getResultVO(String eamil);

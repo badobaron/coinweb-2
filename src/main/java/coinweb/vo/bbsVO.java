@@ -3,18 +3,18 @@ package coinweb.vo;
 public class bbsVO {
 	
 	int bbsID, rno;
-	String bbsTitle,userID,bbsContent,bbsdate;
+	String bbsTitle,userID,bbsContent,fdate;
 	public int getRno() {
 		return rno;
 	}
 	public void setRno(int rno) {
 		this.rno = rno;
 	}
-	public String getBbsdate() {
-		return bbsdate;
+	public String getFdate() {
+		return fdate;
 	}
-	public void setBbsdate(String bbsdate) {
-		this.bbsdate = bbsdate;
+	public void setFdate(String bbsdate) {
+		this.fdate = bbsdate;
 	}
 	public String getBbsTitle() {
 		return bbsTitle;

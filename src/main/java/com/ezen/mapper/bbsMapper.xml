@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="coinweb.dao.bbsDAO">
+	<!-- /**날짜가져오기*/ -->
+	<select id="getDate" resultType="coinweb.vo.bbsVO">
+		SELECT SYSDATE
+	</select>
+
+	<!-- /**Next*/ -->
+	<select id="getNext" resultType="coinweb.vo.bbsVO">
+		SELECT bbsID FROM BBS ORDER BY bbsID DESC
+	</select>
+
+	<!-- /*글쓰기*/ -->
+	<insert id="write" parameterType="coinweb.vo.bbsVO">
+		INSERT INTO BBS(bbstitle, userid, bbscontent, bbsdate) VALUES(#{bbsTitle}, #{userID} ,#{bbsContent} ,now())
+	</insert>
+
+	<select id="execTotalCount" resultType="Integer">
+ 		SELECT COUNT(*) FROM BBS
+ 	</select>
+
+	<!-- 리스트뿌리기 -->
+	<select id="getResultList" resultType="coinweb.vo.bbsVO">
+		select bbsID, bbsTitle, userID, bbsContent, date_format(bbsdate, '%Y-%m-%d') AS FDATE
+		from BBS ORDER BY BBSDATE DESC limit #{param1} ,#{param2}
+	</select>
+
+	<!-- 내용보기 -->
+	<select id="getResultVO" resultType="coinweb.vo.bbsVO">
+		select bbsID, bbsTitle, userID, bbsContent, date_format(bbsdate, '%Y-%m-%d %H:%i:%S') as fdate FROM BBS 
+		WHERE bbsID=#{bbsID}
+	</select>
+
+	<!-- 업데이트 -->
+	<update id="getUpdateResult">
+		UPDATE BBS SET BBSTITLE = #{bbsTitle}, BBSCONTENT = #{bbsContent} WHERE BBSID = #{bbsID}
+	</update>
+
+	<!-- 삭제 -->
+	<delete id="getDeleteResult">
+		DELETE FROM bbs WHERE BBSID=#{bbsID}
+	</delete>
+
+
+</mapper>

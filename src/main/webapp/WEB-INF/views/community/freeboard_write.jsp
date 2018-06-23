@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>게시판글쓰기</title>
+<title>Coinweb - 가상화폐 모의투자</title>
   <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
   <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
@@ -74,7 +74,7 @@ $(document).ready(function(){
 			<div class="form-group">
 			
 					<input type="text" class="name form-control" id="name" name="name" hidden="true" value="${name}">
-					<input type="text" class="id form-control" id="id" name="id" hidden="true" value="${sid}">
+					<input type="text" class="id form-control" id="userID" name="userID" hidden="true" value="${sid}">
 				
 			</div>
 	

@@ -8,61 +8,59 @@
 		FROM COINWEB_BOARD ORDER BY BDATE DESC limit #{param1} ,#{param2}
 	</select>
 	<select id="getBoardListContent" resultType="coinweb.vo.BoardVO">
-		SELECT  NO, ID, TITLE, NAME, date_format(bdate, '%Y-%m-%d') AS FBDATE, HITS, LIKEIT 
+		SELECT  NO, ID, TITLE, NAME, date_format(bdate, '%Y-%m-%d %H:%i:%S') AS FBDATE, HITS, LIKEIT 
 		FROM COINWEB_BOARD WHERE UPPER(CONTENT) LIKE '%' || UPPER(#{param1}) || '%' ORDER BY BDATE DESC limit #{param2} ,#{param3} 
 	</select>
 	<select id="getBoardListTitle" resultType="coinweb.vo.BoardVO">
 		SELECT NO, ID, TITLE, NAME, date_format(bdate, '%Y-%m-%d') AS FBDATE, HITS, LIKEIT 
 		FROM COINWEB_BOARD WHERE UPPER(TITLE) LIKE '%' || UPPER(#{param1}) || '%' ORDER BY BDATE DESC limit #{param2} ,#{param3}
 	</select>
-	
 	<select id="execTotalCount" resultType="Integer">
- 			SELECT COUNT(*) FROM COINWEB_BOARD
+ 		SELECT COUNT(*) FROM COINWEB_BOARD
  	</select>
  	<select id="execTotalCountContent" resultType="Integer">
- 			SELECT COUNT(*) FROM COINWEB_BOARD   WHERE UPPER(CONTENT) LIKE '%' || UPPER(#{param1}) || '%' 
+ 		SELECT COUNT(*) FROM COINWEB_BOARD   WHERE UPPER(CONTENT) LIKE '%' || UPPER(#{param1}) || '%' 
  	</select> 
  	<select id="execTotalCountTitle" resultType="Integer">
- 			SELECT COUNT(*) FROM COINWEB_BOARD   WHERE UPPER(TITLE) LIKE '%' || UPPER(#{param1}) || '%' 
+ 		SELECT COUNT(*) FROM COINWEB_BOARD   WHERE UPPER(TITLE) LIKE '%' || UPPER(#{param1}) || '%' 
  	</select> 
- 	 
- 		
+ 	 		
 	<select id="getBoardContent" resultType="coinweb.vo.BoardVO">
-			SELECT  NO, ID, TITLE, NAME, BDATE, HITS, LIKEIT, CONTENT FROM COINWEB_BOARD WHERE NO = #{no}
+		SELECT  NO, ID, TITLE, NAME, BDATE, HITS, LIKEIT, CONTENT FROM COINWEB_BOARD WHERE NO = #{no}
 	</select>
 	
  	<insert id="insertBoardContent" parameterType="coinweb.vo.BoardVO">
- 			INSERT INTO COINWEB_BOARD(id,title,name,content,bdate,hits,likeit) 
- 			VALUES(#{id}, #{title}, #{name}, #{content, jdbcType=CLOB}, now(), 0, 0)
+ 		INSERT INTO COINWEB_BOARD(id,title,name,content,bdate,hits,likeit) 
+ 		VALUES(#{id}, #{title}, #{name}, #{content, jdbcType=CLOB}, now(), 0, 0)
  	</insert>
  	<delete id="deleteBoardContent">
- 			DELETE FROM COINWEB_BOARD WHERE NO=#{no}
+ 		DELETE FROM COINWEB_BOARD WHERE NO=#{no}
  	</delete>	
  	
  	<update id="updateBoardContent">
-		 	UPDATE COINWEB_BOARD SET TITLE = #{title}, CONTENT = #{content} WHERE NO = #{no}				
+	 	UPDATE COINWEB_BOARD SET TITLE = #{title}, CONTENT = #{content} WHERE NO = #{no}				
  	</update>
  	
  	<select id="searchBoardList" resultType="coinweb.vo.BoardVO">
- 			SELECT TITLE
- 				 , NAME
- 				 , date_format(bdate, '%YY-%m-%d') AS BDATE
-				 , HITS
-				 , LIKEIT FROM COINWEB_BOARD 
-				   WHERE TITLE LIKE '%' || #{search} || '%' 
+ 		SELECT TITLE
+ 			 , NAME
+ 			 , date_format(bdate, '%YY-%m-%d') AS BDATE
+			 , HITS
+			 , LIKEIT FROM COINWEB_BOARD 
+			   WHERE TITLE LIKE '%' || #{search} || '%' 
  	</select>
  	<update id="getUpdateHits">
- 			UPDATE COINWEB_BOARD SET HITS = HITS+1 WHERE NO =#{no}
+ 		UPDATE COINWEB_BOARD SET HITS = HITS+1 WHERE NO =#{no}
  	</update>
  	
  	<update id="likeitUp">
- 	  UPDATE COINWEB_BOARD SET LIKEIT = LIKEIT+1 WHERE NO =#{no}
+		UPDATE COINWEB_BOARD SET LIKEIT = LIKEIT+1 WHERE NO =#{no}
  	</update>
  	<update id="likeitDown">
- 	  UPDATE COINWEB_BOARD SET LIKEIT = LIKEIT-1 WHERE NO =#{no}
+		UPDATE COINWEB_BOARD SET LIKEIT = LIKEIT-1 WHERE NO =#{no}
  	</update>
  	<select id="getLikeit" resultType="coinweb.vo.BoardVO">
- 		SELECT LIKEIT FROM COINWEB_BOARD WHERE NO=#{no}
+		SELECT LIKEIT FROM COINWEB_BOARD WHERE NO=#{no}
  	</select>
  	
  	<select id="getReplyList" resultType="coinweb.vo.BoardReplyVO">
@@ -86,7 +84,7 @@
  	</update>
 
  	<update id="replyDislikeitUp">
- 		  UPDATE COINWEB_BOARD_REPLY SET DISLIKEIT = DISLIKEIT+1 WHERE BID =#{param1} AND RID =#{param2}
+		UPDATE COINWEB_BOARD_REPLY SET DISLIKEIT = DISLIKEIT+1 WHERE BID =#{param1} AND RID =#{param2}
  	</update>
  	
  	<update id="replyLikeitDown">
@@ -94,7 +92,7 @@
  	</update>
 
  	<update id="replyDislikeitDown">
- 		  UPDATE COINWEB_BOARD_REPLY SET DISLIKEIT = DISLIKEIT-1 WHERE BID =#{param1} AND RID =#{param2}
+		UPDATE COINWEB_BOARD_REPLY SET DISLIKEIT = DISLIKEIT-1 WHERE BID =#{param1} AND RID =#{param2}
  	</update>
  	
 	<select id="getReplyLikeit" resultType="coinweb.vo.BoardReplyVO">

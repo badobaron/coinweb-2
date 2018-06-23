@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" href="http://localhost:8080/coinweb/css/coin.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<title>Insert title here</title>
+<title>Coinweb - 가상화폐 모의투자</title>
 <script src="http://localhost:8080/coinweb/js/jquery-3.3.1.min.js"></script>
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
@@ -25,6 +25,8 @@ var total_buy_price = 0;
 var total_sell_price = 0;
 
 var sid = '<c:out value="${sid}"/>';
+
+//초기 화면띄우기
 $(function() {
 	fSetHogaBg();
 	GetChart();
@@ -52,6 +54,7 @@ $(function() {
 
 });
 
+//차트
 function GetChart(){
 $.get('proxy.do',{
 		csurl:'https://www.bithumb.com/resources/chart/'+coin+'_xcoinTrade_10M.json'
@@ -215,6 +218,8 @@ var now_price = 0;
 }
 var asks = [];
 var bids = [];
+
+//호가
 function GetHoga(){
 	$.get('https://api.bithumb.com/public/orderbook/'+coin, function(data) {
 		asks = data['data']['asks'];
@@ -229,6 +234,7 @@ function GetHoga(){
 		setTimeout(	"fResetHogaBg()", 10000);
 	});
 }
+//거래내역
 function GetTransactions(){
 	$.get('https://api.bithumb.com/public/transaction_history/'+coin, function(data) {
 		for(var i=0;i<10;i++){$('#trans_price'+i).html(numberWithCommas(data['data'][i]['price']));}
@@ -342,6 +348,7 @@ function GetMyData(){
 	}
 }		
 
+//주문내역
 function GetOrderList(){
 	$.ajax({
 		url : 'http://localhost:8080/coinweb/order_list.do',
@@ -362,7 +369,7 @@ function GetOrderList(){
 		}
 	});
 }
-
+//거래내역
 function GetHistoryList(){
 	$.ajax({
 		url : 'http://localhost:8080/coinweb/history_list.do',
@@ -385,7 +392,7 @@ function GetHistoryList(){
 		}
 	});
 }
-
+//
 function GetOrderResult(price, amount, idx){
 	$.ajax({
 		url : 'http://localhost:8080/coinweb/order_result.do',

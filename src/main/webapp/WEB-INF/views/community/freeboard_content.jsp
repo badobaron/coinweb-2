@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<title>Coinweb - 가상화폐 모의투자</title>
 <!-- jQuery, bootstrap -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
@@ -244,7 +244,8 @@ function dislikeitBtnMain(){
 			<div class="freeboard_content">
                         <p>
                         	${vo.content}
-                        </p> </div>
+                        </p> 
+             </div>
 					
 					
 					
@@ -256,8 +257,10 @@ function dislikeitBtnMain(){
 					</div>
 					<div style="text-align: center;">
 							<a href="/coinweb/freeboard.do?"><button type="button" class="btn btn-comm-con">이전 페이지</button></a>
+							<c:if test="${sid eq vo.id }">		
 							<a href="/coinweb/freeboard_update.do?no=${no}"><button type="button" class="btn btn-comm-con">수정하기</button></a>
-							<a href="/coinweb/freeboard_delete.do?no=${no}"><button type="button" class="btn btn-comm-con">바로삭제</button></a>					
+							<a href="/coinweb/freeboard_delete.do?no=${no}"><button type="button" class="btn btn-comm-con">바로삭제</button></a>
+							</c:if>					
 							<a href="/coinweb/index.do"><button type="button" class="btn btn-comm-con">홈으로</button></a>									
 					</div>
 					

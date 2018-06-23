@@ -39,7 +39,7 @@ function proc() {
     }
 }
 </script>
-<title>Insert title here</title>
+<title>Coinweb - 가상화폐 모의투자</title>
 </head>
 <body onload="proc()">
 
@@ -186,7 +186,7 @@ function proc() {
 				 <a href="#"><span class="span1">
 				 <img src="http://localhost:8080/coinweb/images/iconmonstr-smartphone-16-240 (1).png">
 				 <br><h2>코인 앱 출시</h2><b>지금 바로 설치하세요</b></span></a>
-				<a href="http://localhost:8080/coinweb/Rangking/Rangk.jsp"><span class="span2">
+				<a href="http://localhost:8080/coinweb/rangking.do"><span class="span2">
 				<img src="http://localhost:8080/coinweb/images/iconmonstr-award-24-120.png">
 				<h2>랭킹 시스템</h2> <b>다른사람들과 경쟁해보세요</b></span></a>
 			</form>

@@ -6,7 +6,7 @@
 <meta charset="EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://localhost:8080/coinweb/css/coin.css">
-<title>Insert title here</title>
+<title>Coinweb - 가상화폐 모의투자</title>
 <script src="http://localhost:8080/coinweb/js/jquery-3.3.1.min.js"></script>
 <script>
 var sid = ${sid};

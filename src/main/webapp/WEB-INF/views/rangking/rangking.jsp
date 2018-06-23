@@ -9,7 +9,7 @@
 <script src="js/jquery-3.3.1.min.js"></script>
 
 
-<title>Insert title here</title>
+<title>Coinweb - 가상화폐 모의투자</title>
 </head>
 <body>
 
