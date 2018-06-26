@@ -22,30 +22,41 @@
 <!-- 페이징처리 -->
 <script src="http://localhost:8080/coinweb/js/am-pagination.js"></script>
 <script>
-	$(document).ready(function($) {
+$(document).ready(function($) {
+	
+	var pager = $('#ampaginationsm').pagination({
 		
-		var pager = $('#ampaginationsm').pagination({
-			
-		    maxSize: 7,	    		// max page size
-		    totals: '${dbCount}',	// total pages	
-		    page: '${rpage}',		// initial page		
-		    pageSize: 10,			// max number items per page
-		
-		    // custom labels		
-		    lastText: '&raquo;&raquo;', 		
-		    firstText: '&laquo;&laquo;',		
-		    prevText: '&laquo;',		
-		    nextText: '&raquo;',
-				     
-		    btnSize:'sm'	// 'sm'  or 'lg'		
-			});
-		
-		$('#ampaginationsm').on('am.pagination.change',function(e){
-			   $('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "/coinweb/bbs.do?rpage="+e.page);         
-	   		});
+	    maxSize: 7,	    		// max page size
+	    totals: '${dbCount}',	// total pages	
+	    page: '${rpage}',		// initial page		
+	    pageSize: 10,			// max number items per page
+	
+	    // custom labels		
+	    lastText: '&raquo;&raquo;', 		
+	    firstText: '&laquo;&laquo;',		
+	    prevText: '&laquo;',		
+	    nextText: '&raquo;',
+			     
+	    btnSize:'sm'	// 'sm'  or 'lg'		
 		});
-	</script>
+	
+	$('#ampaginationsm').on('am.pagination.change',function(e){
+		   $('.showlabelsm').text('The selected page no: '+e.page);
+           $(location).attr('href', "/coinweb/bbs.do?rpage="+e.page);         
+   		});
+	
+	$("#boxbtn").click(function($){
+		var sid = '<c:out value="${sid}"/>';
+
+		if(sid==""){
+			alert("로그인 후 이용하실수 있습니다.");
+		}else{
+			location.href= '/coinweb/write.do';			
+		}
+	});
+});
+	
+</script>
 <link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/am-pagination.css">
 
 <link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/freeboard.css">
@@ -60,8 +71,7 @@
 	<h1 class="usermanual_down">문의하기</h1></div>
 
 	<div id="boxbtn1">
-		<a href="http://localhost:8080/coinweb/write.do"><button
-				type="button" id="boxbtn">1:1 문의하기</button></a>
+		<button type="button" id="boxbtn">1:1 문의하기</button>
 	</div>
 
 	<div class="bbsboard_table">
@@ -70,17 +80,15 @@
 				<tr id="fontsize">
 					<th>NO</th>
 					<th id="title1">제목</th>
-					<th>작성자</th>
 					<th id="date123">작성일</th>
 				</tr>
 			</thead>
 			<c:forEach items="${list}" var="vo">
 				<tr id="bbs-list" class="bbs-list ">
 					<td class="bbsrno">${vo.bbsID}</td>
-					<td class="bbstitle" id="bbstitle"><a
-						href="view.do?bbsID=${vo.bbsID}">${vo.bbsTitle}</a>
-						<!-- </a> --></td>
-					<td class="bbsid">${vo.userID}</td>
+					<td class="bbstitle" id="bbstitle">
+					<a href="view.do?bbsID=${vo.bbsID}">${vo.bbsTitle}</a>
+					</td>
 					<td class="bbsdate">${vo.fdate}</td>
 				</tr>
 			</c:forEach>

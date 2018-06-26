@@ -392,18 +392,6 @@ function GetHistoryList(){
 		}
 	});
 }
-//
-function GetOrderResult(price, amount, idx){
-	$.ajax({
-		url : 'http://localhost:8080/coinweb/order_result.do',
-		type :'GET',	
-		data : 'id='+sid+'&coin='+coin+'&price'+price+'&amount'+amount+'&idx',
-		dataType : 'json',
-		success : function(data){
-
-		}
-	});
-}
 
 $(function(){
 

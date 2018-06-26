@@ -99,10 +99,13 @@ public class FQAController {
 
 	@RequestMapping(value="/updateAction.do", method=RequestMethod.POST)
 	public String updateAction(bbsVO vo){
-	bbsDAO dao =sqlSession.getMapper(bbsDAO.class);
-	dao.getUpdateResult(vo);
-	return "redirect:/bbs.do";
+		
+		bbsDAO dao = sqlSession.getMapper(bbsDAO.class);
+		dao.getUpdateResult(vo);
+		
+		return "redirect:/bbs.do";
 	}
+	
 	@RequestMapping(value = "/writeAction.do", method = RequestMethod.POST)
 	public String writeA(bbsVO vo) {
 

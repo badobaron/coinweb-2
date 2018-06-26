@@ -28,11 +28,6 @@
 					<p>${vo.bbsTitle}</p>
 					<p id="c_date">${vo.fdate}</p>
 				</div>
-				<div id="bbscon">
-					<p id="c_id">
-						<font color=blue>${vo.userID}</font>
-					</p>
-				</div>
 				<div id="c_content">
 					<tr>
 						<td id="bc">${vo.bbsContent}</td>
@@ -44,11 +39,11 @@
 			<div style="text-align: center;">
 				<a
 					href="http://localhost:8080/coinweb/update.do?bbsID=${vo.bbsID}"><button
-						type="button" id="btn3">수정하기</button></a> <a
+						type="button" class="btn3">수정하기</button></a> <a
 					href="http://localhost:8080/coinweb/bbs.do"><button
-						type="button" id="btn3">목록으로</button></a> <a
+						type="button" class="btn3">목록으로</button></a> <a
 					href="http://localhost:8080/coinweb/deleteAction.do?bbsID=${vo.bbsID }"><button
-						type="button" id="btn3">삭제하기</button></a>
+						type="button" class="btn3">삭제하기</button></a>
 			</div>
 		</form>
 	</div>

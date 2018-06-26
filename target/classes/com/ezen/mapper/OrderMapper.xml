@@ -11,7 +11,8 @@
 	</insert>
 	
 	<select id="getOrderCancelResult" resultType="coinweb.vo.OrderVO">
-		select idx, id, coin, price, price_completed, amount, amount_completed, type from coin_order where idx=#{param3} and id=#{param1} and coin=#{param2}
+		select idx, id, coin, price, price_completed, amount, amount_completed, type from coin_order
+		 where idx=#{param3} and id=#{param1} and coin=#{param2}
 	</select>
 	
 	<delete id="getOrderCancel">

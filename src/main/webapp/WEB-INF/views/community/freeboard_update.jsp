@@ -79,9 +79,9 @@ $(document).ready(function(){
 					
 				
 					<div style="text-align: center;">
-						<a href="/coinweb/freeboard_content.do?no=${no}&rno=${rno}"><button type="button" class="btn btn-comm-con" >이전 페이지</button></a>
+						<a href="/coinweb/freeboard_content.do?no=${no}"><button type="button" class="btn btn-comm-con" >이전 페이지</button></a>
 						<button type="submit" id="btnUpdate" class="btn btn-comm-con">수정하기</button>
-						<a href="/coinweb/freeboard_delete.do?no=${no}&rno=${rno}"><button type="button" class="btn btn-comm-con">삭제하기</button></a>
+						<a href="/coinweb/freeboard_delete.do?no=${no}"><button type="button" class="btn btn-comm-con">삭제하기</button></a>
 						<a href="/coinweb/index.do"><button type="button" class="btn btn-comm-con">홈으로</button></a>
 					</div>
 		</form>

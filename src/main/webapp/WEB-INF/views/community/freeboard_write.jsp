@@ -74,7 +74,7 @@ $(document).ready(function(){
 			<div class="form-group">
 			
 					<input type="text" class="name form-control" id="name" name="name" hidden="true" value="${name}">
-					<input type="text" class="id form-control" id="userID" name="userID" hidden="true" value="${sid}">
+					<input type="text" class="id form-control" id="id" name="id" hidden="true" value="${sid}">
 				
 			</div>
 	
