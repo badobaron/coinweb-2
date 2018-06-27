@@ -336,10 +336,10 @@ function GetMyData(){
 			dataType : 'json',
 			success : function(data){
 					$("#avail_using_won").html(numberWithCommas(data.available-data.using)+"원");
-					$("#avail_coin").html(Floor((data.coin_avail-data.coin_using),4)+coin);
+					$("#avail_coin").html((data.coin_avail-data.coin_using).toFixed(4)+coin);
 					$("#avail_won").html(numberWithCommas(data.available)+"원");
-					$("#coin_tot").html(Floor(data.coin_tot,4)+coin);
-					$("#avile_using").html(Floor((data.coin_avail-data.coin_using),4)+coin+" / "+Floor(data.coin_using,4)+coin);
+					$("#coin_tot").html((data.coin_tot).toFixed(4)+coin);
+					$("#avile_using").html((data.coin_avail-data.coin_using).toFixed(4)+coin+" / "+(data.coin_using).toFixed(4)+coin);
 					$("#won_tot").html(numberWithCommas(data.tot)+"원");
 					avail_won = data.available-data.using;
 					avail_coin = data.coin_avail-data.coin_using;
@@ -404,7 +404,7 @@ $(function(){
 	// 퍼센트 버튼 클릭시
 	$('.btn_buy_percent').click(function (e) {
 		if($('#buy_price').val() > 0) {
-			var pct_buy_coin = ((avail_won * $(this).data('pct')) / 100) / $('#buy_price').val();
+			var pct_buy_coin = ((avail_won * ($(this).data('pct'))) / 100) / $('#buy_price').val();
 			$('#buy_unit').val(Floor(pct_buy_coin,4));
 			fCalcData();
 		}

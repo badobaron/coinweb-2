@@ -43,8 +43,10 @@
 	
 	
 	<select id="getRankingList" resultType="coinweb.vo.RankingVO">
-		select distinct c.id, c.name, FORMAT(w.TOT_BALANCE , 0) as money,w.TOT_BALANCE as profit from coinweb_member c,wallet w 
-			where c.id = w.id and coin='KRW' order by  money desc, id limit 20 
+		select @rownum:=@rownum+1 as rno, s.id, s.name, s.money, s.profit 
+		from (select c.id, c.name, FORMAT(w.TOT_BALANCE , 0) as money,w.TOT_BALANCE as profit 
+			 from coinweb_member c,wallet w where c.id = w.id and coin='KRW' order by  money desc, id) s,
+			 (select @rownum:=0)r limit 20;
 
 	</select>
 	

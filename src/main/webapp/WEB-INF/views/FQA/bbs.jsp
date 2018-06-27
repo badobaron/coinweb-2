@@ -95,10 +95,7 @@ $(document).ready(function($) {
 		</table>
 
 		<div id="btn2">
-			<div id="btn1">
-
 				<div id="ampaginationsm"></div>
-			</div>
 		</div>
 	</div>
 	<jsp:include page="../footer.jsp" />

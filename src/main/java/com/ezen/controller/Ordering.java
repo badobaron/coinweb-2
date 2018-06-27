@@ -176,4 +176,15 @@ public class Ordering extends Thread {
 		return result;
 	}
 	
+	/*public static OrderVO vo(JSONObject obj) {
+	OrderVO vo = new OrderVO();
+	vo.setId(parseFloat(obj.get("id")));
+	vo.setCoin(obj.get("coin").toString());
+	vo.setPrice(BigFloat(obj.get("price")).floatValue());
+	vo.setPrice_completed(BigFloat(obj.get("price_c")).floatValue());
+	vo.setAmount(BigFloat(obj.get("amount")).floatValue());
+	vo.setAmount_completed(BigFloat(obj.get("amount_c")).floatValue());
+	
+	return vo;
+	}*/
 }

@@ -48,7 +48,7 @@ function GetWalletList(){
 					$('#wallet_table > tbody').empty();
 					for(var i=0;i<data.length;i++){
 						if(data[i].available>0){
-							code = "<tr><td>"+data[i].coin+"</td><td>"+data[i].coin_name+"</td><td>"+Floor(data[i].available,4)+"</td><td>"+Floor(data[i].using,4);
+							code = "<tr><td>"+data[i].coin+"</td><td>"+data[i].coin_name+"</td><td>"+(data[i].available).toFixed(4)+"</td><td>"+(data[i].using).toFixed(4);
 							$('#wallet_table > tbody:last').append(code);
 						}
 					}

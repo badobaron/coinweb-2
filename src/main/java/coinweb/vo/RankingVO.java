@@ -1,8 +1,8 @@
 package coinweb.vo;
 
 public class RankingVO {
-	int  id,profit;
-	String rno,name,money;
+	int  id,profit, rno;
+	String name,money;
 	
 	
 	
@@ -12,10 +12,10 @@ public class RankingVO {
 	public void setProfit(int profit) {
 		this.profit = (int) ((profit/30000000.0)*100-100);
 	}
-	public String getRno() {
+	public int getRno() {
 		return rno;
 	}
-	public void setRno(String rno) {
+	public void setRno(int rno) {
 		this.rno = rno;
 	}
 	public int getId() {
