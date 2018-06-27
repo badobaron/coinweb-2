@@ -3,7 +3,15 @@ package coinweb.vo;
 public class bbsVO {
 	
 	int bbsID, rno;
-	String bbsTitle,userID,bbsContent,fdate;
+	String bbsTitle,userID,bbsContent,fdate,email;
+	
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public int getRno() {
 		return rno;
 	}

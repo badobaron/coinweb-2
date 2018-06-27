@@ -1,4 +1,4 @@
-package com.ezen.controller;
+Ôªøpackage com.ezen.controller;
 
 import java.util.ArrayList;
 
@@ -30,7 +30,7 @@ public class WalletController {
 	 	if (session.getAttribute("sid") != null)  {
 	 		sid = ((Integer) session.getAttribute("sid")).intValue(); } else { sid = 0; }
 	 	
-		//DBø¨µø
+		//DBÏó∞Îèô
 	 	WalletDAO dao = sqlSession.getMapper(WalletDAO.class);		
 
 		mv.setViewName("/wallet/wallet");

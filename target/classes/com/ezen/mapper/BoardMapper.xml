@@ -26,7 +26,7 @@
  	</select> 
  	 		
 	<select id="getBoardContent" resultType="coinweb.vo.BoardVO">
-		SELECT  NO, ID, TITLE, NAME, BDATE, HITS, LIKEIT, CONTENT FROM COINWEB_BOARD WHERE NO = #{no}
+		SELECT  NO, ID, TITLE, NAME, date_format(bdate, '%Y-%m-%d %H:%i:%S') AS FBDATE, HITS, LIKEIT, CONTENT FROM COINWEB_BOARD WHERE NO = #{no}
 	</select>
 	
  	<insert id="insertBoardContent" parameterType="coinweb.vo.BoardVO">

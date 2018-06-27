@@ -256,8 +256,8 @@ function dislikeitBtnMain(){
 						<button class="dislikeitBtn btn-dislike btn" type="button" onclick="dislikeitBtnMain()">싫어요 <i class="fa fa-thumbs-down fa-lg"></i></button>
 					</div>
 					<div style="text-align: center;">
-							<a href="/coinweb/freeboard.do?"><button type="button" class="btn btn-comm-con">이전 페이지</button></a>
-							<c:if test="${sid eq vo.id }">		
+							<a href="/coinweb/freeboard.do?"><button type="button" class="btn btn-comm-con">목록으로</button></a>
+							<c:if test="${sid eq vo.id or sid eq 1001}">		
 							<a href="/coinweb/freeboard_update.do?no=${no}"><button type="button" class="btn btn-comm-con">수정하기</button></a>
 							<a href="/coinweb/freeboard_delete.do?no=${no}"><button type="button" class="btn btn-comm-con">바로삭제</button></a>
 							</c:if>					

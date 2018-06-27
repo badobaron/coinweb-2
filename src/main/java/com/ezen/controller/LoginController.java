@@ -1,4 +1,4 @@
-package com.ezen.controller;
+ï»¿package com.ezen.controller;
 
 import java.io.PrintWriter;
 
@@ -23,7 +23,7 @@ public class LoginController {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
-	/* ·Î±×ÀÎ Ã³¸® - login_controller.jsp ÆÄÀÏÀÇ ¿ªÇÒÀ» ¼öÇà */
+	/* ë¡œê·¸ì¸ ì²˜ë¦¬ - login_controller.jsp íŒŒì¼ì˜ ì—­í• ì„ ìˆ˜í–‰ */
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
 	public ModelAndView login_check(MemberVO vo, HttpSession session,HttpServletRequest request,
 			Model model,HttpServletResponse response)throws Exception{
@@ -33,13 +33,13 @@ public class LoginController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		//DB¿¬µ¿
+		//DBì—°ë™
 		MemberDAO dao = sqlSession.getMapper(MemberDAO.class);
 		int result = dao.getLoginResult(vo);
 		
-		//½ÇÇà°á°ú 
+		//ì‹¤í–‰ê²°ê³¼ 
 		if(result != 0){	
-			/* ¸ğµçÆäÀÌÁö¿¡¼­ È£ÃâµÇ´Â °´Ã¼´Â ¼¼¼Ç¿¡ Ãß°¡ÇÏ¿© »ç¿ë!! */
+			/* ëª¨ë“ í˜ì´ì§€ì—ì„œ í˜¸ì¶œë˜ëŠ” ê°ì²´ëŠ” ì„¸ì…˜ì— ì¶”ê°€í•˜ì—¬ ì‚¬ìš©!! */
 			vo = dao.getResultVO(vo.getEmail());
 			session.setAttribute("sid", vo.getId());
 			session.setAttribute("name", vo.getName());
@@ -48,7 +48,7 @@ public class LoginController {
 		}else{
 			mv.setViewName("index");
 			writer.println("<script>");
-			writer.println("alert('ÀÌ¸ŞÀÏ È¤Àº ºñ¹Ğ¹øÈ£¸¦ È®ÀÎÇÏ¼¼¿ä.'); location.href='index.do';");        
+			writer.println("alert('ì´ë©”ì¼ í˜¹ì€ ë¹„ë°€ë²ˆí˜¸ë¥¼ í™•ì¸í•˜ì„¸ìš”.'); location.href='index.do';");        
 		    writer.println("</script>");
 		    writer.flush();
 		}
@@ -56,7 +56,7 @@ public class LoginController {
 		return mv;
 	}
 		
-	/* ·Î±×¾Æ¿ô */
+	/* ë¡œê·¸ì•„ì›ƒ */
 	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
 	public String logout(HttpSession session){
 		int sid = 0;
@@ -68,7 +68,7 @@ public class LoginController {
 		return "redirect:/index.do";
 	}
 	
-	/*ºñ¹Ğ¹øÈ£ º¯°æ ¾ÆÀÌµğ ºñ¹Ğ¹øÈ£ ºñ±³*/
+	/*ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ ì•„ì´ë”” ë¹„ë°€ë²ˆí˜¸ ë¹„êµ*/
 	@RequestMapping(value="/password_check.do", method=RequestMethod.GET)
 	@ResponseBody
 	public String pw_check(String email, String pass ,HttpSession session){
@@ -81,7 +81,7 @@ public class LoginController {
 		
 	}
 	
-	/*ºñ¹Ğ¹øÈ£ º¯°æÁøÇà*/
+	/*ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ì§„í–‰*/
 	@RequestMapping(value="/password_update_c.do")
 	public String password_update_c(MemberVO vo, HttpSession session,HttpServletRequest request,
 			Model model,HttpServletResponse response)throws Exception{
@@ -92,15 +92,15 @@ public class LoginController {
 	
 		MemberDAO dao = sqlSession.getMapper(MemberDAO.class);
 		int result = 0;
-		System.out.println("º¯°æÇÒ ÀÌ¸ŞÀÏ="+vo.getEmail());
-		System.out.println("º¯°æÇÒ ºñ¹ø="+vo.getPass());
+		System.out.println("ë³€ê²½í•  ì´ë©”ì¼="+vo.getEmail());
+		System.out.println("ë³€ê²½í•  ë¹„ë²ˆ="+vo.getPass());
 		result = dao.getPassWordChangeResult(vo);
 	
 		
 		if(result==1){
 			page="index";
 			writer.println("<script type='text/javascript'>");                    
-			writer.println("alert('¼º°øÀûÀ¸·Î º¯°æµÇ¾ú½À´Ï´Ù.'); location.href='index.do';");        
+			writer.println("alert('ì„±ê³µì ìœ¼ë¡œ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.'); location.href='index.do';");        
 			writer.println("</script>");
 			writer.flush();
 		}

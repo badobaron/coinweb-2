@@ -1,4 +1,4 @@
-package com.ezen.controller;
+﻿package com.ezen.controller;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -88,20 +88,20 @@ public class Ordering extends Thread {
 							if(parseFloat(bid.get("price")) >= parseFloat(obj.get("price")) && dif_amount.floatValue()<BigFloat(bid.get("quantity")).floatValue() && dif_amount.floatValue()>0){
 								System.out.println(dif_amount+", "+BigFloat(bid.get("quantity")));
 								String axp = axp(bid.get("price"),dif_amount).toString();
-								dao.getOrdering(obj.get("idx").toString(), axp,String.valueOf(dif_amount));
-								w_dao.getOrderingUpdate(obj.get("id").toString(), obj.get("coin").toString(), axp, String.valueOf(dif_amount), obj.get("type").toString());
-								w_dao.getOrderingUpdate2(obj.get("id").toString(), obj.get("coin").toString(), axp, String.valueOf(dif_amount), obj.get("type").toString());
+								dao.getOrdering(obj.get("idx").toString(), axp,dif_amount.toString());
+								w_dao.getOrderingUpdate(obj.get("id").toString(), obj.get("coin").toString(), axp, dif_amount.toString(), obj.get("type").toString());
+								w_dao.getOrderingUpdate2(obj.get("id").toString(), obj.get("coin").toString(), axp, dif_amount.toString(), obj.get("type").toString());
 								dao.getOrderCancel(obj.get("idx").toString());
-								dao.getHistoryInsert(obj.get("id").toString(), obj.get("coin").toString(), "S", bid.get("price").toString(), String.valueOf(dif_amount));
+								dao.getHistoryInsert(obj.get("id").toString(), obj.get("coin").toString(), "S", bid.get("price").toString(), dif_amount.toString());
 								System.out.println("bid_end "+bid.get("price")+", "+axp+", "+bid.get("quantity"));
 								break;
 							}else if (parseFloat(bid.get("price")) >= parseFloat(obj.get("price")) && dif_amount.floatValue()>0) {
 								System.out.println(dif_amount+", "+BigFloat(bid.get("quantity")));
 								String axp = axp(bid.get("price"),bid.get("quantity")).toString();
-								dao.getOrdering(obj.get("idx").toString(), axp, String.valueOf(BigFloat(bid.get("quantity"))));
-								w_dao.getOrderingUpdate(obj.get("id").toString(), obj.get("coin").toString(), axp, String.valueOf(BigFloat(bid.get("quantity"))), obj.get("type").toString());
-								w_dao.getOrderingUpdate2(obj.get("id").toString(), obj.get("coin").toString(), axp, String.valueOf(BigFloat(bid.get("quantity"))), obj.get("type").toString());
-								dao.getHistoryInsert(obj.get("id").toString(), obj.get("coin").toString(), "S", bid.get("price").toString(), String.valueOf(BigFloat(bid.get("quantity"))));
+								dao.getOrdering(obj.get("idx").toString(), axp, BigFloat(bid.get("quantity")).toString());
+								w_dao.getOrderingUpdate(obj.get("id").toString(), obj.get("coin").toString(), axp, BigFloat(bid.get("quantity")).toString(), obj.get("type").toString());
+								w_dao.getOrderingUpdate2(obj.get("id").toString(), obj.get("coin").toString(), axp, BigFloat(bid.get("quantity")).toString(), obj.get("type").toString());
+								dao.getHistoryInsert(obj.get("id").toString(), obj.get("coin").toString(), "S", bid.get("price").toString(), BigFloat(bid.get("quantity")).toString());
 								dif_amount = dif_amount.subtract(BigFloat(bid.get("quantity")));
 								if(BigFloat(dif_amount) == BigFloat(bid.get("quantity"))) dao.getOrderCancel(obj.get("idx").toString());
 								System.out.println("bid_ing "+bid.get("price")+", "+axp+", "+bid.get("quantity"));
@@ -115,29 +115,29 @@ public class Ordering extends Thread {
 							if(parseFloat(ask.get("price")) <= parseFloat(obj.get("price")) && dif_amount.floatValue()<BigFloat(ask.get("quantity")).floatValue() && dif_amount.floatValue()>0){
 								System.out.println(dif_amount+", "+BigFloat(ask.get("quantity")));
 								String axp = axp(ask.get("price"),dif_amount).toString();
-								dao.getOrdering(obj.get("idx").toString(), axp,String.valueOf(dif_amount));
-								w_dao.getOrderingUpdate(obj.get("id").toString(), obj.get("coin").toString(), axp, String.valueOf(dif_amount), obj.get("type").toString());
-								w_dao.getOrderingUpdate2(obj.get("id").toString(), obj.get("coin").toString(), axp, String.valueOf(dif_amount), obj.get("type").toString());
+								dao.getOrdering(obj.get("idx").toString(), axp,dif_amount.toString());
+								w_dao.getOrderingUpdate(obj.get("id").toString(), obj.get("coin").toString(), axp, dif_amount.toString(), obj.get("type").toString());
+								w_dao.getOrderingUpdate2(obj.get("id").toString(), obj.get("coin").toString(), axp, dif_amount.toString(), obj.get("type").toString());
 								dao.getOrderCancel(obj.get("idx").toString());
-								dao.getHistoryInsert(obj.get("id").toString(), obj.get("coin").toString(), "B", ask.get("price").toString(), String.valueOf(dif_amount));
+								dao.getHistoryInsert(obj.get("id").toString(), obj.get("coin").toString(), "B", ask.get("price").toString(), dif_amount.toString());
 								System.out.println("ask_end");
 								price = price.add(BigDecimal(axp));
 								System.out.println(dif_price+", "+price);
 								dif_price = dif_price.subtract(price);
 								System.out.println(dif_price);
 								if(dif_price.floatValue()>0) {
-									w_dao.getOrderingUpdate(obj.get("id").toString(), obj.get("coin").toString(), String.valueOf(dif_price), String.valueOf(BigFloat(dif_price).divide(BigFloat(ask.get("price")),4,BigDecimal.ROUND_FLOOR)), obj.get("type").toString());
-									w_dao.getOrderingUpdate2(obj.get("id").toString(), obj.get("coin").toString(), String.valueOf(dif_price), String.valueOf(BigFloat(dif_price).divide(BigFloat(ask.get("price")),4,BigDecimal.ROUND_FLOOR)), obj.get("type").toString());
-									dao.getHistoryInsert(obj.get("id").toString(), obj.get("coin").toString(), "B", ask.get("price").toString(), String.valueOf(BigFloat(dif_price).divide(BigFloat(ask.get("price")),4,BigDecimal.ROUND_FLOOR)));
+									w_dao.getOrderingUpdate(obj.get("id").toString(), obj.get("coin").toString(), dif_price.toString(), (BigFloat(dif_price).divide(BigFloat(ask.get("price")),4,BigDecimal.ROUND_FLOOR)).toString(), obj.get("type").toString());
+									w_dao.getOrderingUpdate2(obj.get("id").toString(), obj.get("coin").toString(), dif_price.toString(), (BigFloat(dif_price).divide(BigFloat(ask.get("price")),4,BigDecimal.ROUND_FLOOR)).toString(), obj.get("type").toString());
+									dao.getHistoryInsert(obj.get("id").toString(), obj.get("coin").toString(), "B", ask.get("price").toString(), (BigFloat(dif_price).divide(BigFloat(ask.get("price")),4,BigDecimal.ROUND_FLOOR)).toString());
 								}
 								break;
 							}else if (parseFloat(ask.get("price")) <= parseFloat(obj.get("price")) && dif_amount.floatValue()>0) {
-								System.out.println(dif_amount+", "+BigFloat(ask.get("quantity")));
+								System.out.println(dif_amount+", "+BigFloat(ask.get("quantity")).toString());
 								String axp = axp(ask.get("price"),ask.get("quantity")).toString();
-								dao.getOrdering(obj.get("idx").toString(), axp, String.valueOf(BigFloat(ask.get("quantity"))));
-								w_dao.getOrderingUpdate(obj.get("id").toString(), obj.get("coin").toString(), axp, String.valueOf(BigFloat(ask.get("quantity"))), obj.get("type").toString());
-								w_dao.getOrderingUpdate2(obj.get("id").toString(), obj.get("coin").toString(), axp, String.valueOf(BigFloat(ask.get("quantity"))), obj.get("type").toString());
-								dao.getHistoryInsert(obj.get("id").toString(), obj.get("coin").toString(), "B", ask.get("price").toString(), String.valueOf(BigFloat(ask.get("quantity"))));
+								dao.getOrdering(obj.get("idx").toString(), axp, BigFloat(ask.get("quantity")).toString());
+								w_dao.getOrderingUpdate(obj.get("id").toString(), obj.get("coin").toString(), axp, BigFloat(ask.get("quantity")).toString(), obj.get("type").toString());
+								w_dao.getOrderingUpdate2(obj.get("id").toString(), obj.get("coin").toString(), axp, BigFloat(ask.get("quantity")).toString(), obj.get("type").toString());
+								dao.getHistoryInsert(obj.get("id").toString(), obj.get("coin").toString(), "B", ask.get("price").toString(), BigFloat(ask.get("quantity")).toString());
 								dif_amount = dif_amount.subtract(BigFloat(ask.get("quantity")));
 								price = price.add(BigDecimal(axp));
 								if(BigFloat(dif_amount) == BigFloat(ask.get("quantity"))) dao.getOrderCancel(obj.get("idx").toString());
@@ -175,16 +175,4 @@ public class Ordering extends Thread {
 		
 		return result;
 	}
-	
-	/*public static OrderVO vo(JSONObject obj) {
-	OrderVO vo = new OrderVO();
-	vo.setId(parseFloat(obj.get("id")));
-	vo.setCoin(obj.get("coin").toString());
-	vo.setPrice(BigFloat(obj.get("price")).floatValue());
-	vo.setPrice_completed(BigFloat(obj.get("price_c")).floatValue());
-	vo.setAmount(BigFloat(obj.get("amount")).floatValue());
-	vo.setAmount_completed(BigFloat(obj.get("amount_c")).floatValue());
-	
-	return vo;
-	}*/
 }

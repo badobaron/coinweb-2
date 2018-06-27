@@ -65,7 +65,7 @@ color: #737373;
 
 #tt{
 	margin: auto;
-	width: 920px;
+	width: 950px;
 	margin-top:50px;
 	margin-bottom: 150px;
 	text-align: center;
@@ -74,7 +74,7 @@ color: #737373;
 
 .table123 .bbsrno{
 	width:60px;
-		color: #737373;
+	color: #737373;
 	font-size: 17px;
 	text-align: center;
 	padding-left:0px;
@@ -95,14 +95,14 @@ color: #737373;
 
 .table123 .bbsid{
 	width: 60px;
-color: #737373;
+	color: #737373;
 	font-size: 17px;
 	text-align: center;
 	padding-left:13px;
 }
 .table123 .bbsdate{
-	width: 60px;
-		color: #737373;
+	width: 100px;
+	color: #737373;
 	font-size: 17px;
 	text-align: center;
 	
@@ -139,11 +139,14 @@ padding-left:150px;
 	
 }
 #form_control{
-	width:80%;
+	width:100%;
 	margin-bottom:20px;
+	
+	border-radius: 5px;
 }
 
-#form_control,#userID,#bbsContent{
+
+#bbsContent{
 	margin-left:10px;
 	border-radius: 5px;
 }
@@ -157,11 +160,11 @@ padding-left:150px;
 	border-radius: 5px;
 }
 #box11{
+	margin: auto;
 	border:2px solid #c0c0c0;
 	margin-top:30px;
 	padding: 20px 40px 20px 40px;
-	width:60%;
-	text-align: center;
+	width:65%;
 }
 
 
@@ -174,13 +177,17 @@ padding-left:150px;
     background-color: #f5f5f5;
 }
 #c_id{
-
+	padding: 0px 30px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    color: #0080ff;
 }
 #c_date{
-	  float: right;
+	float: right;
     font-size: 12px;
     color: #333;
     margin-top: -32px;
+    
 
 
    
@@ -192,26 +199,21 @@ padding-left:150px;
 }
 
 .allbox{
+	margin:auto;
 	border:2px solid #ddd;
 	padding-bottom:50px;
-	margin-left:400px;
-	margin-right:400px;
-	margin-top:50px;
-	width:1115px;
+	margin-top:15px;
+	width:65%;
 }
 #box2{
-	
-	width:1000px;
-	margin-left:50px;
+	margin:auto;
+	width:90%;
 	margin-top:50px;
 	
 	 
 }
-#c_id{
-	
-	margin-left:26px;
-}
+
 #c_content{
-	
-		margin-left:25px;
+	margin:auto;
+	margin-left:25px;
 }

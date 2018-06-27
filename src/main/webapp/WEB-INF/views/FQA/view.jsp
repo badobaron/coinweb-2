@@ -21,12 +21,14 @@
 		<h1 class="usermanual_down">문의하기</h1></div>
 
 	<div class="allbox">
-		<form method="post" action="freeboard/writeAction.jsp">
 			<div id="box2">
 
 				<div id="contitle">
 					<p>${vo.bbsTitle}</p>
 					<p id="c_date">${vo.fdate}</p>
+				</div>
+				<div id="c_id">
+					<p>${vo.email}</p>
 				</div>
 				<div id="c_content">
 					<tr>
@@ -37,15 +39,14 @@
 			</div>
 
 			<div style="text-align: center;">
-				<a
+				<a href="http://localhost:8080/coinweb/bbs.do"><button
+						type="button" class="btn3">목록으로</button></a> <a
 					href="http://localhost:8080/coinweb/update.do?bbsID=${vo.bbsID}"><button
 						type="button" class="btn3">수정하기</button></a> <a
-					href="http://localhost:8080/coinweb/bbs.do"><button
-						type="button" class="btn3">목록으로</button></a> <a
-					href="http://localhost:8080/coinweb/deleteAction.do?bbsID=${vo.bbsID }"><button
-						type="button" class="btn3">삭제하기</button></a>
+				href="http://localhost:8080/coinweb/deleteAction.do?bbsID=${vo.bbsID }">
+				<button type="button" class="btn3">삭제하기</button>
+				</a>
 			</div>
-		</form>
 	</div>
 	<jsp:include page="../footer.jsp" />
 

@@ -71,7 +71,7 @@ public class FQAController {
 		return "/guide/guide";
 	}
 
-	// ÁÖ¼ÒÀû±â
+	// ï¿½Ö¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "FAQ.do", method = RequestMethod.GET)
 	public String FAQ() {
 		return "/guide/FAQ";

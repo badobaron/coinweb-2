@@ -1,4 +1,4 @@
-package com.ezen.controller;
+ï»¿package com.ezen.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -156,7 +156,7 @@ SqlSessionTemplate sqlSession;
 		BoardDAO dao =sqlSession.getMapper(BoardDAO.class);
 		
 		
-		// ÀúÀåµÈ ÄíÅ° ºÒ·¯¿À±â
+		// ì €ì¥ëœ ì¿ í‚¤ ë¶ˆëŸ¬ì˜¤ê¸°
 		Cookie cookies[] = request.getCookies();
 		Map mapCookie = new HashMap();
 		if (request.getCookies() != null) {
@@ -165,17 +165,17 @@ SqlSessionTemplate sqlSession;
 				mapCookie.put(obj.getName(), obj.getValue());
 			}
 		}
-		// ÀúÀåµÈ ÄíÅ°Áß¿¡ read_count ¸¸ ºÒ·¯¿À±â
+		// ì €ì¥ëœ ì¿ í‚¤ì¤‘ì— read_count ë§Œ ë¶ˆëŸ¬ì˜¤ê¸°
 		String cookie_read_count = (String) mapCookie.get("read_count");
-		// ÀúÀåµÉ »õ·Î¿î ÄíÅ°°ª »ı¼º
+		// ì €ì¥ë  ìƒˆë¡œìš´ ì¿ í‚¤ê°’ ìƒì„±
 		String new_cookie_read_count = "|" + no;
-		// ÀúÀåµÈ ÄíÅ°¿¡ »õ·Î¿î ÄíÅ°°ªÀÌ Á¸ÀçÇÏ´Â Áö °Ë»ç
+		// ì €ì¥ëœ ì¿ í‚¤ì— ìƒˆë¡œìš´ ì¿ í‚¤ê°’ì´ ì¡´ì¬í•˜ëŠ” ì§€ ê²€ì‚¬
 		if (StringUtils.indexOfIgnoreCase(cookie_read_count, new_cookie_read_count) == -1) {
-			// ¾øÀ» °æ¿ì ÄíÅ° »ı¼º 
+			// ì—†ì„ ê²½ìš° ì¿ í‚¤ ìƒì„± 
 			Cookie cookie = new Cookie("read_count", cookie_read_count + new_cookie_read_count);
 			cookie.setMaxAge(60*60*24); 
 			response.addCookie(cookie);
-			// Á¶È¸¼ö ¾÷µ¥ÀÌÆ®
+			// ì¡°íšŒìˆ˜ ì—…ë°ì´íŠ¸
 			dao.getUpdateHits(no);
 		}
 		

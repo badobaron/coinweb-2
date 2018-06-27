@@ -80,6 +80,7 @@ $(document).ready(function($) {
 				<tr id="fontsize">
 					<th>NO</th>
 					<th id="title1">力格</th>
+					<th id="id123">累己磊</th>
 					<th id="date123">累己老</th>
 				</tr>
 			</thead>
@@ -89,6 +90,7 @@ $(document).ready(function($) {
 					<td class="bbstitle" id="bbstitle">
 					<a href="view.do?bbsID=${vo.bbsID}">${vo.bbsTitle}</a>
 					</td>
+					<td class=bbsid>${vo.email}</td>
 					<td class="bbsdate">${vo.fdate}</td>
 				</tr>
 			</c:forEach>

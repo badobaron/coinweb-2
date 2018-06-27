@@ -115,7 +115,14 @@ box-shadow:3px 3px 3px  #d4d4d4;
 
 }
 
-
+.index_btn{
+	box-shadow:2px 2px 4px #0082a2;
+	background-color: rgba(2, 101, 159, 0.0);
+	color: white;
+	width: 250px; height: 70px;
+	margin-top: 30px;
+	font-size:30px;
+}
 
 
         
@@ -124,8 +131,6 @@ box-shadow:3px 3px 3px  #d4d4d4;
 /*테이블*/
  
 /*앱관련*/
-
-
 
 .content-style form.mycgv {
 		text-align: center;

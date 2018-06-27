@@ -58,6 +58,7 @@ $(document).ready(function(){
 						placeholder="제목을 입력하세요" name="bbsTitle" id="bbsTitle">
 				</div>
 				<input type="hidden" name="userID" id="userID" value="${sid}">
+				<input type="hidden" name="email" id="email" value="${email}">
 
 				<textarea class="content" name="bbsContent" id="summernote"></textarea>
 		</div>

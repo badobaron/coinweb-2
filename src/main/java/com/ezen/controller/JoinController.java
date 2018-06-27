@@ -1,4 +1,4 @@
-package com.ezen.controller;
+ï»¿package com.ezen.controller;
 
 import java.io.PrintWriter;
 
@@ -32,7 +32,7 @@ public class JoinController {
 	    request.setCharacterEncoding("utf-8");                        
 	    PrintWriter writer = response.getWriter(); 
 		
-		//DB¿¬µ¿
+		//DBì—°ë™
 		MemberDAO m_dao = sqlSession.getMapper(MemberDAO.class);
 		WalletDAO w_dao = sqlSession.getMapper(WalletDAO.class);
 		//dao.getStatement();
@@ -44,7 +44,7 @@ public class JoinController {
 			w_dao.getInsertResult(vo.getId());
 			mv.setViewName("index");
 			writer.println("<script type='text/javascript'>");                    
-		    writer.println("alert('È¸¿ø°¡ÀÔ¿¡ ¼º°øÇÏ¼Ì½À´Ï´Ù.'); location.href='index.do';");        
+		    writer.println("alert('íšŒì›ê°€ì…ì— ì„±ê³µí•˜ì…¨ìŠµë‹ˆë‹¤.'); location.href='index.do';");        
 		    writer.println("</script>");
 		    writer.flush();
 		}
