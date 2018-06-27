@@ -16,7 +16,7 @@ public interface bbsDAO {
 	/* 글쓰기 */
 	public int write(bbsVO vo);
 /*전체리스트
-*/	public ArrayList<bbsVO> getResultList(int startCount, int endCount);
+*/	public ArrayList<bbsVO> getResultList(int startCount, int endCount, int userID);
 
    /*읽기*/
 	public bbsVO getResultVO(String bbsID);

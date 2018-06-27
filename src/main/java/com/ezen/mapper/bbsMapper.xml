@@ -25,7 +25,7 @@
 	<!-- 리스트뿌리기 -->
 	<select id="getResultList" resultType="coinweb.vo.bbsVO">
 		select bbsID, bbsTitle, userID, bbsContent, date_format(bbsdate, '%Y-%m-%d') AS FDATE
-		from BBS ORDER BY BBSDATE DESC limit #{param1} ,#{param2}
+		from BBS where userID = #{param3} ORDER BY BBSDATE DESC limit #{param1} ,#{param2}
 	</select>
 
 	<!-- 내용보기 -->

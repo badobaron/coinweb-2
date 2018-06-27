@@ -2,8 +2,12 @@ package com.ezen.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.mysql.cj.util.StringUtils;
 
 import coinweb.dao.BoardDAO;
 import coinweb.vo.BoardReplyVO;
@@ -144,10 +150,35 @@ SqlSessionTemplate sqlSession;
 	}
 	
 	@RequestMapping(value="/freeboard_content.do", method=RequestMethod.GET)
-	public ModelAndView freeboard_content(String no){
+	public ModelAndView freeboard_content(String no, HttpServletResponse response, HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
+		
 		BoardDAO dao =sqlSession.getMapper(BoardDAO.class);
-		dao.getUpdateHits(no);
+		
+		
+		// 저장된 쿠키 불러오기
+		Cookie cookies[] = request.getCookies();
+		Map mapCookie = new HashMap();
+		if (request.getCookies() != null) {
+			for (int i = 0; i < cookies.length; i++) {
+				Cookie obj = cookies[i];
+				mapCookie.put(obj.getName(), obj.getValue());
+			}
+		}
+		// 저장된 쿠키중에 read_count 만 불러오기
+		String cookie_read_count = (String) mapCookie.get("read_count");
+		// 저장될 새로운 쿠키값 생성
+		String new_cookie_read_count = "|" + no;
+		// 저장된 쿠키에 새로운 쿠키값이 존재하는 지 검사
+		if (StringUtils.indexOfIgnoreCase(cookie_read_count, new_cookie_read_count) == -1) {
+			// 없을 경우 쿠키 생성 
+			Cookie cookie = new Cookie("read_count", cookie_read_count + new_cookie_read_count);
+			cookie.setMaxAge(60*60*24); 
+			response.addCookie(cookie);
+			// 조회수 업데이트
+			dao.getUpdateHits(no);
+		}
+		
 		BoardVO vo=dao.getBoardContent(no);	
 		mv.addObject("vo",vo);
 		mv.addObject("no",no);

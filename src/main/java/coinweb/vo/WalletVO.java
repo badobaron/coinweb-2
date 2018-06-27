@@ -1,14 +1,14 @@
 package coinweb.vo;
 
 public class WalletVO {
-	int id, using_balance, tot_balance, available_balance; 
-	float coin_avail, coin_using, coin_tot;
+	int id; 
+	float using_balance, tot_balance, available_balance, coin_avail, coin_using, coin_tot;
 	String coin, coin_name, state;
 	
-	public int getAvailable_balance() {
+	public float getAvailable_balance() {
 		return available_balance;
 	}
-	public void setAvailable_balance(int available_balance) {
+	public void setAvailable_balance(float available_balance) {
 		this.available_balance = available_balance;
 	}
 	public float getCoin_avail() {
@@ -35,16 +35,16 @@ public class WalletVO {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getTot_balance() {
+	public float getTot_balance() {
 		return tot_balance;
 	}
-	public void setTot_balance(int tot_balnace) {
+	public void setTot_balance(float tot_balnace) {
 		this.tot_balance = tot_balnace;
 	}
-	public int getUsing_balance() {
+	public float getUsing_balance() {
 		return using_balance;
 	}
-	public void setUsing_balance(int using_balance) {
+	public void setUsing_balance(float using_balance) {
 		this.using_balance = using_balance;
 	}
 	public String getCoin() {

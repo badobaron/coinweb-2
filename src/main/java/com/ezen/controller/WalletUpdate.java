@@ -72,17 +72,17 @@ public class WalletUpdate {
 				
 				JSONArray wallet = (JSONArray) JSONValue.parse(isr3);
 				JSONObject krw = (JSONObject) wallet.get(0);
-				int tot = parseInt(krw.get("available"));
+				float tot = parseFloat(krw.get("available"));
 				String list[] = {"KRW", "BTC", "BCH", "ETH", "ETC", "XRP", "DASH", "LTC", "XMR", "ZEC", "QTUM" };
 				
 				for(int j=1; j<wallet.size()-1; j++) {
 					JSONObject coin = (JSONObject) data.get(list[j]);
 					JSONObject w_coin = (JSONObject) wallet.get(j);
-					int price = parseInt(coin.get("closing_price"));
+					float price = parseFloat(coin.get("closing_price"));
 					float amount = floor(w_coin.get("coin_tot"));
 					
 					
-					tot+= (int)price*amount;
+					tot+= floor(price*amount);
 					
 				}
 				dao.getWalletTotalUpdate(id, tot);

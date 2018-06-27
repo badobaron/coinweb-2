@@ -29,7 +29,7 @@ public class OrderController {
 		OrderDAO dao = sqlSession.getMapper(OrderDAO.class);
 		WalletDAO w_dao = sqlSession.getMapper(WalletDAO.class);
 		int result = dao.getOrderResult(id, coin, price, amount, type);
-		w_dao.getWalletUpdate(Integer.parseInt(id), coin, Integer.parseInt(price), Float.parseFloat(amount), type);
+		w_dao.getWalletUpdate(Integer.parseInt(id), coin, price, amount, type);
 		
 		return String.valueOf(result);
 	}

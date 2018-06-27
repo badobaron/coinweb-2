@@ -14,7 +14,7 @@
 
 
 <script src="http://localhost:8080/coinweb/js/jquery-3.3.1.min.js"></script>
-<!-- <script src="http://localhost:8080/coinweb/js/setInterval.js"></script> -->
+<script src="http://localhost:8080/coinweb/js/setInterval.js"></script>
 
 
 

@@ -3,6 +3,7 @@ package com.ezen.controller;
 import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,13 @@ public class FQAController {
 	SqlSessionTemplate sqlSession;
 
 	@RequestMapping(value = "bbs.do", method = RequestMethod.GET)
-	public ModelAndView bbs(String rpage) {
+	public ModelAndView bbs(String rpage, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		
+		int sid = 0;
+	 	if (session.getAttribute("sid") != null)  {
+	 		sid = ((Integer) session.getAttribute("sid")).intValue(); } else { sid = 0; }
+		
 		bbsDAO dao = sqlSession.getMapper(coinweb.dao.bbsDAO.class);
        int startCount = 0;
 		int endCount = 0;
@@ -46,12 +52,12 @@ public class FQAController {
 			endCount = 10;
 			rpage="1";
 		}
-    ArrayList<bbsVO> list = dao.getResultList(startCount,pageSize);
-	mv.addObject("list",list);
-	mv.setViewName("/FQA/bbs");
-	mv.addObject("list",list);
-	mv.addObject("rpage",rpage);
-	mv.addObject("dbCount",dbCount);
+		ArrayList<bbsVO> list = dao.getResultList(startCount, pageSize, sid);
+		mv.addObject("list", list);
+		mv.setViewName("/FQA/bbs");
+		mv.addObject("list", list);
+		mv.addObject("rpage", rpage);
+		mv.addObject("dbCount", dbCount);
 		return mv;
 	}
 
@@ -88,7 +94,7 @@ public class FQAController {
 		ModelAndView mv = new ModelAndView();
 		bbsDAO dao = sqlSession.getMapper(bbsDAO.class);
 		
-		bbsVO  vo = dao.getResultVO(bbsID);
+		bbsVO vo = dao.getResultVO(bbsID);
 		mv.addObject("vo",vo);
 		mv.setViewName("/FQA/update");
 
@@ -120,7 +126,6 @@ public class FQAController {
 	@RequestMapping(value = "/deleteAction.do", method = RequestMethod.GET)
 	public String board_delete(String bbsID) {
 		
-
 		bbsDAO dao = sqlSession.getMapper(bbsDAO.class);
 		dao.getDeleteResult(bbsID);
 		return "redirect:/bbs.do";

@@ -1,8 +1,8 @@
 package coinweb.vo;
 
 public class OrderVO {
-	int idx,id, price, price_completed;
-	float amount, amount_completed;
+	int idx,id;
+	float amount, amount_completed, price, price_completed;
 	String coin, odate, type;
 	
 	
@@ -24,16 +24,16 @@ public class OrderVO {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getPrice() {
+	public float getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
-	public int getPrice_completed() {
+	public float getPrice_completed() {
 		return price_completed;
 	}
-	public void setPrice_completed(int price_completed) {
+	public void setPrice_completed(float price_completed) {
 		this.price_completed = price_completed;
 	}
 	public float getAmount() {

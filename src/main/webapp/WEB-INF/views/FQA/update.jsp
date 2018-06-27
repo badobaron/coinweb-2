@@ -56,6 +56,7 @@ $(document).ready(function() {
 				<div class="form-group1">
 					<input type="text" class="form_control" id="form_control" value=${ vo.bbsTitle} name="bbsTitle" id="bbsTitle">
 				</div>
+				<input type="hidden" name="bbsID" id="bbsID" value="${vo.bbsID}">
 					<textarea class="content" name="bbsContent" id="summernote">${vo.bbsContent}</textarea>
 		</div>
 		<div style="text-align: center;">
