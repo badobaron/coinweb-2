@@ -13,7 +13,7 @@ pageEncoding="EUC-KR" import="coinweb.vo.BoardVO, coinweb.dao.BoardDAO"%>
   <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
   
-  <link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/freeboard.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/freeboard.css">
 
 </head>
 <script type="text/javascript">
@@ -79,10 +79,10 @@ $(document).ready(function(){
 					
 				
 					<div style="text-align: center;">
-						<a href="/coinweb/freeboard_content.do?no=${no}"><button type="button" class="btn btn-comm-con" >이전 페이지</button></a>
+						<a href="${pageContext.request.contextPath}/freeboard_content.do?no=${no}"><button type="button" class="btn btn-comm-con" >이전 페이지</button></a>
 						<button type="submit" id="btnUpdate" class="btn btn-comm-con">수정하기</button>
-						<a href="/coinweb/freeboard_delete.do?no=${no}"><button type="button" class="btn btn-comm-con">삭제하기</button></a>
-						<a href="/coinweb/index.do"><button type="button" class="btn btn-comm-con">홈으로</button></a>
+						<a href="${pageContext.request.contextPath}/freeboard_delete.do?no=${no}"><button type="button" class="btn btn-comm-con">삭제하기</button></a>
+						<a href="${pageContext.request.contextPath}/index.do"><button type="button" class="btn btn-comm-con">홈으로</button></a>
 					</div>
 		</form>
 	</div>

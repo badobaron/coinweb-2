@@ -13,9 +13,9 @@
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 <!-- CSS -->
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/freeboard.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/freeboard.css">
 <!-- 리플 -->
-<script src="http://localhost:8080/coinweb/js/MyAjax.js"></script>
+<script src="${pageContext.request.contextPath}/js/MyAjax.js"></script>
 
 <script>
 var sid = '<c:out value="${sid}"/>';
@@ -86,7 +86,7 @@ $(document).ready(function(){
 					alert("댓글 내용을 입력해주세요.");
 				}else{
 				$.ajax({
-					url : 'http://localhost:8080/coinweb/reply_write_check.do',
+					url : '${pageContext.request.contextPath}/reply_write_check.do',
 					type :'GET',
 					data : 'id='+sid+'&rname='+rname+'&content='+content+'&no='+no,
 					dataType : 'json',
@@ -109,7 +109,7 @@ $(document).ready(function(){
 			var no = "${vo.no}";
 			
 			$.ajax({
-				url : 'http://localhost:8080/coinweb/reply_list.do',
+				url : '${pageContext.request.contextPath}/reply_list.do',
 				method :'GET',	
 				data : 'no='+no,
 				dataType : 'json',
@@ -148,7 +148,7 @@ function reply_likeit(){
 			var index = $(this).data("id");
 			var rid = $("#rid"+index).val();
 			var param ={'bid' : '${no}' , 'rid' :rid , 'id' : sid };
-			MyAjax.excute('/coinweb/freeboardreply_likeit.json', param, 'POST').done(function(response){
+			MyAjax.excute('${pageContext.request.contextPath}/freeboardreply_likeit.json', param, 'POST').done(function(response){
 				if(response == 1){
 					alert("${vo.name}님의 댓글을 추천합니다");
 				}else{
@@ -167,7 +167,7 @@ function reply_dislikeit(){
 			var index = $(this).data("id");
 			var rid = $("#rid"+index).val();
 			var param ={'bid' : '${no}', 'rid' :rid, 'id' : sid};
-			MyAjax.excute('/coinweb/freeboardreply_dislikeit.json', param, 'POST').done(function(response){
+			MyAjax.excute('${pageContext.request.contextPath}/freeboardreply_dislikeit.json', param, 'POST').done(function(response){
 				if(response == 1){
 					alert("${vo.name}님의 댓글을 반대합니다");
 				}else{
@@ -184,7 +184,7 @@ function likeitBtnMain(){
 		alert("로그인 후 이용하실수 있습니다.");
 	}else{
 		var param ={'no' : '${no}', 'id' : sid};
-		MyAjax.excute('/coinweb/freeboard_likeit.json', param, 'POST').done(function(response){
+		MyAjax.excute('${pageContext.request.contextPath}/freeboard_likeit.json', param, 'POST').done(function(response){
 			if(response == 1){
 				alert("${vo.name}님의 게시물에 좋아요를 눌렀습니다.");
 			}else{
@@ -199,7 +199,7 @@ function dislikeitBtnMain(){
 		alert("로그인 후 이용하실수 있습니다.");
 	}else{
 		var param ={'no' : '${no}', 'id' : sid};
-		MyAjax.excute('/coinweb/freeboard_dislikeit.json', param, 'POST').done(function(response){
+		MyAjax.excute('${pageContext.request.contextPath}/freeboard_dislikeit.json', param, 'POST').done(function(response){
 			if(response == 1){
 				alert("${vo.name}님의 게시물에 싫어요를 눌렀습니다.");
 			}else{
@@ -256,12 +256,12 @@ function dislikeitBtnMain(){
 						<button class="dislikeitBtn btn-dislike btn" type="button" onclick="dislikeitBtnMain()">싫어요 <i class="fa fa-thumbs-down fa-lg"></i></button>
 					</div>
 					<div style="text-align: center;">
-							<a href="/coinweb/freeboard.do?"><button type="button" class="btn btn-comm-con">목록으로</button></a>
+							<a href="${pageContext.request.contextPath}/freeboard.do?"><button type="button" class="btn btn-comm-con">목록으로</button></a>
 							<c:if test="${sid eq vo.id or sid eq 1001}">		
-							<a href="/coinweb/freeboard_update.do?no=${no}"><button type="button" class="btn btn-comm-con">수정하기</button></a>
-							<a href="/coinweb/freeboard_delete.do?no=${no}"><button type="button" class="btn btn-comm-con">바로삭제</button></a>
+							<a href="${pageContext.request.contextPath}/freeboard_update.do?no=${no}"><button type="button" class="btn btn-comm-con">수정하기</button></a>
+							<a href="${pageContext.request.contextPath}/freeboard_delete.do?no=${no}"><button type="button" class="btn btn-comm-con">바로삭제</button></a>
 							</c:if>					
-							<a href="/coinweb/index.do"><button type="button" class="btn btn-comm-con">홈으로</button></a>									
+							<a href="${pageContext.request.contextPath}/index.do"><button type="button" class="btn btn-comm-con">홈으로</button></a>									
 					</div>
 					
 			<!-- start of reply -->

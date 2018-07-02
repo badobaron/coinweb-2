@@ -8,7 +8,7 @@
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/freeboard.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/freeboard.css">
 <body>
 
 	<jsp:include page="../header.jsp"></jsp:include> 
@@ -36,7 +36,7 @@
 		  		<tr class="comm-list">
 			  		<td class="rnotd">${vo.rno}</td>
 			  		<td class="titletd"> 
-			  		<a href="/coinweb/freeboard_content.do?no=${vo.no}&rno=${vo.rno}">
+			  		<a href="${pageContext.request.contextPath}/freeboard_content.do?no=${vo.no}&rno=${vo.rno}">
 			  		${vo.title}</a>
 			  		</td>	
 			  		<td class="nametd">${vo.name}</td>
@@ -48,7 +48,7 @@
 			</table>
 				<div id="ampaginationsm" style="margin-left: 450px;"></div>
 				 <div class="form-group">
-				 <form action="/coinweb/freeboard_search.do?rpage=${rpage}" method="get">
+				 <form action="${pageContext.request.contextPath}/freeboard_search.do?rpage=${rpage}" method="get">
 				 
 				 <div style="display: inline-block;">
 					<select name="findValue" class="form-control"  style="width: 100px; float: left;">
@@ -58,8 +58,8 @@
 				</div>		
 					<button type="submit" class=" btn btn-comm-con"  >검색</button>
 				<div style="text-align: right;">
-					<a href="/coinweb/freeboard.do"><button  type="button" class="btn btn-comm-con" style="width: 100px; border-radius: 10px; height: 30px;" >전체 페이지</button></a>
-					<a href="/coinweb/freeboard_write.do"><button type="button" class=" btn-warning btn btn-comm-con" style="width: 100px; border-radius : 10px; height: 30px;">글쓰기</button></a>
+					<a href="${pageContext.request.contextPath}/freeboard.do"><button  type="button" class="btn btn-comm-con" style="width: 100px; border-radius: 10px; height: 30px;" >전체 페이지</button></a>
+					<a href="${pageContext.request.contextPath}/freeboard_write.do"><button type="button" class=" btn-warning btn btn-comm-con" style="width: 100px; border-radius : 10px; height: 30px;">글쓰기</button></a>
 				</div>
 				</form>
 				</div>
@@ -95,7 +95,7 @@
 	
 	$('#ampaginationsm').on('am.pagination.change',function(e){
 		   $('.showlabelsm').text('The selected page no: '+e.page);	 
-           $(location).attr('href', "/coinweb/freeboard_search.do?rpage="+e.page+"&search=${search}&findValue=${findValue}");         
+           $(location).attr('href', "${pageContext.request.contextPath}/freeboard_search.do?rpage="+e.page+"&search=${search}&findValue=${findValue}");         
     });
 	
 	

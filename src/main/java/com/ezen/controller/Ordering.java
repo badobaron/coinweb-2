@@ -5,6 +5,9 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import javax.servlet.http.HttpServletRequest;
+
 import java.math.*;
 
 import org.json.simple.JSONArray;
@@ -28,7 +31,7 @@ public class Ordering extends Thread {
 		this.sqlSession = sqlSession;
 	};
 
-	public void run() {
+	public void run(HttpServletRequest request) {
 			OrderDAO dao = sqlSession.getMapper(OrderDAO.class);
 			WalletDAO w_dao = sqlSession.getMapper(WalletDAO.class);
 	
@@ -55,8 +58,7 @@ public class Ordering extends Thread {
 			for (String coin : list) {
 				URL url2 = null;
 				try {
-					url2 = new URL(
-							"http://localhost:8080/coinweb/order_all_list.do?coin=" + coin);
+					url2 = new URL("http://mhj0932.cafe24.com/order_all_list.do?coin=" + coin);
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
 				}

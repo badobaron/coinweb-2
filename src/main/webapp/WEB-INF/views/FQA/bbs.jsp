@@ -17,10 +17,10 @@
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/bbs.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bbs.css">
   <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
 <!-- 페이징처리 -->
-<script src="http://localhost:8080/coinweb/js/am-pagination.js"></script>
+<script src="${pageContext.request.contextPath}/js/am-pagination.js"></script>
 <script>
 $(document).ready(function($) {
 	
@@ -42,7 +42,7 @@ $(document).ready(function($) {
 	
 	$('#ampaginationsm').on('am.pagination.change',function(e){
 		   $('.showlabelsm').text('The selected page no: '+e.page);
-           $(location).attr('href', "/coinweb/bbs.do?rpage="+e.page);         
+           $(location).attr('href', "${pageContext.request.contextPath}/bbs.do?rpage="+e.page);         
    		});
 	
 	$("#boxbtn").click(function($){
@@ -51,15 +51,15 @@ $(document).ready(function($) {
 		if(sid==""){
 			alert("로그인 후 이용하실수 있습니다.");
 		}else{
-			location.href= '/coinweb/write.do';			
+			location.href= '${pageContext.request.contextPath}/write.do';			
 		}
 	});
 });
 	
 </script>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/am-pagination.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/am-pagination.css">
 
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/freeboard.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/freeboard.css">
 
 
 

@@ -2,6 +2,7 @@
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONArray;
@@ -80,9 +81,9 @@ public class WalletController {
 	}
 	
 	@RequestMapping(value="thread2.do", method=RequestMethod.GET)
-	public String thread(){
+	public String thread(HttpServletRequest request){
 		WalletUpdate trd = new WalletUpdate(sqlSession);
-		trd.run();
+		trd.run(request);
 		
 		return "index";
 	}

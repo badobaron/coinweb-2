@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="http://localhost:8080/coinweb/css/coin.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/coin.css">
 <script src="js/jquery-3.3.1.min.js"></script>
 <script>
 function bithumb (){
@@ -51,7 +51,8 @@ function proc() {
 	<div class="PolyBackground_text">
 		<h1>도전! 암호화폐 모의거래!<br> 다른 사람들과 수익률을 경쟁해보세요.</h1><br>
 		<h3>실제 거래소의 실시간 데이터에 기반하여 <br>모의 거래를 해보세요!</h3>
-		<a href="http://localhost:8080/coinweb/business.do"><button class="index_btn">모의거래 시작하기</button></a>
+		<a href="${pageContext.request.contextPath}/business.do"><button class="index_btn">모의거래 시작하기</button></a><br><br>
+		<h6>*크롬에 최적화 되어있습니다.</h6>
 		</div>
 </div>
 </section>
@@ -61,7 +62,7 @@ function proc() {
 <div class="coinBox">
 <h3>현재 총 12개의 가상화폐를 지원합니다.</h3><br>
 <a href="#"><div class="box shadow1">
-<img src="http://localhost:8080/coinweb/images/btc.png"><br>
+<img src="${pageContext.request.contextPath}/images/btc.png"><br>
 <span class="coin">Bitcoin</span><br><br>
  <div class="content33">
     <p>현재시세 <span id="p_BTC"></span></p>
@@ -70,7 +71,7 @@ function proc() {
 </div></a>
 <a href="#">
 <div class="box shadow1">
-<img src="http://localhost:8080/coinweb/images/bch.png"><br>
+<img src="${pageContext.request.contextPath}/images/bch.png"><br>
 <span class="coin">Bitcoin Cash</span><br><br>
  <div class="content33">
     <p>현재시세 <span id="p_BCH"></span></p>
@@ -79,7 +80,7 @@ function proc() {
 </div></a>
 <a href="#">
 <div class="box shadow1">
-<img src="http://localhost:8080/coinweb/images/eth.png"><br>
+<img src="${pageContext.request.contextPath}/images/eth.png"><br>
 <span class="coin">Ethereum</span><br><br>
  <div class="content33">
     <p>현재시세 <span id="p_ETH"></span></p>
@@ -88,7 +89,7 @@ function proc() {
 </div></a>
 <a href="#">
 <div class="box shadow1">
-<img src="http://localhost:8080/coinweb/images/etc.png"><br>
+<img src="${pageContext.request.contextPath}/images/etc.png"><br>
 <span class="coin">Ethereum Classic</span><br><br>
  <div class="content33">
     <p>현재시세 <span id="p_ETC"></span></p>
@@ -97,7 +98,7 @@ function proc() {
 </div></a>
 <a href="#">
 <div class="box shadow1">
-<img src="http://localhost:8080/coinweb/images/litecoin.png"><br>
+<img src="${pageContext.request.contextPath}/images/litecoin.png"><br>
 <span class="coin">Litecoin</span><br><br>
  <div class="content33">
     <p>현재시세 <span id="p_LTC"></span></p>
@@ -106,7 +107,7 @@ function proc() {
 </div></a>
 <a href="#">
 <div class="box shadow1">
-<img src="http://localhost:8080/coinweb/images/ripple.png"><br>
+<img src="${pageContext.request.contextPath}/images/ripple.png"><br>
 <span class="coin">Ripple</span><br><br>
  <div class="content33">
     <p>현재시세 <span id="p_XRP"></span></p>
@@ -115,7 +116,7 @@ function proc() {
 </div></a>
 <a href="#">
 <div class="box shadow1">
-<img src="http://localhost:8080/coinweb/images/dash.png"><br>
+<img src="${pageContext.request.contextPath}/images/dash.png"><br>
 <span class="coin">Dash</span><br><br>
  <div class="content33">
     <p>현재시세 <span id="p_DASH"></span></p>
@@ -124,7 +125,7 @@ function proc() {
 </div></a>
 <a href="#">
 <div class="box shadow1">
-<img src="http://localhost:8080/coinweb/images/xmr.png"><br>
+<img src="${pageContext.request.contextPath}/images/xmr.png"><br>
 <span class="coin">Monero</span><br><br>
  <div class="content33">
     <p>현재시세 <span id="p_XMR"></span></p>
@@ -133,7 +134,7 @@ function proc() {
 </div></a>
 <a href="#">
 <div class="box shadow1">
-<img src="http://localhost:8080/coinweb/images/qtum.png"><br>
+<img src="${pageContext.request.contextPath}/images/qtum.png"><br>
 <span class="coin">Quantum</span><br><br>
  <div class="content33">
     <p>현재시세 <span id="p_QTUM"></span></p>
@@ -142,7 +143,7 @@ function proc() {
 </div></a>
 <a href="#">
 <div class="box shadow1">
-<img src="http://localhost:8080/coinweb/images/eos.png"><br>
+<img src="${pageContext.request.contextPath}/images/eos.png"><br>
 <span class="coin">Eos</span><br><br>
  <div class="content33">
     <p>현재시세 <span id="p_EOS"></span></p>
@@ -151,7 +152,7 @@ function proc() {
 </div></a>
 <a href="#">
 <div class="box shadow1">
-<img src="http://localhost:8080/coinweb/images/btg.png"><br>
+<img src="${pageContext.request.contextPath}/images/btg.png"><br>
 <span class="coin">Bitcoin Gold</span><br><br>
  <div class="content33">
     <p>현재시세 <span id="p_BTG"></span></p>
@@ -160,7 +161,7 @@ function proc() {
 </div></a>
 <a href="#">
 <div class="box shadow1">
-<img src="http://localhost:8080/coinweb/images/zec.png"><br>
+<img src="${pageContext.request.contextPath}/images/zec.png"><br>
 <span class="coin">Zcash</span><br><br>
  <div class="content33">
     <p>현재시세 <span id="p_ZEC"></span></p>
@@ -168,7 +169,7 @@ function proc() {
   </div>
 </div></a>
 
-<a href="http://localhost:8080/coinweb/business.do"><button class="boxbtn shadow2">거래소 보기</button></a>
+<a href="${pageContext.request.contextPath}/business.do"><button class="boxbtn shadow2">거래소 보기</button></a>
 </div>
 
 
@@ -184,10 +185,10 @@ function proc() {
 	
 			<form class="mycgv">
 				 <a href="#"><span class="span1">
-				 <img src="http://localhost:8080/coinweb/images/iconmonstr-smartphone-16-240 (1).png">
+				 <img src="${pageContext.request.contextPath}/images/iconmonstr-smartphone-16-240 (1).png">
 				 <br><h2>코인 앱 출시</h2><b>지금 바로 설치하세요</b></span></a>
-				<a href="http://localhost:8080/coinweb/rangking.do"><span class="span2">
-				<img src="http://localhost:8080/coinweb/images/iconmonstr-award-24-120.png">
+				<a href="${pageContext.request.contextPath}/rangking.do"><span class="span2">
+				<img src="${pageContext.request.contextPath}/images/iconmonstr-award-24-120.png">
 				<h2>랭킹 시스템</h2> <b>다른사람들과 경쟁해보세요</b></span></a>
 			</form>
 		</section>		

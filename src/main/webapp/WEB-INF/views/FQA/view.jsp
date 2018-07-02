@@ -12,8 +12,7 @@
 <meta name="viewport" content="width=device-width" , initial-scale="1">
 <title>Coinweb - 가상화폐 모의투자</title>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/bbs.css">
-<script type="http://localhost:8080/wh/js/bootstrap.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bbs.css">
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -39,11 +38,11 @@
 			</div>
 
 			<div style="text-align: center;">
-				<a href="http://localhost:8080/coinweb/bbs.do"><button
+				<a href="${pageContext.request.contextPath}/bbs.do"><button
 						type="button" class="btn3">목록으로</button></a> <a
-					href="http://localhost:8080/coinweb/update.do?bbsID=${vo.bbsID}"><button
+					href="${pageContext.request.contextPath}/update.do?bbsID=${vo.bbsID}"><button
 						type="button" class="btn3">수정하기</button></a> <a
-				href="http://localhost:8080/coinweb/deleteAction.do?bbsID=${vo.bbsID }">
+				href="${pageContext.request.contextPath}/deleteAction.do?bbsID=${vo.bbsID }">
 				<button type="button" class="btn3">삭제하기</button>
 				</a>
 			</div>

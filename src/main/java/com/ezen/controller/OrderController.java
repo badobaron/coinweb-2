@@ -2,6 +2,8 @@
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -118,9 +120,9 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value="thread.do", method=RequestMethod.GET)
-	public String thread(){
+	public String thread(HttpServletRequest request){
 		Ordering ord = new Ordering(sqlSession);
-		ord.run();
+		ord.run(request);
 		
 		return "index";
 	}

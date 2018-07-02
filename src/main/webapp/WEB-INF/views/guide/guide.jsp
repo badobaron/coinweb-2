@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel="stylesheet" href="http://localhost:8080/coinweb/css/guide.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/guide.css">
 <script src="js/jquery-3.3.1.min.js"></script>
    
    <script>

@@ -5,9 +5,9 @@
 <head>
 <meta charset="EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://localhost:8080/coinweb/css/coin.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/coin.css">
 <title>Coinweb - 가상화폐 모의투자</title>
-<script src="http://localhost:8080/coinweb/js/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 <script>
 var sid = ${sid};
 function numberWithCommas(x) {
@@ -31,7 +31,7 @@ function fShowData() {
 function GetWalletList(){
 	if(sid!=0){
 		$.ajax({
-			url : 'http://localhost:8080/coinweb/wallet_list.do',
+			url : '${pageContext.request.contextPath}/wallet_list.do',
 			type :'GET',	
 			data : 'id='+sid,
 			dataType : 'json',
@@ -59,7 +59,7 @@ function GetWalletList(){
 
 function GetOrderList(){
 	$.ajax({
-		url : 'http://localhost:8080/coinweb/order_list.do',
+		url : '${pageContext.request.contextPath}/order_list.do',
 		type :'GET',	
 		data : 'id='+sid+'&coin=ALL',
 		dataType : 'json',
@@ -80,7 +80,7 @@ function GetOrderList(){
 
 function GetHistoryList(){
 	$.ajax({
-		url : 'http://localhost:8080/coinweb/history_list.do',
+		url : '${pageContext.request.contextPath}/history_list.do',
 		type :'GET',	
 		data : 'id='+sid+'&coin=ALL',
 		dataType : 'json',
@@ -158,7 +158,7 @@ function GetHistoryList(){
      			<th>시간</th>
      			<th>종류</th>
      			<th>가격</th>
-     			<th>거래량</th>
+     			<th>주문수량/체결수량</th>
      			<th>상태</th>
      		</tr>
      		<tr id="order_wait">

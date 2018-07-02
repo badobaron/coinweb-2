@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel="stylesheet" href="http://localhost:8080/coinweb/css/coin.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/coin.css">
 <script src="js/jquery-3.3.1.min.js"></script>
 
 
@@ -19,7 +19,7 @@
 	<section class="rangking">
 		<div class="rangk_header">
 			<h1 class="rangking_header_h1">
-			<img src="http://localhost:8080/coinweb/images/iconmonstr-award-24-120.png" style="width: 50px; height: 50px;">
+			<img src="${pageContext.request.contextPath}/images/iconmonstr-award-24-120.png" style="width: 50px; height: 50px;">
 			<br>수익률 랭킹</h1>
 			<p>수익률은 KRW를 기준으로 계산됩니다.<br>
 				<br>
@@ -28,7 +28,7 @@
 		<div class="rangking_main">
 		<!-- 123위 -->
 		<div class="rangking_1">
-			<img src="http://localhost:8080/coinweb/images/rank1.png" style="width: 150px; height: 150px;">
+			<img src="${pageContext.request.contextPath}/images/rank1.png" style="width: 150px; height: 150px;">
 			<h3>1위</h3>
 			<c:forEach items="${list}" var="vo1" begin="0" end="0">
 				<p>${vo1.name}</p>
@@ -38,7 +38,7 @@
 		</div>
 		
 		<div class="rangk_top2 rangking_2">
-			<img src="http://localhost:8080/coinweb/images/rank2.png" style="width: 150px; height: 150px;">
+			<img src="${pageContext.request.contextPath}/images/rank2.png" style="width: 150px; height: 150px;">
 			<h3>2위</h3>
 			<c:forEach items="${list}" var="vo2" begin="1" end="1">
 				<p>${vo2.name}</p>
@@ -48,7 +48,7 @@
 		</div>
 		
 		<div class="rangk_top2 rangking_3">
-			<img src="http://localhost:8080/coinweb/images/rank3.png" style="width: 150px; height: 150px;">
+			<img src="${pageContext.request.contextPath}/images/rank3.png" style="width: 150px; height: 150px;">
 			<h3>3위</h3>
 			<c:forEach items="${list}" var="vo3" begin="2" end="2">
 				<p>${vo3.name}</p>

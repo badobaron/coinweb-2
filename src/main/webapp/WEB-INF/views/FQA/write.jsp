@@ -9,7 +9,7 @@
 <title>Coinweb - 가상화폐 모의투자</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/bbs.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bbs.css">
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
@@ -51,7 +51,7 @@ $(document).ready(function(){
 	</div>
 
 	<div id="box11">
-	<form name="writeform" method="post" action="/coinweb/writeAction.do">
+	<form name="writeform" method="post" action="${pageContext.request.contextPath}/writeAction.do">
 		<div class="bbsboard_table1">
 				<div class="form-group1">
 					<input type="text" class="form_control" id="form_control"
@@ -65,7 +65,7 @@ $(document).ready(function(){
 		<div style="text-align: center;">
 			<button type="button" class="btn3" id="write">글쓰기</button>
 			<button type="reset" class="btn3" id="reset">취소</button>
-			<a href="http://localhost:8080/coinweb/bbs.do"><button type="button" class="btn3" id="btn5">이전페이지</button></a>
+			<a href="${pageContext.request.contextPath}/bbs.do"><button type="button" class="btn3" id="btn5">이전페이지</button></a>
 		</div>
 		</form>
 	</div>

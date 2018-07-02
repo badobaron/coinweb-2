@@ -5,52 +5,52 @@
 <mapper namespace="coinweb.dao.bbsDAO">
 	<!-- /**날짜가져오기*/ -->
 	<select id="getDate" resultType="coinweb.vo.bbsVO">
-		SELECT SYSDATE
+		SELECT now()
 	</select>
 
 	<!-- /**Next*/ -->
 	<select id="getNext" resultType="coinweb.vo.bbsVO">
-		SELECT bbsID FROM BBS ORDER BY bbsID DESC
+		SELECT bbsID FROM bbs ORDER BY bbsID DESC
 	</select>
 
 	<!-- /*글쓰기*/ -->
 	<insert id="write" parameterType="coinweb.vo.bbsVO">
-		INSERT INTO BBS(userid, email, bbstitle, bbscontent, bbsdate) VALUES(#{userID}, #{email}, #{bbsTitle}, #{bbsContent} ,now())
+		INSERT INTO bbs(userid, email, bbstitle, bbscontent, bbsdate) VALUES(#{userID}, #{email}, #{bbsTitle}, #{bbsContent} ,now())
 	</insert>
 
 	<select id="execTotalCount" resultType="Integer">
- 		SELECT COUNT(*) FROM BBS
+ 		SELECT COUNT(*) FROM bbs
  	</select>
 
 	<!-- 리스트뿌리기 -->
 	<select id="getResultList" resultType="coinweb.vo.bbsVO">
-		select bbsID, bbsTitle, userID, email, bbsContent, date_format(bbsdate, '%Y-%m-%d') AS FDATE
-		from BBS 
+		select bbsID, bbsTitle, userID, email, bbsContent, date_format(bbsdate, '%Y-%m-%d') AS fdate
+		from bbs 
 		
 		<choose>
 		 <when test="param3 eq 1001">
-		 	ORDER BY BBSDATE DESC limit #{param1} ,#{param2}
+		 	ORDER BY bbsdate DESC limit #{param1} ,#{param2}
 		 </when>
 		 <otherwise>
-		 	where userID = #{param3} ORDER BY BBSDATE DESC limit #{param1} ,#{param2}
+		 	where userID = #{param3} ORDER BY bbsdate DESC limit #{param1} ,#{param2}
 		 </otherwise>
 		</choose>
 	</select>
 
 	<!-- 내용보기 -->
 	<select id="getResultVO" resultType="coinweb.vo.bbsVO">
-		select bbsID, bbsTitle, userID, email, bbsContent, date_format(bbsdate, '%Y-%m-%d %H:%i:%S') as fdate FROM BBS 
-		WHERE bbsID=#{bbsID}
+		select bbsid, bbstitle, userid, email, bbscontent, date_format(bbsdate, '%Y-%m-%d %H:%i:%S') as fdate FROM bbs 
+		WHERE bbsid=#{bbsID}
 	</select>
 
 	<!-- 업데이트 -->
 	<update id="getUpdateResult">
-		UPDATE BBS SET BBSTITLE = #{bbsTitle}, BBSCONTENT = #{bbsContent} WHERE BBSID = #{bbsID}
+		UPDATE bbs SET bbstitle = #{bbsTitle}, bbscontent = #{bbsContent} WHERE bbsid = #{bbsID}
 	</update>
 
 	<!-- 삭제 -->
 	<delete id="getDeleteResult">
-		DELETE FROM bbs WHERE BBSID=#{bbsID}
+		DELETE FROM bbs WHERE bbsid=#{bbsID}
 	</delete>
 
 

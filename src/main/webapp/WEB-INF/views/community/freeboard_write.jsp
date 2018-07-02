@@ -12,7 +12,7 @@
   <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
   
-  <link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/freeboard.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/freeboard.css">
 </head>
 
 <script type="text/javascript">
@@ -64,7 +64,7 @@ $(document).ready(function(){
 
 	<div class="container">
 		
-		<form id="freeboard_form" class="freeboard_form" action="/coinweb/freeboard_write_controller.do" method="post">
+		<form id="freeboard_form" class="freeboard_form" action="${pageContext.request.contextPath}/freeboard_write_controller.do" method="post">
 			<!-- 작성자 -->
 			<div class="form-group">
 			
@@ -85,7 +85,7 @@ $(document).ready(function(){
 			<div style="text-align: center;">	
 				<button id="contentBtn" type="submit" class="btn btn-comm-con">등록</button>
 				<button id="contentBtnReset"type="reset" class="btn btn-comm-con">취소</button>
-				<a href="/coinweb/freeboard.do"><button type="button" class="btn btn-comm-con">뒤로가기</button></a>
+				<a href="${pageContext.request.contextPath}/freeboard.do"><button type="button" class="btn btn-comm-con">뒤로가기</button></a>
 			</div>
 		</form>
 

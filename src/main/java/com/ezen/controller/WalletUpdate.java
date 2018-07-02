@@ -6,6 +6,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -24,7 +26,7 @@ public class WalletUpdate {
 		this.sqlSession = sqlSession;
 	};
 
-	public void run() {
+	public void run(HttpServletRequest request) {
 			WalletDAO dao = sqlSession.getMapper(WalletDAO.class);
 	
 			URL url = null, url2 = null, url3 = null;
@@ -32,7 +34,7 @@ public class WalletUpdate {
 			
 			try {
 				url = new URL("https://api.bithumb.com/public/ticker/ALL");
-				url2 = new URL("http://localhost:8080/coinweb/member_list.do");
+				url2 = new URL("http://mhj0932.cafe24.com/member_list.do");
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
@@ -57,7 +59,7 @@ public class WalletUpdate {
 				String id = member.get("id").toString();
 				
 				try {
-					url3 = new URL("http://localhost:8080/coinweb/wallet_list.do?id="+id);
+					url3 = new URL("http://mhj0932.cafe24.com/wallet_list.do?id="+id);
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
 				}

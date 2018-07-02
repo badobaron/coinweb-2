@@ -11,10 +11,10 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 <!-- 페이징처리 -->
-<script src="http://localhost:8080/coinweb/js/am-pagination.js"></script>
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/am-pagination.css">
+<script src="${pageContext.request.contextPath}/js/am-pagination.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/am-pagination.css">
 
-<link rel="stylesheet" type="text/css" href="http://localhost:8080/coinweb/css/freeboard.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/freeboard.css">
 
 
 </head>
@@ -45,7 +45,7 @@
 		       <c:forEach items="${list}" var="vo">
 		  		<tr class="comm-list">
 			  		<td class="rnotd">${vo.no}</td>
-			  		<td class="titletd"><a href="/coinweb/freeboard_content.do?no=${vo.no}">${vo.title}</a></td>	
+			  		<td class="titletd"><a href="${pageContext.request.contextPath}/freeboard_content.do?no=${vo.no}">${vo.title}</a></td>	
 			  		<td class="nametd">${vo.name}</td>
 			  		<td class="bdatetd">${vo.fbdate}</td>
 			  		<td class="hitstd">${vo.hits}</td>
@@ -56,7 +56,7 @@
 
 				
 				 <div class="form-group">
-				 <form action="/coinweb/freeboard_search.do?rpage=${rpage}" method="get">
+				 <form action="${pageContext.request.contextPath}/freeboard_search.do?rpage=${rpage}" method="get">
 					
 					<div style="display: inline-block;">
 					<select name="findValue" class="form-control" style="width: 100px; float: left;">
@@ -98,7 +98,7 @@
 		
 		$('#ampaginationsm').on('am.pagination.change',function(e){
 			   $('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "/coinweb/freeboard.do?rpage="+e.page);         
+	           $(location).attr('href', "${pageContext.request.contextPath}/freeboard.do?rpage="+e.page);         
 	   		});
 		});	
 	
@@ -108,7 +108,7 @@
 		if(sid==""){
 			alert("로그인 후 이용하실수 있습니다.");
 		}else{
-			location.href= '/coinweb/freeboard_write.do';			
+			location.href= '${pageContext.request.contextPath}/freeboard_write.do';			
 		}
 	});
 </script>

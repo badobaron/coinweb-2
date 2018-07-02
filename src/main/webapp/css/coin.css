@@ -1,9 +1,8 @@
-@CHARSET "EUC-KR";
 @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
 @import url('http://fonts.googleapis.com/earlyaccess/jejugothic.css');
-/*³ª´®½ºÄù¾î*/
-/*º£³Ê*/
+/*ë‚˜ëˆ”ìŠ¤í€˜ì–´*/
+/*ë² ë„ˆ*/
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 body {
@@ -23,7 +22,7 @@ footer {
 }
 
 
-/*¹Ú½º*/
+/*ë°•ìŠ¤*/
 .coinBox h3{
 	margin-left: 10px;
 }
@@ -128,9 +127,9 @@ box-shadow:3px 3px 3px  #d4d4d4;
         
 
 
-/*Å×ÀÌºí*/
+/*í…Œì´ë¸”*/
  
-/*¾Û°ü·Ã*/
+/*ì•±ê´€ë ¨*/
 
 .content-style form.mycgv {
 		text-align: center;
@@ -167,7 +166,7 @@ box-shadow:3px 3px 3px  #d4d4d4;
 
 
 
-/* ¼Ò°³ */
+/* ì†Œê°œ */
 * {box-sizing: border-box}
 .section_button_tab{
 	padding: 150px 80px 300px 550px;
@@ -180,7 +179,7 @@ box-shadow:3px 3px 3px  #d4d4d4;
     display: 
 }
 
-/*¹öÆ°*/
+/*ë²„íŠ¼*/
 .business_btn{
     border: none;
     color:white;
@@ -194,7 +193,7 @@ box-shadow:3px 3px 3px  #d4d4d4;
     box-shadow:2px 2px 4px  #012845;
 }
 
-/*¹öÆ°*/
+/*ë²„íŠ¼*/
 .sec_button{
 text-align: center;
 }
@@ -230,7 +229,7 @@ text-align: center;
 
 
 
-/*ÀÌ¿ë°¡ÀÌµå*/
+/*ì´ìš©ê°€ì´ë“œ*/
 .acc_1{
 	background-color:#eee;
 	margin-top:50px;
@@ -326,7 +325,7 @@ text-align: center;
 
 
 
-/*·©Å·*/
+/*ë­í‚¹*/
 
 .rangk_header{
 	width: 100%;
@@ -338,7 +337,7 @@ text-align: center;
 }
 
 .rangking_header_h1{
-	/*·©Å· ÆùÆ®¼³Á¤*/
+	/*ë­í‚¹ í°íŠ¸ì„¤ì •*/
 	padding-top: 50px;
 	
 
@@ -355,12 +354,12 @@ text-align: center;
 	text-align: center;
 	
 }
-/*1À§*/
+/*1ìœ„*/
 .rangking_1{
 
 	border-bottom: 1px solid #d9d9d9;
 }
-/*23À§*/
+/*23ìœ„*/
 .rangk_top2{
 	
 	display: inline-block;
@@ -374,7 +373,7 @@ text-align: center;
 	margin-right: 300px;
 }
 
-/*³ª¸ÓÁö ·©Å·*/
+/*ë‚˜ë¨¸ì§€ ë­í‚¹*/
 .rangk_bottom{
 	
 } 
@@ -413,12 +412,12 @@ text-align: center;
 	  
 }
 
-/*·©Å·³¡*/
+/*ë­í‚¹ë*/
 
 
-/*wallet ³»Áö°© */
-/*wallet ³»Áö°© */
-/*wallet ³»Áö°© */
+/*wallet ë‚´ì§€ê°‘ */
+/*wallet ë‚´ì§€ê°‘ */
+/*wallet ë‚´ì§€ê°‘ */
 
 #wallet{
 	display: table;
@@ -431,7 +430,7 @@ text-align: center;
 	
   
 }
-/*¹öÆ°*/
+/*ë²„íŠ¼*/
 .wallet_tablink {
 	background-color: #ffffff;
 	border: none;
@@ -466,7 +465,7 @@ text-align: center;
 
 
 }
-/*¾È¿¡ ³»¿ë¤»*/
+/*ì•ˆì— ë‚´ìš©ã…‹*/
 .mywallet_box {
 	width: 100%;
 	background-color: white;
@@ -567,15 +566,15 @@ table.coinWallet td{
 
 
 
-/*wallet ³»Áö°©³¡ */
-/*wallet ³»Áö°©³¡*/
-/*wallet ³»Áö°©³¡*/
+/*wallet ë‚´ì§€ê°‘ë */
+/*wallet ë‚´ì§€ê°‘ë*/
+/*wallet ë‚´ì§€ê°‘ë*/
 
 
 
-/*°Å·¡ÇÏ±â*/
-/*°Å·¡ÇÏ±â*/
-/*°Å·¡ÇÏ±â*/
+/*ê±°ë˜í•˜ê¸°*/
+/*ê±°ë˜í•˜ê¸°*/
+/*ê±°ë˜í•˜ê¸°*/
 .business{
 	background-color: #eaeaec;
 }
@@ -634,7 +633,7 @@ table.coinWallet td{
 	color: #b6b6b6;
 }
 
-/*¸ŞÀÎ¼¼¼Ç*/
+/*ë©”ì¸ì„¸ì…˜*/
 .business_cash_section{
 	width:100%; 
 	height:760px;
@@ -712,9 +711,7 @@ table.coinWallet td{
 	width:80%;
 	border-collapse: collapse;
 	background-color: white;
-	margin: 0px 30px 0px 25px;
-	
-	 
+	margin: 0px 30px 0px 25px; 
 }
 .chart_table table.table2 td{
 	padding: 5px 0px 5px 0px;
@@ -730,7 +727,7 @@ table.coinWallet td{
 
 
 
-/*¸Åµµ¸Å¼ö*/
+/*ë§¤ë„ë§¤ìˆ˜*/
 .tab_wrapper {
  	width: 100%;
  	padding: 20px;   
@@ -959,7 +956,7 @@ table.coinWallet td{
     color: #0090FF;
 }
 
-/*´ë±âÁÖ¹®³»¿ª*/
+/*ëŒ€ê¸°ì£¼ë¬¸ë‚´ì—­*/
 
 #trade_section_3 .container {
  	width:100%;
@@ -1014,7 +1011,7 @@ table.coinWallet td{
 	font-size: 13px;
 }
 
-/*Ãë¼Ò*/
+/*ì·¨ì†Œ*/
 .standby_order_table tbody tr td {
 	padding-top: 5px;
 
@@ -1022,7 +1019,7 @@ table.coinWallet td{
 .standby_order_table tbody tr:HOVER{
 	background-color: #f8f8f8;
 }
-/*ÆË¾÷*/
+/*íŒì—…*/
 
 .layer {
 	display:none; 
@@ -1078,7 +1075,7 @@ a.cbtn:hover {
 	
 	
 	
-/*¸ğ´Ş*/
+/*ëª¨ë‹¬*/
 
 .modal-open .modal {
     overflow-x: hidden;
@@ -1132,6 +1129,6 @@ a.cbtn:hover {
 	margin-top: 50px; 
 }
 	
-/*°Å·¡ÇÏ±â³¡*/
-/*°Å·¡ÇÏ±â³¡*/
-/*°Å·¡ÇÏ±â³¡*/
+/*ê±°ë˜í•˜ê¸°ë*/
+/*ê±°ë˜í•˜ê¸°ë*/
+/*ê±°ë˜í•˜ê¸°ë*/
