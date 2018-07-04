@@ -9,20 +9,20 @@
 	</select>
 	<select id="getBoardListContent" resultType="coinweb.vo.BoardVO">
 		SELECT  no, id, title, name, date_format(bdate, '%Y-%m-%d') AS fbdate, hits, likeit 
-		FROM coinweb_board WHERE UPPER(content) LIKE '%' || UPPER(#{param1}) || '%' ORDER BY bdate DESC limit #{param2} ,#{param3} 
+		FROM coinweb_board WHERE UPPER(content) LIKE CONCAT('%' , UPPER(#{param1}) , '%') ORDER BY bdate DESC limit #{param2} ,#{param3} 
 	</select>
 	<select id="getBoardListTitle" resultType="coinweb.vo.BoardVO">
 		SELECT no, id, title, name, date_format(bdate, '%Y-%m-%d') AS fbdate, hits, likeit 
-		FROM coinweb_board WHERE UPPER(title) LIKE '%' || UPPER(#{param1}) || '%' ORDER BY bdate DESC limit #{param2} ,#{param3}
+		FROM coinweb_board WHERE UPPER(title) LIKE CONCAT('%' , UPPER(#{param1}) , '%') ORDER BY bdate DESC limit #{param2} ,#{param3}
 	</select>
 	<select id="execTotalCount" resultType="Integer">
  		SELECT COUNT(*) FROM coinweb_board
  	</select>
  	<select id="execTotalCountContent" resultType="Integer">
- 		SELECT COUNT(*) FROM coinweb_board   WHERE UPPER(content) LIKE '%' || UPPER(#{param1}) || '%' 
+ 		SELECT COUNT(*) FROM coinweb_board   WHERE UPPER(content) LIKE CONCAT('%' , UPPER(#{param1}) , '%')
  	</select> 
  	<select id="execTotalCountTitle" resultType="Integer">
- 		SELECT COUNT(*) FROM coinweb_board   WHERE UPPER(title) LIKE '%' || UPPER(#{param1}) || '%' 
+ 		SELECT COUNT(*) FROM coinweb_board   WHERE UPPER(title) LIKE CONCAT('%' , UPPER(#{param1}) , '%')
  	</select> 
  	 		
 	<select id="getBoardContent" resultType="coinweb.vo.BoardVO">
@@ -47,7 +47,7 @@
  			 , date_format(bdate, '%YY-%m-%d') AS fbdate
 			 , hits
 			 , likeit FROM coinweb_board 
-			   WHERE title LIKE '%' || #{search} || '%' 
+			   WHERE title LIKE CONCAT('%' , #{search} , '%')
  	</select>
  	<update id="getUpdateHits">
  		UPDATE coinweb_board SET hits = hits+1 WHERE no =#{no}

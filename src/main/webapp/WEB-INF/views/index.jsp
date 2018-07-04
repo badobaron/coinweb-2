@@ -39,6 +39,15 @@ function proc() {
     }
 }
 </script>
+<script type="text/javascript" language="JavaScript">
+var mobileKeyWords = new Array('iPhone', 'iPod', 'BlackBerry', 'Android', 'Windows CE', 'Windows CE;', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson', 'Mobile', 'Symbian', 'Opera Mobi', 'Opera Mini', 'IEmobile');
+for (var word in mobileKeyWords){
+	if (navigator.userAgent.match(mobileKeyWords[word]) != null){
+		window.location.href = "${pageContext.request.contextPath}/m/index.do";
+		break;
+	}
+}
+</script>
 <title>Coinweb - 가상화폐 모의투자</title>
 </head>
 <body onload="proc()">
